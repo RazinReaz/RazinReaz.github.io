@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Razin Reaz Abedin - Home</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="styles.css">
+
+    <!-- Script for loading Navbar and Sidebar -->
+    <script>
+        function includeHTML() {
+            let elements = document.querySelectorAll('[data-include]');
+            elements.forEach(el => {
+                const file = el.getAttribute('data-include');
+                fetch(file)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Network error');
+                        return response.text();
+                    })
+                    .then(data => el.innerHTML = data)
+                    .catch(() => el.innerHTML = 'Error loading the content');
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', includeHTML);
+    </script>
+</head>
+<body>
+
+    <!-- Top Navigation Bar (Will be included via JS) -->
+    <div data-include="./navbar.html"></div>
+
+    <div class="container">
+        <!-- Left Sidebar (Will be included via JS) -->
+        <div data-include="./sidebar.html"></div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <h2>About Me</h2>
+            <p>Hi there! I am Razin. 
+                Currently working as an adjunct lecturer at the <a href="https://cse.buet.ac.bd/">Department of Computer Science and Engineering</a>, <a href="https://www.buet.ac.bd/web/#/">Bangladesh University of Engineering and Technology (BUET)</a>. 
+                I completed my undergraduate degree in the same department in July 2024 with a CGPA of 3.93/4.00. 
+                <br><br>
+                I am interested in everything related to Graphics, Visualization, Machine Learning, and Deep Learning. I plan to do research in these fields. 
+                In my spare time, I build simulations and visualizations of things I find interesting. More about it in the <a href="./projects.html">Projects</a> tab.
+                <br><br>
+                
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
