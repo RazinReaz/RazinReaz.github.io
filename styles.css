@@ -109,6 +109,27 @@ body {
     margin-bottom: 20px;
 }
 
+.about {
+    width: 70%;
+    padding: 40px 30px;
+}
+
+.about h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+.about p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.about a {
+    color: #007bff;
+    text-decoration: none;
+}
+
 /* General Card Styling */
 .card {
     display: flex;
@@ -123,7 +144,7 @@ body {
 
 /* Image/GIF Section */
 .card-image {
-    flex: 0 0 300px; /* Fixed width for the image section */
+    flex: 0 0 400px; /* Fixed width for the image section */
 }
 
 .card-image img {
@@ -136,6 +157,7 @@ body {
 /* Content Section */
 .card-content {
     flex: 1; /* Allows the content section to take up the remaining space */
+    font-size: 15px;
 }
 
 .card-content h3 {
@@ -164,3 +186,114 @@ body {
 .card-button:hover {
     background-color: #0056b3;
 }
+
+.tools-list {
+    list-style-type: disc;
+    padding-left: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
+    font-style: italic;
+}
+
+.tools-list li {
+    margin: 0;
+}
+
+.icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    color: #000;
+    border-radius: 5px;
+    margin-right: 10px;
+    /* box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); */
+}
+
+.icon-box i {
+    font-size: 20px;
+}
+
+
+/* Research */
+.timeline-title h3 {
+  font-size: 20px;
+  line-height: 1.3;
+  margin-bottom: 7px;
+  margin-left: 10px;
+}
+
+.timeline-duration {
+  color: #eccb5e; /* Gold-like color */
+  font-weight: 400; /* Normal font weight */
+  line-height: 1.6;
+  margin-bottom: 5px;
+  margin-left: 10px;
+
+}
+
+.timeline-category {
+  font-size: 14px; /* Assuming --fs-7 was small, replaced it with 14px */
+  color: #888; /* Grey color for less emphasis */
+  margin-bottom: 15px;
+  margin-left: 10px;
+}
+
+.timeline-description {
+  color: #666; /* Medium grey for description text */
+  font-weight: 300; /* Light font weight */
+  line-height: 1.6;
+  width: 90%;
+  text-align: justify;
+  margin-left: 10px;
+}
+
+.timeline-description a {
+    color: #007bff; /* Blue color for links */
+    text-decoration: none; /* Remove underline from links */
+    font-weight: 400; /* Normal font weight */
+}
+
+
+
+
+/*
+ * Vertical Line and Circle for Timeline
+ */
+
+.timeline-item {
+  position: relative;
+  margin-left: 45px;
+  padding-bottom: 20px;
+}
+
+.timeline-item:not(:last-child) {
+  margin-bottom: 30px;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  left: -28px;
+  width: 1px;
+  height: 100%;
+  background-color: #888; /* Grey color for the vertical line */
+}
+
+.timeline-item:not(:last-child)::before {
+  height: calc(100% + 30px);
+}
+
+.timeline-circle {
+  position: absolute;
+  top: 15px;
+  left: -33px;
+  width: 10px;
+  height: 10px;
+  background-color: #848484; 
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px #b2b2b2;}

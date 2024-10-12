@@ -35,13 +35,50 @@
 
 <body>
 
-    <!-- Top Navigation Bar (Will be included via JS) -->
     <div data-include="navbar.html"></div>
 
     <div class="container">
 
         <div data-include="sidebar.html"></div>
-        <h1>placeholder!</h1>
+        <div class="main-content">
+            <div class="research">
+                <h2><span class="icon-box"><i class="fas fa-book"></i></span>  Research Experience</h2>
+                <div class="timeline-item">
+                    <div class="timeline-circle"></div>
+                    <div class="timeline-title">
+                        <h3>Enhancing Earthquake Early Warning: Real‑time Seismic Intensity Prediction with Contrastive
+Learning and DenseLoss</h3>
+                        <p class="timeline-duration">February 2024 - Present</p>
+                        <p class="timeline-category">Deep Learning</p>
+                        <p class="timeline-description">
+                        Development of a deep learning model to predict peak ground acceleration (and earthquake intensity) by analyzing
+                        the first 3 seconds of the p‑phase in seismograms under the supervision of <a href="https://sites.google.com/site/mohammedeunusali/
+                        ">Dr. Mohammed Eunus Ali</a>. 
+                        The model uses train‑time data augmentation to generate partial waves and employs a self‑supervised contrastive learning approach to align partial waves with the full waveform in
+                        the embedding space. 
+                        To address the dataset’s imbalance in large‑magnitude earthquakes, SMOTER (SMOTE for
+                        regression) and a density‑based sample loss weighing scheme were applied.
+                        </p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-circle"></div>
+                    <div class="timeline-title">
+                        <h3>Analyzing Impacts on the Physiological Aspects of Rickshaw‑pullers due to Heat Exposure</h3>
+                        <p class="timeline-duration">November 2022 - Present</p>
+                        <p class="timeline-category">Human Computer Interaction</p>
+                        <p class="timeline-description">
+                        Dataset preparation of the physiological aspects and environmental factors of Bangladeshi Rickshaw Pullers. 
+                        Supervised by <a href="https://cse.buet.ac.bd/faculty/faculty_detail/razi">Dr. A. B. M. Alim Al Islam</a>. 
+                        Collect skin temperature, electrodermal activity(EDA), pulse rate variability, EEG data, etc. as physiological aspects and 
+                        environmental temperature, relative humidity, dust particle amount, pollution levels, etc. as 
+                        environmental data. Accumulated data of over 40 rickshaw pullers, each having more than 20 minutes of data. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </body>
 </html>

@@ -1,3 +1,8 @@
--[ ] Youtube demo
+- [ ] Youtube demo
     - [ ] Black box video
     - [ ] Steering behaviours video
+- [ ] Story about me
+- [ ] Research tab
+- [ ] add to projects
+    - GMM
+    - lunar lander
