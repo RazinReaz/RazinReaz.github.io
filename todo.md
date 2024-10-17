@@ -6,3 +6,10 @@
 - [ ] add to projects
     - GMM
     - lunar lander
+    - fluid sim
+    - softbody sim
+- [ ] leadership
+    - photos of events
+    - photos of team
+    - murchhona
+- [ ] certificates
