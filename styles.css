@@ -345,7 +345,7 @@ body {
   width: calc(50% - 20px); 
   min-height: 300px; 
   padding: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
   background-color: #f8f8f8;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -368,6 +368,7 @@ body {
 .link-card:hover {
   transform: scale(1.05); /* Slightly enlarge the card */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase box-shadow */
+  background-color: #c1e7ff;
 }
 
 .link-card:hover .video-thumbnail {

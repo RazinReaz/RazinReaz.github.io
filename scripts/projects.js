@@ -69,6 +69,24 @@ const projects = [
     ],
   },
   {
+    imageSrc: "./assets/projects/ray-casting/demo.gif",
+    imageAlt: "Simple Ray Casting",
+    title: "Simple Ray Casting",
+    tools: ["JavaScript", "p5.js"],
+    description:
+      "An interactive 3D world where you can traverse a customisable map. Developed using p5.js.",
+    links: [
+      {
+        href: "https://razinreaz.github.io/raycasting/",
+        text: "Try it Yourself!",
+      },
+      {
+        href: "https://github.com/RazinReaz/raycasting",
+        text: "Github",
+      },
+    ],
+  },
+  {
     imageSrc: "./assets/projects/steering-behaviours/path.gif",
     imageAlt: "Steering behaviours",
     title: "Steering Behaviours",
@@ -97,7 +115,7 @@ const projects = [
   //         href: "https://github.com/RazinReaz/raycasting-3D",
   //         text: "GitHub",
   //       },
-  //      
+  //
   //     ],
   //   },
   {
@@ -105,30 +123,31 @@ const projects = [
     imageAlt: "Ragdoll",
     title: "Ragdoll Simulation",
     tools: ["JavaScript", "p5.js"],
-    description: "Ragdoll interacting with gravity and a ball. Developed using p5.js.",
+    description:
+      "Ragdoll interacting with gravity and a ball. Developed using p5.js.",
     links: [
-        {
-            href: "https://razinreaz.github.io/Ragdoll-Simulation/",
-            text: "Try it Yourself!",
-        },
-        {
-            href: "https://github.com/RazinReaz/Ragdoll-Simulation/",
-            text: "Github",
-        },
+      {
+        href: "https://razinreaz.github.io/Ragdoll-Simulation/",
+        text: "Try it Yourself!",
+      },
+      {
+        href: "https://github.com/RazinReaz/Ragdoll-Simulation/",
+        text: "Github",
+      },
     ],
   },
-//   {
-//     imageSrc: "",
-//     imageAlt: "",
-//     title: "",
-//     description: "",
-//     links: [
-//       {
-//         href: "",
-//         text: "",
-//       },
-//     ],
-//   },
+  //   {
+  //     imageSrc: "",
+  //     imageAlt: "",
+  //     title: "",
+  //     description: "",
+  //     links: [
+  //       {
+  //         href: "",
+  //         text: "",
+  //       },
+  //     ],
+  //   },
 ];
 
 function createCard(project) {
