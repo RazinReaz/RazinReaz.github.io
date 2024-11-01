@@ -1,18 +1,36 @@
 const projects = [
   {
-    imageSrc: "./assets/projects/raytracing/8%20spheres/output.gif",
-    imageAlt: "Ray-Tracing",
-    title: "Ray-Tracing",
+    imageSrc: "./assets/projects/raytracing/5%20spheres%20zip.gif",
+    imageAlt: "Ray tracing",
+    title: "Ray tracing",
     tools: ["C++", "OpenGL"],
     description:
-      "An image generating computer graphics pipeline capable of creating ray-traced images of spheres, pyramids, and cubes with diffuse, specular, and reflective components. Developed using C++ and OpenGL.",
+      "An offline ray tracer capable of diffuse lighting, global illumination using path tracing, and emissive objects. Developed using C++ and OpenGL.",
     links: [
       {
-        href: "https://github.com/RazinReaz/RazinReazCSE410-Computer-Graphics/tree/master/offline-4-raytracing",
-        text: "Code",
+        href: "https://github.com/RazinReaz/ray-tracing",
+        text: "Github",
+      },
+      {
+        href: "https://youtube.com/shorts/ligIcI4hCak",
+        text: "Video",
       },
     ],
   },
+  // {
+  //   imageSrc: "./assets/projects/raytracing/8%20spheres/output.gif",
+  //   imageAlt: "Ray-Tracing",
+  //   title: "Ray-Tracing",
+  //   tools: ["C++", "OpenGL"],
+  //   description:
+  //     "An image generating computer graphics pipeline capable of creating ray-traced images of spheres, pyramids, and cubes with diffuse, specular, and reflective components. Developed using C++ and OpenGL.",
+  //   links: [
+  //     {
+  //       href: "https://github.com/RazinReaz/RazinReazCSE410-Computer-Graphics/tree/master/offline-4-raytracing",
+  //       text: "Code",
+  //     },
+  //   ],
+  // },
   {
     imageSrc: "./assets/projects/tworch/gaussian 5layer-10nn.gif",
     imageAlt: "Model fitting a 2D dataset",
