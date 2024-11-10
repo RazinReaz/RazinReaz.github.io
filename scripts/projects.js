@@ -154,6 +154,23 @@ const projects = [
       },
     ],
   },
+  {
+    imageSrc: "./assets/projects/game-of-life/2.gif",
+    imageAlt: "Game of Life",
+    title: "Conway's Game of Life",
+    description:
+      "Cellular Automaton simulation of Conway's Game of Life. Developed using p5.js.",
+    links: [
+      {
+        href: "https://razinreaz.github.io/game-of-life/",
+        text: "Try it Yourself!",
+      },
+      {
+        href: "https://github.com/RazinReaz/game-of-life",
+        text: "Github",
+      }
+    ],
+  },
   //   {
   //     imageSrc: "",
   //     imageAlt: "",
@@ -175,7 +192,6 @@ function createCard(project) {
         `<a href="${link.href}" target="_blank" class="card-button">${link.text}</a>`
     )
     .join("\n");
-    const toolsHtml = project.tools.map((tool) => `<li>${tool}</li>`).join("");
   return `
         <div class="card">
             <div class="card-image">
