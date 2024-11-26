@@ -105,6 +105,24 @@ const projects = [
     ],
   },
   {
+    imageSrc: "./assets/projects/flocking-boids/boids 1.gif",
+    imageAlt: "flocking",
+    title: "Flocking Boids",
+    tools: ["JavaScript", "p5.js"],
+    description:
+      "Flocking simulation with Quad tree neighbour search. Developed using p5.js.",
+    links: [
+      {
+        href: "razinreaz.github.io/flocking-boids/",
+        text: "Try it Yourself!",
+      },
+      {
+        href: "https://github.com/RazinReaz/flocking-boids",
+        text: "Github",
+      },
+    ],
+  },
+  {
     imageSrc: "./assets/projects/steering-behaviours/path.gif",
     imageAlt: "Steering behaviours",
     title: "Steering Behaviours",
@@ -168,7 +186,7 @@ const projects = [
       {
         href: "https://github.com/RazinReaz/game-of-life",
         text: "Github",
-      }
+      },
     ],
   },
   //   {

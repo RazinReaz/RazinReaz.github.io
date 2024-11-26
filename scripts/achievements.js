@@ -7,11 +7,11 @@ const achievements = [
       "Created a CNN based model capable of predicting existance of valvular heart diseases (multilabel multiclass classification problem) from heart sounds. The dataset used was the BMD-HS dataset. Secured the runner up position in the competition.",
   },
   {
-    imageSrc: "",
+    imageSrc: "./assets/achievements/Razin_Reaz_Abedin_GameJam.png",
     imageAlt: "GameJam 2023, IEEE CS BUET",
     title: "GameJam 2023, IEEE CS BUET",
     description:
-      "Created a top down shooter game based on \'Asteroids\'. The game was developed using p5.js and secured the 5th place prize in the competition.",
+      "Created a top down shooter game based on \'Asteroids\'. The game was developed using p5.js and <b>secured the 5th place prize in the competition</b> (Among 50 competitors in the first round, and 15 in the final round).",
   },
 ];
 
