@@ -1,92 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Razin Reaz Abedin - Home</title>
-    
+
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins|Roboto:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- FontAwesome for Social Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
     <!-- Link to external CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 
     <!-- Script for loading Navbar and Sidebar -->
     <script>
-        function includeHTML() {
-            let elements = document.querySelectorAll('[data-include]');
-            elements.forEach(el => {
-                const file = el.getAttribute('data-include');
-                fetch(file)
-                    .then(response => {
-                        if (!response.ok) throw new Error('Network error');
-                        return response.text();
-                    })
-                    .then(data => el.innerHTML = data)
-                    .catch(() => el.innerHTML = 'Error loading the content');
-            });
-        }
+      function includeHTML() {
+        let elements = document.querySelectorAll("[data-include]");
+        elements.forEach((el) => {
+          const file = el.getAttribute("data-include");
+          fetch(file)
+            .then((response) => {
+              if (!response.ok) throw new Error("Network error");
+              return response.text();
+            })
+            .then((data) => (el.innerHTML = data))
+            .catch(() => (el.innerHTML = "Error loading the content"));
+        });
+      }
 
-        document.addEventListener('DOMContentLoaded', includeHTML);
-
+      document.addEventListener("DOMContentLoaded", includeHTML);
     </script>
     <script src="scripts/navbar.js"></script>
-</head>
-<body>
-
+  </head>
+  <body>
     <!-- Top Navigation Bar (Will be included via JS) -->
     <div data-include="./navbar.html"></div>
 
     <div class="container">
-        <!-- Left Sidebar (Will be included via JS) -->
-        <div data-include="./sidebar.html"></div>
+      <!-- Left Sidebar (Will be included via JS) -->
+      <div data-include="./sidebar.html"></div>
 
-        <!-- Main Content Area -->
-        <div class="about">
-            <h2>About Me</h2>
-            <p>
-                Hi everyone! I am Razin and I teach people Computer Science at the same university I graduated from! <br> 
-                Yes, right now, I am an adjunct lecturer at the <a href="https://cse.buet.ac.bd/">Department of Computer Science and Engineering</a>, 
-                <a href="https://www.buet.ac.bd/web/#/">BUET</a>. 
-                I completed my undergraduate degree in July 2024 with a <b>CGPA of 3.93/4.00</b>. Looks like all those sleepless nights paid off!
-                <br><br>
+      <!-- Main Content Area -->
+      <div class="about">
+        <h2>Hi there! I am Razin!</h2>
+        <p>
+          I teach people Computer Science at the same university I graduated
+          from! <br />
+          Yes, right now, I am an adjunct lecturer at the
+          <a href="https://cse.buet.ac.bd/"
+            >Department of Computer Science and Engineering</a
+          >, <a href="https://www.buet.ac.bd/web/#/">BUET</a>. I completed my
+          undergraduate degree in July 2024 with a <b>CGPA of 3.93/4.00</b>.
+        </p>
+        <p>
+          My research interests lies in <b>Computer Graphics</b>,
+          <b>Visualization</b>, <b>Computer Vision</b>, and
+          <b>Physically Based Rendering</b>.
+        </p>
+        <p>
+          Ever since I started programming, I always get a kick out of turning
+          every new thing I learn into code. It's always fun watching my own
+          little simulations in my computer screen. You can take a look at some
+          of my projects in the <a href="./projects.html">Projects</a> tab.
+        </p>
 
-                <!-- I am interested in everything related to Graphics, Visualization, Machine Learning, and Deep Learning. I plan to do research in these fields. 
-                In my spare time, I build simulations and visualizations of things I find interesting. More about it in the <a href="./projects.html">Projects</a> tab. -->
-                <!-- <br><br> -->
+        <p>
+          A short overview of my <b>research experience</b>: I have experience
+          building a deep learning model to predict earthquake intensity with
+          only 3 seconds of seismograms as my undergraduate thesis. I also have
+          experience collecting physiological data from more than 40
+          rickshaw-pullers using more than 7 sensors to analyze the impacts of
+          heat exposure on them. More about it in the
+          <a href="./research.html">Research</a> tab.
+        </p>
 
-                My research interests lies in <b>Computer Graphics</b>, <b>Visualization</b>, <b>Computer Vision</b>, and <b>Physically Based Rendering</b>.
-
-                Ever since I started programming, I always get a kick out of turning every new thing I learn into code. 
-                It's always fun watching my own little simulations in my computer screen. 
-                LissaJous curves, fractals, Fourier series, you name it. 
-                Helps me learn better too, as I am a visual learner. 
-                <!-- Those are the reasons why I am interested in everything related to <b>Graphics</b> and <b>Visualization</b>.  -->
-                You can take a look at some of my projects in the <a href="./projects.html">Projects</a> tab.
-                <br><br>
-
-                I also have a keen interest in Machine Learning and Deep learning. 
+        <!-- I also have a keen interest in Machine Learning and Deep learning.
                 The fact that simple weight matrices can do wonders in recognizing patterns and learning features is mind-blowing!
-                <!-- The first time I learned about GANs, I was blown away by the concept of fooling the discriminator while it gets better at distinguishing real from fake.  -->
                 When I first learned about GANs, I was blown away by how they fool the discriminator while it gets better at spotting what's real and what's fake. 
                 The intuition behind other models like VAEs, CNNs, LSTMs are also deeply fascinating! I am especiallly interested in
-                explaining the inner workings of a machine learning model visually.<br>
-                <!-- Right now, I am <b>learning Reinforcement Learning</b> to make my own autonomous agents. -->
-                <br><br>
-                A short overview of my <b><i>research experience</i></b>: I have experience building a deep learning model 
-                to predict earthquake intensity with only 3 seconds of seismograms as my undergraduate thesis. 
-                I also have experience collecting physiological data from more than 40 rickshaw-pullers 
-                using more than 7 sensors to analyze the impacts of heat exposure on them. More about it in the <a href="./research.html">Research</a> tab. 
-                <br><br>
-            
-                For more information about me that is totally not unsolicited, check out <a href="./more.html">this page</a>.
-                 
-            </p>
-        </div>
+                explaining the inner workings of a machine learning model visually.
+                <br><br> -->
+        <p>
+          For more information about me that is totally not unsolicited, check
+          out <a href="./more.html">this page</a>.
+        </p>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>

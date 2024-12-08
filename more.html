@@ -1,115 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Razin Reaz Abedin - Projects</title>
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
-    
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins|Roboto:wght@300;500&display=swap"
+      rel="stylesheet"
+    />
+
     <!-- FontAwesome for Social Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
     <!-- Link to external CSS -->
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 
     <!-- Script for loading Navbar and Sidebar -->
     <script>
-        function includeHTML() {
-            let elements = document.querySelectorAll('[data-include]');
-            elements.forEach(el => {
-                const file = el.getAttribute('data-include');
-                fetch(file)
-                    .then(response => {
-                        if (!response.ok) throw new Error('Network error');
-                        return response.text();
-                    })
-                    .then(data => el.innerHTML = data)
-                    .catch(() => el.innerHTML = 'Error loading the content');
-            });
-        }
+      function includeHTML() {
+        let elements = document.querySelectorAll("[data-include]");
+        elements.forEach((el) => {
+          const file = el.getAttribute("data-include");
+          fetch(file)
+            .then((response) => {
+              if (!response.ok) throw new Error("Network error");
+              return response.text();
+            })
+            .then((data) => (el.innerHTML = data))
+            .catch(() => (el.innerHTML = "Error loading the content"));
+        });
+      }
 
-        document.addEventListener('DOMContentLoaded', includeHTML);
+      document.addEventListener("DOMContentLoaded", includeHTML);
     </script>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <div data-include="navbar.html"></div>
-    
+
     <div class="container">
-        
-        <div data-include="sidebar.html"></div>
-        <div class="main-content">
-            
-            <h2> Hobbies and Interests</h2>
-            <br>
-            <div class="link-card-container">
-                
-                <div class="link-card">
-                    <div class="video-container">
-                        <a href="https://itch.io/jam/buet-cse-fest-2023-game-jam/results" target="_blank">
-                        <img src="./assets/more/gamejam1.jpg" alt="Game Jam BUET CSE Fest 2023 " class="thumbnail">
-                        </a>
-                    </div>
-                    <p><br>I co-led the Inter University Game Jam event of BUET CSE Fest 2023!</p>
-                </div>
-                <div class="link-card">
-                    <div class="video-container">
-                        <a href="https://www.youtube.com/watch?v=Os5yeavDblk&t=555" target="_blank">
-                        <img src="./assets/more/localoca.JPG" alt="Flash Mob 2023" class="thumbnail">
-                        </a>
-                    </div>
-                    <p><br>Danced with tons of enthusiastic people to Loca Loca!</p>
-                </div>
-
-                <div class="link-card">
-                    <div class="video-container">
-                        <a href="https://www.instagram.com/olokkho/" target="_blank">
-                        <img src="./assets/more/olokkho2.jpg" alt="instagram" class="thumbnail">
-                        </a>
-                    <p><br>I like to take photographs. Here is my instagram!</p>
-                    </div>
-                </div>
-
-                <div class="link-card">
-                    <div class="video-container">
-                        <a href="https://www.youtube.com/watch?v=WaajOqOC4PA" target="_blank">
-                        <img src="https://img.youtube.com/vi/WaajOqOC4PA/hqdefault.jpg" alt="" class="thumbnail">
-                        </a>
-                    </div>
-                    <p><br>I was part of a Rock Band called Return Zero!</p>
-                </div>
-
-                <div class="link-card">
-                    <div class="video-container">
-                        <a href="https://youtu.be/3Y7SQm_T_yk?si=irw04tRECtbqA6im" target="_blank">
-                        <img src="https://img.youtube.com/vi/3Y7SQm_T_yk/hqdefault.jpg" alt="The Zombies" class="thumbnail">
-                        </a>
-                    </div>
-                    <p><br>Our class was named "The Zombies" After this dance performance of Thriller and Everybody!</p>
-                </div>
-                <div class="link-card">
-                    <div class="video-container">
-                        <a href="https://www.facebook.com/reel/838644994515069" target="_blank">
-                        <img src="https://scontent.fdac149-1.fna.fbcdn.net/v/t39.30808-6/368446189_688901706607108_8403858858225660609_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=75d36f&_nc_ohc=isctici3ca4Q7kNvgEslQ7o&_nc_zt=23&_nc_ht=scontent.fdac149-1.fna&_nc_gid=An0sfC4Wbq6QTHPuN8qlfsL&oh=00_AYBolPyIB-0-lPaXu2TZbqyYlQVKDmeGUlGjgTD9imOQfw&oe=674B6104" alt="Priyo Mohanogori" class="thumbnail">
-                        </a>
-                    </div>
-                    <p><br>A trailer that I am especially proud of making. An event I am especially proud of being a part of.</p>
-                </div>
-
-                <div class="link-card">
-                    <div class="video-container">
-                        <a href="https://www.youtube.com/watch?v=0ENVNEGGTyY" target="_blank">
-                        <img src="https://img.youtube.com/vi/0ENVNEGGTyY/hqdefault.jpg" alt="Hymn for the Weekend Instrumental" class="thumbnail">
-                        </a>
-                    </div>
-                    <p><br>You can't see me but I am playing the Keyboard here with these amazing bunch of musicians!</p>
-                </div>
+      <div data-include="sidebar.html"></div>
+      <div class="main-content">
+        <h2>Hobbies and Interests</h2>
+        <br />
+        <div class="link-card-container">
+          <div class="link-card">
+            <div class="video-container">
+              <a
+                href="https://itch.io/jam/buet-cse-fest-2023-game-jam/results"
+                target="_blank"
+              >
+                <img
+                  src="./assets/more/gamejam1.jpg"
+                  alt="Game Jam BUET CSE Fest 2023 "
+                  class="thumbnail"
+                />
+              </a>
             </div>
+            <p>
+              <br />I co-led the Inter University Game Jam event of BUET CSE
+              Fest 2023!
+            </p>
+          </div>
+          <div class="link-card">
+            <div class="video-container">
+              <a
+                href="https://www.youtube.com/watch?v=Os5yeavDblk&t=555"
+                target="_blank"
+              >
+                <img
+                  src="./assets/more/localoca.JPG"
+                  alt="Flash Mob 2023"
+                  class="thumbnail"
+                />
+              </a>
+            </div>
+            <p><br />Danced with tons of enthusiastic people to Loca Loca!</p>
+          </div>
+
+          <div class="link-card">
+            <div class="video-container">
+              <a href="https://www.instagram.com/olokkho/" target="_blank">
+                <img
+                  src="./assets/more/olokkho2.jpg"
+                  alt="instagram"
+                  class="thumbnail"
+                />
+              </a>
+              <p><br />I like to take photographs. Here is my instagram!</p>
+            </div>
+          </div>
+
+          <div class="link-card">
+            <div class="video-container">
+              <a
+                href="https://www.youtube.com/watch?v=WaajOqOC4PA"
+                target="_blank"
+              >
+                <img
+                  src="https://img.youtube.com/vi/WaajOqOC4PA/hqdefault.jpg"
+                  alt=""
+                  class="thumbnail"
+                />
+              </a>
+            </div>
+            <p><br />I was part of a Rock Band called Return Zero!</p>
+          </div>
+
+          <div class="link-card">
+            <div class="video-container">
+              <a
+                href="https://youtu.be/3Y7SQm_T_yk?si=irw04tRECtbqA6im"
+                target="_blank"
+              >
+                <img
+                  src="https://img.youtube.com/vi/3Y7SQm_T_yk/hqdefault.jpg"
+                  alt="The Zombies"
+                  class="thumbnail"
+                />
+              </a>
+            </div>
+            <p>
+              <br />Our class was named "The Zombies" After this dance
+              performance of Thriller and Everybody!
+            </p>
+          </div>
+          <div class="link-card">
+            <div class="video-container">
+              <a
+                href="https://www.facebook.com/reel/838644994515069"
+                target="_blank"
+              >
+                <img
+                  src="assets/more/mohanogori.jpg"
+                  alt="Priyo Mohanogori"
+                  class="thumbnail"
+                />
+              </a>
+            </div>
+            <p>
+              <br />A trailer that I am especially proud of making. An event I
+              am especially proud of being a part of.
+            </p>
+          </div>
+
+          <div class="link-card">
+            <div class="video-container">
+              <a
+                href="https://www.youtube.com/watch?v=0ENVNEGGTyY"
+                target="_blank"
+              >
+                <img
+                  src="https://img.youtube.com/vi/0ENVNEGGTyY/hqdefault.jpg"
+                  alt="Hymn for the Weekend Instrumental"
+                  class="thumbnail"
+                />
+              </a>
+            </div>
+            <p>
+              <br />You can't see me but I am playing the Keyboard here with
+              these amazing bunch of musicians!
+            </p>
+          </div>
         </div>
+      </div>
     </div>
 
     <script src="scripts/navbar.js"></script>
-</body>
+  </body>
 </html>

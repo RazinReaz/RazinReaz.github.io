@@ -1,15 +1,18 @@
+- [ ] 2nd prize in photography competition
 - [ ] Youtube demo
     - [ ] Black box video
     - [ ] Steering behaviours video
-- [ ] Story about me
-- [ ] Research tab
-- [ ] add to projects
-    - GMM
-    - lunar lander
-    - fluid sim
-    - softbody sim
-- [ ] leadership
-    - photos of events
-    - photos of team
-    - murchhona
-- [ ] certificates
+- [x] Story about me
+- [x] Research tab
+    - [ ] images in this tab
+- [x] add to projects
+    - [ ] cubey
+    - [x] GMM
+    - [ ] lunar lander
+    - [ ] fluid sim
+    - [ ] softbody sim
+- [x] leadership
+    - [x] photos of events
+    - [x] photos of team
+    - [x] murchhona
+- [x] certificates

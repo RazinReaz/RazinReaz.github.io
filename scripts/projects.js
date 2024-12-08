@@ -65,24 +65,20 @@ const projects = [
     ],
   },
   {
-    imageSrc: "./assets/projects/asteroids/game_level_1.gif",
-    imageAlt: "Asteroids",
-    title: "Asteroids",
+    imageSrc: "./assets/projects/flocking-boids/boids 1.gif",
+    imageAlt: "flocking",
+    title: "Flocking Boids",
     tools: ["JavaScript", "p5.js"],
     description:
-      "Top down 2D shooter based on the Atari game Asteroids. 5th place prize winner at IEEE CS BUET GameJam 2023. Developed using p5.js.",
+      "Flocking simulation with Quad tree neighbour search. Developed using p5.js.",
     links: [
       {
-        href: "https://razinreaz.github.io/GameJam-2023-Asteroids/",
-        text: "Play the Game!",
+        href: "razinreaz.github.io/flocking-boids/",
+        text: "Try it Yourself!",
       },
       {
-        href: "https://github.com/RazinReaz/GameJam-2023-Asteroids",
+        href: "https://github.com/RazinReaz/flocking-boids",
         text: "Github",
-      },
-      {
-        href: "https://www.youtube.com/watch?v=dac8ezI2uDI",
-        text: "Video",
       },
     ],
   },
@@ -105,56 +101,6 @@ const projects = [
     ],
   },
   {
-    imageSrc: "./assets/projects/flocking-boids/boids 1.gif",
-    imageAlt: "flocking",
-    title: "Flocking Boids",
-    tools: ["JavaScript", "p5.js"],
-    description:
-      "Flocking simulation with Quad tree neighbour search. Developed using p5.js.",
-    links: [
-      {
-        href: "razinreaz.github.io/flocking-boids/",
-        text: "Try it Yourself!",
-      },
-      {
-        href: "https://github.com/RazinReaz/flocking-boids",
-        text: "Github",
-      },
-    ],
-  },
-  {
-    imageSrc: "./assets/projects/steering-behaviours/path.gif",
-    imageAlt: "Steering behaviours",
-    title: "Steering Behaviours",
-    tools: ["JavaScript", "p5.js"],
-    description:
-      "A collection of steering behaviour simulations for autonomous agents. Behaviours include arrive, seek, flee, evade, wander, path following, and flocking. Read the README of the Github link for more visualizations and information. Developed using p5.js.",
-    links: [
-      {
-        href: "https://github.com/RazinReaz/Steering-behaviours",
-        text: "Github",
-      },
-    ],
-  },
-  //   {
-  //     imageSrc: "./assets/projects/ray-casting/demo.gif",
-  //     imageAlt: "Ray Casting",
-  //     title: "Ray Casting",
-  //     description:
-  //       "An interactive 3D world where you can traverse a customisable map. Developed using p5.js.",
-  //     links: [
-  //       {
-  //         href: " razinreaz.github.io/raycasting-3D/ ",
-  //         text: "Try it Yourself!"
-  //       },
-  //       {
-  //         href: "https://github.com/RazinReaz/raycasting-3D",
-  //         text: "GitHub",
-  //       },
-  //
-  //     ],
-  //   },
-  {
     imageSrc: "./assets/projects/ragdoll/demo.gif",
     imageAlt: "Ragdoll",
     title: "Ragdoll Simulation",
@@ -173,6 +119,42 @@ const projects = [
     ],
   },
   {
+    imageSrc: "./assets/projects/steering-behaviours/path.gif",
+    imageAlt: "Steering behaviours",
+    title: "Steering Behaviours",
+    tools: ["JavaScript", "p5.js"],
+    description:
+      "A collection of steering behaviour simulations for autonomous agents. Behaviours include arrive, seek, flee, evade, wander, path following, and flocking. Read the README of the Github link for more visualizations and information. Developed using p5.js.",
+    links: [
+      {
+        href: "https://github.com/RazinReaz/Steering-behaviours",
+        text: "Github",
+      },
+    ],
+  },
+  {
+    imageSrc: "./assets/projects/asteroids/game_level_1.gif",
+    imageAlt: "Asteroids",
+    title: "Asteroids",
+    tools: ["JavaScript", "p5.js"],
+    description:
+      "Top down 2D shooter based on the Atari game Asteroids. 5th place prize winner at IEEE CS BUET GameJam 2023. Developed using p5.js.",
+    links: [
+      {
+        href: "https://razinreaz.github.io/GameJam-2023-Asteroids/",
+        text: "Play the Game!",
+      },
+      {
+        href: "https://github.com/RazinReaz/GameJam-2023-Asteroids",
+        text: "Github",
+      },
+      {
+        href: "https://www.youtube.com/watch?v=dac8ezI2uDI",
+        text: "Video",
+      },
+    ],
+  },
+  {
     imageSrc: "./assets/projects/game-of-life/2.gif",
     imageAlt: "Game of Life",
     title: "Conway's Game of Life",
@@ -185,6 +167,20 @@ const projects = [
       },
       {
         href: "https://github.com/RazinReaz/game-of-life",
+        text: "Github",
+      },
+    ],
+  },
+  {
+    imageSrc: "./assets/projects/em-visualized/6D_data_points-gmm-5.gif",
+    imageAlt: "Using EM algorithm to optimize GMM",
+    title: "Eexpectation Maximization Algorithm",
+    tools: ["python", "numpy"],
+    description:
+      "Using EM algorithm to determine likelihood of Gaussian Mixture Model Parameters after applying dimensionality reduction on the dataset.",
+    links: [
+      {
+        href: "https://github.com/RazinReaz/machine-learning-sessional/tree/main/offline-4-pca",
         text: "Github",
       },
     ],
