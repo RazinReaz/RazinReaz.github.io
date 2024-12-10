@@ -73,7 +73,7 @@ const projects = [
       "Flocking simulation with Quad tree neighbour search. Developed using p5.js.",
     links: [
       {
-        href: "razinreaz.github.io/flocking-boids/",
+        href: "https://razinreaz.github.io/flocking-boids/",
         text: "Try it Yourself!",
       },
       {
