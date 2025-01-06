@@ -3,6 +3,8 @@
     - [ ] Black box video
     - [ ] Steering behaviours video
 - [x] Story about me
+- [ ] You miss 100% of the shots you don't take
+- [ ] publication cards
 - [x] Research tab
     - [ ] images in this tab
 - [x] add to projects

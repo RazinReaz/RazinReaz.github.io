@@ -32,39 +32,6 @@ const projects = [
   //   ],
   // },
   {
-    imageSrc: "./assets/projects/tworch/gaussian 5layer-10nn.gif",
-    imageAlt: "Model fitting a 2D dataset",
-    title: "Tworch",
-    tools: ["Python", "Numpy", "Matplotlib"],
-    description:
-      "A simple machine learning library made in Python. Supports Feed forward neural network, Initializers (Xavier, He, LeCun), Optimizers (Adam, Momentum, RMSProp), model saving and loading, and visualization of the model fitting a 2D dataset.",
-    links: [
-      { href: "https://github.com/RazinReaz/Tworch", text: "Github" },
-      {
-        href: "https://github.com/RazinReaz/Tworch/tree/main/unravelling-black-box",
-        text: "Visualization",
-      },
-    ],
-  },
-  {
-    imageSrc: "./assets/projects/optimizers/all-demo-places.gif",
-    imageAlt: "optimizers visualization",
-    title: "Optimizer Visualization",
-    tools: ["Python", "Vpython"],
-    description:
-      "An interactive visualization for the behaviours of machine learning optimizers. The optimizers will find the local/global minima using their own algorithm on a 2-dimensional loss plane. Made with Vpython.",
-    links: [
-      {
-        href: "https://github.com/RazinReaz/Optimizers-Visualization",
-        text: "Github",
-      },
-      {
-        href: "https://www.youtube.com/watch?v=wnicogJJn1g",
-        text: "Video",
-      },
-    ],
-  },
-  {
     imageSrc: "./assets/projects/flocking-boids/boids 1.gif",
     imageAlt: "flocking",
     title: "Flocking Boids",
@@ -138,7 +105,7 @@ const projects = [
     title: "Asteroids",
     tools: ["JavaScript", "p5.js"],
     description:
-      "Top down 2D shooter based on the Atari game Asteroids. 5th place prize winner at IEEE CS BUET GameJam 2023. Developed using p5.js.",
+      "Top down 2D shooter based on the Atari game Asteroids that was developed without a game engine. 5th place prize winner at IEEE CS BUET GameJam 2023. Developed using p5.js.",
     links: [
       {
         href: "https://razinreaz.github.io/GameJam-2023-Asteroids/",
@@ -168,6 +135,39 @@ const projects = [
       {
         href: "https://github.com/RazinReaz/game-of-life",
         text: "Github",
+      },
+    ],
+  },
+  {
+    imageSrc: "./assets/projects/tworch/gaussian 5layer-10nn.gif",
+    imageAlt: "Model fitting a 2D dataset",
+    title: "Tworch",
+    tools: ["Python", "Numpy", "Matplotlib"],
+    description:
+      "A simple machine learning library made in Python. Supports Feed forward neural network, Initializers (Xavier, He, LeCun), Optimizers (Adam, Momentum, RMSProp), model saving and loading, and visualization of the model fitting a 2D dataset.",
+    links: [
+      { href: "https://github.com/RazinReaz/Tworch", text: "Github" },
+      {
+        href: "https://github.com/RazinReaz/Tworch/tree/main/unravelling-black-box",
+        text: "Visualization",
+      },
+    ],
+  },
+  {
+    imageSrc: "./assets/projects/optimizers/all-demo-places.gif",
+    imageAlt: "optimizers visualization",
+    title: "Optimizer Visualization",
+    tools: ["Python", "Vpython"],
+    description:
+      "An interactive visualization for the behaviours of machine learning optimizers. The optimizers will find the local/global minima using their own algorithm on a 2-dimensional loss plane. Made with Vpython.",
+    links: [
+      {
+        href: "https://github.com/RazinReaz/Optimizers-Visualization",
+        text: "Github",
+      },
+      {
+        href: "https://www.youtube.com/watch?v=wnicogJJn1g",
+        text: "Video",
       },
     ],
   },
