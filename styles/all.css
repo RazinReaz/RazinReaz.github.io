@@ -124,31 +124,43 @@ h4 {
 
 /* the box in the body */
 .container {
+  width: 80vw;
   display: flex;
-  max-width: 1200px;
-  width: 100%;
+  align-items: start;
+  justify-content: space-between;
   background: var(--lightest-color);
+  box-sizing: border-box;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
-  overflow: hidden;
   margin: 5em auto;
 }
 
-
 .sidebar {
-  max-width: 500px;
-  min-width: 100px;
-  height: 100%;
+  width: 100%;
+  height: auto;
   background-color: var(--darkest-color);
   color: var(--lightest-color);
+
+  display: flex;
+  align-items: center;
   text-align: center;
-  padding: 1em 2em;
+  flex-direction: column;
+  padding: 3em 2em;
   position: sticky;
-  top: 0;
+  top: 3em;
+  z-index: 2;
+}
+
+.sidebar-back-rect {
+  width: 30%;
+  height: 100%;
+  align-self: flex-start;
+  left: 0;
+  background-color: var(--darkest-color);
+  z-index: 5;
 }
 
 .sidebar img {
-  
   width: 100%;
   max-width: 220px;
   height: 100%;
@@ -172,7 +184,6 @@ h4 {
   text-align:center
 }
 
-/* Social Links */
 .social-links a {
   font-size: 1.2rem;
   text-decoration: none;
@@ -476,9 +487,14 @@ h4 {
 /* For screens smaller than 768px */
 @media (max-width: 768px) {
   .container {
+    width:95%;
     flex-direction: column;
     margin: 3em auto;
   }
+  .sidebar-back-rect {
+    width: 100%;
+  }
+
   .sidebar {
     max-width: 100%;
     padding: 1em;
@@ -493,6 +509,7 @@ h4 {
     margin: 1em 0;
     padding: 5%;
   }
+
   .card {
     flex-direction: column;
     gap: 1em;
@@ -510,9 +527,9 @@ h4 {
     position: fixed;
     top: 0;
     right: 0;
-    width: 70%;
+    
+    width: 100%;
     height: 50vh;
-    border-radius: 2%;
     background-color: var(--darkest-color);
     align-self: auto;
     align-items: center;
@@ -532,14 +549,14 @@ h4 {
   }
   .nav-list li {
     margin: 2% 0;
-    font-size: 24px;
+    font-size: 1.5rem;
   }
 
   /* Hamburger menu icon displayed on small screens */
   .menu-icon {
     display: flex;
     position: fixed;
-    top: 15px;
+    top: 30px;
     right: 20px;
     cursor: pointer;
     flex-direction: column;
@@ -584,6 +601,11 @@ h4 {
   body {
     padding: 10px;
   }
+
+  .sidebar-back-rect {
+    max-width: 100%;
+  }
+
   .sidebar h1 {
     font-size: 1.2em;
   }

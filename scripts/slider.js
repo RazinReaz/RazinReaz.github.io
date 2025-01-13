@@ -5,12 +5,12 @@ const slidesData = [
         alt: "Flocking Simulation",
         link: "https://razinreaz.github.io/flocking-boids/",
     },
-    //   {
-    //     id: "slide-02",
-    //     src: "assets/projects/raytracing/5%20spheres.gif",
-    //     alt: "Ray Tracing",
-    //     link: "https://github.com/RazinReaz/ray-tracing",
-    //   },
+      {
+        id: "slide-02",
+        src: "assets/projects/raytracing/5%20spheres.gif",
+        alt: "Ray Tracing",
+        link: "https://github.com/RazinReaz/ray-tracing",
+      },
     {
         id: "slide-03",
         src: "assets/projects/ragdoll/demo.gif",
@@ -63,9 +63,11 @@ const slidesData = [
 
 function createSlide(slide) {
     return `
-    <a href="${slide.link}" target="_blank">
-      <img id="${slide.id}" src="${slide.src}" class="slides" alt="${slide.alt}">
-    </a>
+    <div id="${slide.id}" class="slide">
+        <a href="${slide.link}" target="_blank">
+            <img src="${slide.src}" alt="${slide.alt}">
+        </a>
+    </div>
   `;
 }
 
@@ -74,64 +76,74 @@ function createNavDot(slide) {
 }
 
 
+// document.addEventListener("DOMContentLoaded", init, false);
+
 
 document.addEventListener("DOMContentLoaded", () => {
-    const sliderContainer = document.querySelector(".slider");
-    const sliderNav = document.querySelector(".slider-nav");
-
-    sliderContainer.innerHTML = slidesData.map(createSlide).join("");
-    sliderNav.innerHTML = slidesData.map(createNavDot).join("");
-
-    // Initialize the slideshow
-    resetSlideInterval();
-});
-
-let currentSlideIndex = 0; // Track the current slide index
-let slideInterval;
-
-function changeSlide(direction) {
-    const slides = document.querySelectorAll(".slides");
-    let totalSlides = slides.length;
-    currentSlideIndex =
-        (currentSlideIndex + direction + totalSlides) % totalSlides;
     const slider = document.querySelector(".slider");
-    const newSlide = slides[currentSlideIndex];
-    slider.scrollTo({
-        left: newSlide.offsetLeft,
-        behavior: "smooth",
-    });
-    updateNavDots(currentSlideIndex);
-    resetSlideInterval();
-}
+    const sliderNav = document.querySelector(".slider-nav");
+    const slides = document.querySelectorAll(".slide");
+    
+    slider.innerHTML = slidesData.map(createSlide).join("");
+    
+    if (sliderNav) {
+        sliderNav.innerHTML = slidesData.map(createNavDot).join("");
+    }
 
-function updateNavDots(activeIndex) {
-    const navDots = document.querySelectorAll(".slider-nav a");
-    navDots.forEach((dot, index) => {
-        dot.style.opacity = index === activeIndex ? "1" : "0.25";
-    });
-}
 
-// Add click event listeners to the navigation dots
-function initNavDots() {
-    const navDots = document.querySelectorAll(".slider-nav a");
-    navDots.forEach((dot, index) => {
-        dot.addEventListener("click", () => {
-            currentSlideIndex = index;
-            const slider = document.querySelector(".slider");
-            const slides = document.querySelectorAll(".slides");
-            slider.scrollTo({
-                left: slides[currentSlideIndex].offsetLeft,
-                behavior: "smooth",
-            });
-            updateNavDots(currentSlideIndex);
+    // Autoplay functionality
+    let autoPlayInterval = setInterval(() => {
+        slider.scrollBy({
+            left: 100, //! NEEDs to change
+            behavior: "smooth",
         });
+    }, 7000);
+
+    // // Pause autoplay on hover
+    slider.addEventListener("mouseenter", () =>
+    clearInterval(autoPlayInterval)
+    );
+    slider.addEventListener("mouseleave", () => {
+    autoPlayInterval = setInterval(() => {
+        slider.scrollBy({
+            left: 100, //! NEEDs to change
+            behavior: "smooth",
+        });
+    }, 7000);
     });
-}
 
-function resetSlideInterval() {
-    clearInterval(slideInterval);
-}
+    // // Clone first and last slides
+    // const cloneFirstSlides = slides
+    //   .slice(0, 2)
+    //   .map((slide) => slide.cloneNode(true));
+    // const cloneLastSlides = slides
+    //   .slice(-2)
+    //   .map((slide) => slide.cloneNode(true));
 
-document.addEventListener("DOMContentLoaded", () => {
-    slideInterval = setInterval(() => changeSlide(1), 10000); // Start the interval
+    // // Append clones to the slider
+    // cloneFirstSlides.forEach((clone) => slider.appendChild(clone));
+    // cloneLastSlides.forEach((clone) =>
+    //   slider.insertBefore(clone, slider.firstChild)
+    // );
+
+    // // Adjust slider's scroll position to show original slides
+    // const slideWidth = slides[0].offsetWidth;
+    // slider.scrollLeft = slides.length * slideWidth;
+
+    // // Handle wrap-around effect
+    // slider.addEventListener("scroll", () => {
+    //   if (slider.scrollLeft <= 0) {
+    //     // User scrolled to the start; reset to the original last slide
+    //     slider.scrollLeft = slides.length * slideWidth;
+    //   } else if (
+    //     slider.scrollLeft >=
+    //     slider.scrollWidth - slider.offsetWidth
+    //   ) {
+    //     // User scrolled to the end; reset to the original first slide
+    //     slider.scrollLeft =
+    //       slides.length * slideWidth - slider.offsetWidth;
+    //   }
+    // });
+
 });
+

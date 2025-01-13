@@ -13,8 +13,8 @@
 }
 .slider-wrapper {
     position: relative;
-    max-width: 40rem;
-    max-height: 10rem;
+    max-width: 45rem;
+    max-height: 30rem;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -23,28 +23,56 @@
 
 .slider {
     display: flex;
-    max-width:inherit;
+    /* max-width:inherit; */
     max-height: inherit;
-    justify-content: center;
+    justify-content: wrap;
     align-items: center;
-    overflow-x: hidden;
-    overflow-y: hidden;
+    overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    /* background-color: crimson; */
 }
 
-.slides {
-    flex: 0 1 auto;
-    height: 90%;
-    width: auto;
-    object-fit: contain;
+.slider::-webkit-scrollbar {
+    height: 0.5rem;
+}
+
+.slider::-webkit-scrollbar-thumb {
+    background-color: var(--primary-color);
+    border-radius: 0.25rem;
+}
+
+.slider::-webkit-scrollbar-track {
+    background-color: var(--secondary-color);
+    border-radius: 0.25rem;
+}
+
+
+.slide {
+    display: flex;
+    align-items: center;
+    flex: 1 0 40%;
     scroll-snap-align: center;
+    /* background-color: blueviolet; */
+    aspect-ratio: 1/1;
+    object-fit: contain;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.slide a img {
+    flex: 1 0 100%;
+    /* height: 40%; */
     max-width: 100%;
-    margin-left: 5rem;
-    margin-right: 5rem;
     box-shadow: 0 1.5rem 3rem -0.75rem rgba(0, 0, 0, 0.2);
     border-radius: 0.5rem;
+    transition: transform ease 250ms;
 } 
+
+.slide a img:hover {
+    box-shadow: 0 2rem 4rem -1rem var(--primary-color);
+    transform: translateY(-0.5rem);
+}
 
 .slider-nav {
     display: flex;
@@ -60,7 +88,7 @@
     width: 0.75rem;
     height: 0.75rem;
     border-radius: 50%;
-    background-color: #fff;
+    background-color: var(--secondary-color);
     opacity: 0.25;
     transition: opacity ease 250ms;
 }
@@ -68,28 +96,53 @@
 .slider-nav a:hover {
     opacity: 1;
 }
-
 .arrow {
-    width: 3rem;
-    height: 100%;
+    width: 2rem;
+    height: 2rem;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--lightest-color);
+    font-size: 1.5rem;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    color: white;
-    background-color: var(--primary-color);
-    opacity: 0.25;
-    border: none;
-    padding: 10px;
     cursor: pointer;
-    transition: opacity ease 250ms;
+    z-index: 2;
+    opacity: 0.5;
+    transition: opacity 0.3s;
 }
 
 .arrow:hover {
-    opacity: .75;
+    opacity: 1;
 }
+
 .arrow.left {
-    left: 0;
+    left: 1rem;
 }
+
 .arrow.right {
-    right: 0;
+    right: 1rem;
+}
+
+
+/* For screens narrower than 768px */
+@media (max-width: 768px) {
+    .slide {
+        flex: 1 0 90%; /* Slides occupy more width on smaller screens */
+    }
+}
+
+/* For screens narrower than 576px */
+@media (max-width: 576px) {
+    .slide {
+        flex: 1 0 100%; /* Each slide takes the full width */
+        padding: 0.25rem; /* Reduce padding */
+    }
+
+    .arrow {
+        display: none; /* Hide arrows on very small screens to maximize space */
+    }
 }

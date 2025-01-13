@@ -1,61 +1,147 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>slideshow</title>
-    <link rel="stylesheet" href="styles-pg.css">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            font-family: 'Robot', sans-serif;
+        }
+
+        .landing-page {
+            height: 100vh;
+            width: 100vw;
+            color: white;
+            background-color: #015ab2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100vw;
+            display: flex;
+            justify-content: space-between;
+            padding: 40px;
+            background-color: #0F1925;
+            color: white;
+            box-sizing: border-box;
+        }
+
+        .container p {
+            width: 68%;
+            line-height: 24px;
+
+        }
+
+        .sidebar {
+            width: 30%;
+            height: 400px;
+            background-color: #0E2845;
+            border: 1px solid #015ab2;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: inset 0 0 10px black;
+            position: sticky;
+            top: 40px;
+
+        }
+    </style>
 </head>
+
 <body>
-    <section class="slideshow-container">
-        <div class="slider-wrapper">
-            <div class="slider">
-                <img id="slide-01" src="assets/projects/flocking-boids/boids 1.gif" class="slides" alt="Flocking Simulation">
-                <img id="slide-02" src="assets/projects/raytracing/8 spheres/output.gif" class="slides" alt="Ray Tracing">
-                <img id="slide-03" src="assets/projects/ragdoll/demo.gif" class="slides" alt="Ragdoll Physics">
-            </div>
-            <div class="slider-nav">
-                <a href="#slide-01"></a>
-                <a href="#slide-02"></a>
-                <a href="#slide-03"></a>
-            </div>
-            <button class="arrow left" onclick="changeSlide(-1)">&lt;</button>
-            <button class="arrow right" onclick="changeSlide(1)">&gt;</button>
-        </div>
-    </section>
-    <script src="scripts/slideshow.js"></script>
-</body>
-</html> -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GIF Slider</title>
-  <link rel="stylesheet" href="styles/pg.css">
-</head>
-<body>
-  <div class="slider-container">
-    <button class="nav-button left" id="leftBtn">&#10094;</button>
-    <div class="slider" id="slider">
-      <div class="slide active">
-        <img src="assets/projects/flocking-boids/boids%201.gif" alt="GIF 1">
-      </div>
-      <div class="slide">
-        <img src="assets/projects/ragdoll/demo.gif" alt="GIF 2">
-      </div>
-      <div class="slide">
-        <img src="assets/projects/ray-casting/demo.gif" alt="GIF 3">
-      </div>
-      <div class="slide">
-        <img src="assets/projects/steering-behaviours/path.gif" alt="GIF 4">
-      </div>
-      <div class="slide">
-        <img src="assets/projects/asteroids/game_level_1.gif" alt="GIF 5">
-      </div>
+    <div class="landing-page">
+        <h1>Landing page</h1>
     </div>
-    <button class="nav-button right" id="rightBtn">&#10095;</button>
-  </div>
-  <script src="script.js"></script>
+    <div class="container">
+        <div class="sidebar">
+            <h1>Sticky Box</h1>
+        </div>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et sit alias numquam molestiae adipisci beatae
+            iusto dignissimos nobis distinctio quidem labore exercitationem repellat aliquam eum, aspernatur, officiis,
+            reprehenderit aliquid obcaecati.
+
+        </p>
+    </div>
+    <div class="landing-page">
+        <h1>About us</h1>
+    </div>
+
 </body>
+
 </html>
