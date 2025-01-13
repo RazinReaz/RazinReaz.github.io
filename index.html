@@ -3,22 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Razin Reaz Abedin - Home</title>
-
-    <!-- Google Fonts -->
+    <title>Razin - Home</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins|Roboto:wght@300;500&display=swap"
       rel="stylesheet"
     />
-
-    <!-- FontAwesome for Social Icons -->
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-
-    <!-- Link to external CSS -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/all.css" />
+    <link rel="stylesheet" href="styles/slider.css">
 
     <!-- Script for loading Navbar and Sidebar -->
     <script>
@@ -38,26 +33,79 @@
 
       document.addEventListener("DOMContentLoaded", includeHTML);
     </script>
-    <script src="scripts/navbar.js"></script>
+    
   </head>
   <body>
     <!-- Top Navigation Bar (Will be included via JS) -->
     <div data-include="./navbar.html"></div>
 
     <div class="container">
-      <!-- Left Sidebar (Will be included via JS) -->
-      <div data-include="./sidebar.html"></div>
-
-      <!-- Main Content Area -->
+      <!-- <div id="sidebar-container"></div> --> <!-- for caching the sidebar -->
+      <div data-include="./sidebar.html" class="sidebar"></div>
       <div class="about">
-        <h2>Hi there! I am Razin!</h2>
+        <h2 style="font-weight: 400; text-align: center; padding-top: 1rem">
+          Hi! I am Razin
+        </h2>
+        <h3 style="font-weight: 350; text-align: center">and I create stuff like these</h3>
+        <div class="slideshow-container">
+          <div class="slider-wrapper">
+            <div class="slider">
+              <!-- <a href="https://razinreaz.github.io/flocking-boids/" target="_blank">
+                <img id="slide-01" src="assets/projects/flocking-boids/boids%201.gif" class="slides" alt="Flocking Simulation">
+              </a>
+            
+              <a href="https://razinreaz.github.io/Ragdoll-Simulation/" target="_blank">
+                <img id="slide-03" src="assets/projects/ragdoll/demo.gif" class="slides" alt="Ragdoll Physics">
+              </a>
+            
+              <a href="https://razinreaz.github.io/raycasting/" target="_blank">
+                <img id="slide-04" src="assets/projects/ray-casting/demo.gif" class="slides" alt="Simple Ray Casting">
+              </a>
+            
+              <a href="https://github.com/RazinReaz/Steering-behaviours" target="_blank">
+                <img id="slide-05" src="assets/projects/steering-behaviours/path.gif" class="slides" alt="Steering Behaviours">
+              </a>
+            
+              <a href="https://razinreaz.github.io/GameJam-2023-Asteroids/" target="_blank">
+                <img id="slide-06" src="assets/projects/asteroids/game_level_1.gif" class="slides" alt="Asteroids">
+              </a>
+            
+              <a href="https://razinreaz.github.io/game-of-life/" target="_blank">
+                <img id="slide-07" src="assets/projects/game-of-life/2.gif" class="slides" alt="Game of Life">
+              </a>
+            
+              <a href="https://github.com/RazinReaz/Tworch" target="_blank">
+                <img id="slide-08" src="assets/projects/tworch/gaussian%205layer-10nn.gif" class="slides" alt="Tworch - Model Fitting">
+              </a>
+            
+              <a href="https://github.com/RazinReaz/Optimizers-Visualization" target="_blank">
+                <img id="slide-09" src="assets/projects/optimizers/all-demo-places.gif" class="slides" alt="Optimizer Visualization">
+              </a>
+            
+              <a href="https://github.com/RazinReaz/machine-learning-sessional/tree/main/offline-4-pca" target="_blank">
+                <img id="slide-10" src="assets/projects/em-visualized/6D_data_points-gmm-5.gif" class="slides" alt="Expectation Maximization Algorithm">
+              </a> -->
+            </div>
+            <div class="slider-nav">
+              <!-- <a href="#slide-01"></a>
+              <a href="#slide-03"></a>
+              <a href="#slide-04"></a>
+              <a href="#slide-05"></a>
+              <a href="#slide-06"></a>
+              <a href="#slide-07"></a>
+              <a href="#slide-08"></a>
+              <a href="#slide-09"></a>
+              <a href="#slide-10"></a> -->
+            </div>
+            <button class="arrow left" onclick="changeSlide(-1)">&lt;</button>
+            <button class="arrow right" onclick="changeSlide(1)">&gt;</button>
+          </div>
+        </div>
         <p>
           I teach people Computer Science at the same university I graduated
-          from! <br />
+          from! <br>
           Yes, right now, I am an adjunct lecturer at the
-          <a href="https://cse.buet.ac.bd/"
-            >Department of Computer Science and Engineering</a
-          >, <a href="https://www.buet.ac.bd/web/#/">BUET</a>. I completed my
+          <a href="https://cse.buet.ac.bd/">Department of Computer Science and Engineering</a>, <a href="https://www.buet.ac.bd/web/#/">BUET</a>. I completed my
           undergraduate degree in July 2024 with a <b>CGPA of 3.93/4.00</b>.
         </p>
         <p>
@@ -94,5 +142,11 @@
         </p>
       </div>
     </div>
+    <script src="scripts/navbar.js"></script>
+    <script src="scripts/sidebar.js"></script>
+    <script src="scripts/slider.js"></script>
+    <script src="scripts/slidechange.js"></script>
+
   </body>
 </html>
+

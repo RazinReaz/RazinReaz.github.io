@@ -1,0 +1,61 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slideshow</title>
+    <link rel="stylesheet" href="styles-pg.css">
+</head>
+<body>
+    <section class="slideshow-container">
+        <div class="slider-wrapper">
+            <div class="slider">
+                <img id="slide-01" src="assets/projects/flocking-boids/boids 1.gif" class="slides" alt="Flocking Simulation">
+                <img id="slide-02" src="assets/projects/raytracing/8 spheres/output.gif" class="slides" alt="Ray Tracing">
+                <img id="slide-03" src="assets/projects/ragdoll/demo.gif" class="slides" alt="Ragdoll Physics">
+            </div>
+            <div class="slider-nav">
+                <a href="#slide-01"></a>
+                <a href="#slide-02"></a>
+                <a href="#slide-03"></a>
+            </div>
+            <button class="arrow left" onclick="changeSlide(-1)">&lt;</button>
+            <button class="arrow right" onclick="changeSlide(1)">&gt;</button>
+        </div>
+    </section>
+    <script src="scripts/slideshow.js"></script>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GIF Slider</title>
+  <link rel="stylesheet" href="styles/pg.css">
+</head>
+<body>
+  <div class="slider-container">
+    <button class="nav-button left" id="leftBtn">&#10094;</button>
+    <div class="slider" id="slider">
+      <div class="slide active">
+        <img src="assets/projects/flocking-boids/boids%201.gif" alt="GIF 1">
+      </div>
+      <div class="slide">
+        <img src="assets/projects/ragdoll/demo.gif" alt="GIF 2">
+      </div>
+      <div class="slide">
+        <img src="assets/projects/ray-casting/demo.gif" alt="GIF 3">
+      </div>
+      <div class="slide">
+        <img src="assets/projects/steering-behaviours/path.gif" alt="GIF 4">
+      </div>
+      <div class="slide">
+        <img src="assets/projects/asteroids/game_level_1.gif" alt="GIF 5">
+      </div>
+    </div>
+    <button class="nav-button right" id="rightBtn">&#10095;</button>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

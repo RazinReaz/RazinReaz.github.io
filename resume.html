@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Razin Reaz Abedin - Resume</title>
+    <title>Razin - Resume</title>
     <!-- Google Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins|Roboto:wght@300;500&display=swap"
@@ -17,7 +17,7 @@
     />
 
     <!-- Link to external CSS -->
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="styles/all.css" />
 
     <!-- Script for loading Navbar and Sidebar -->
     <script>
@@ -43,19 +43,18 @@
     <div data-include="navbar.html"></div>
 
     <div class="container">
-      <div data-include="sidebar.html"></div>
+      <!-- <div id="sidebar-container"></div> --> <!-- for caching the sidebar -->
+      <div data-include="./sidebar.html" class="sidebar"></div>
       <div class="main-content">
         <div class="Job">
-          <h2>Job Experience</h2>
+          <h3>Job Experience</h3>
           <div class="experience-item">
             <div class="experience-circle"></div>
-            <div class="experience-title">
-              <h3>Adjunct Lecturer</h3>
-              <p class="experience-category">
-                Department of Computer Science and Engineering, BUET
-              </p>
-              <p class="experience-duration">August 2024 - Present</p>
-              <ul class="experience-description">
+            <div class="experience-title">Adjunct Lecturer</div>
+            <div class="experience-category">Department of Computer Science and Engineering, BUET</div>
+            <div class="experience-duration">August 2024 - Present</div>
+            <div class="experience-description">
+              <ul>
                 <li>
                   Course Instructor: Introduction to Programming. Experienced in
                   giving lectures about introductory Python.
@@ -74,55 +73,39 @@
         <br /><br /><br />
 
         <div class="Education">
-          <h2>Education</h2>
+          <h3>Education</h3>
           <div class="experience-item">
             <div class="experience-circle"></div>
-            <div class="experience-title">
-              <h3>B.Sc. in Computer Science and Engineering</h3>
-              <p class="experience-category">
-                Bangladesh University of Engineering and Technology (BUET)
-              </p>
-              <p class="experience-duration">April 2019 - July 2024</p>
-              <p class="experience-description">
-                <b>CGPA: 3.93/4.00</b>
-                <br />
-                Notable Courses: Machine Learning, Simulation and Modelling,
-                Computer Graphics, Artificial Intelligence, Data Structures and
-                Algorithms, Computer Architecture, Database Management Systems,
-                Software Engineering, Operating Systems, Computer Networks,
-                Theory of Computation, Numerical Methods, Discrete Mathematics.
-              </p>
+            <div class="experience-title">B.Sc. in Computer Science and Engineering</div>
+            <div class="experience-category">Bangladesh University of Engineering and Technology (BUET)</div>
+            <div class="experience-duration">April 2019 - July 2024</div>
+            <div class="experience-description">
+              <b>CGPA: 3.93/4.00</b>
+              <br />
+              Notable Courses: Machine Learning, Simulation and Modelling,
+              Computer Graphics, Artificial Intelligence, Data Structures and
+              Algorithms, Computer Architecture, Database Management Systems,
+              Software Engineering, Operating Systems, Computer Networks,
+              Theory of Computation, Numerical Methods, Discrete Mathematics.
             </div>
           </div>
           <div class="experience-item">
             <div class="experience-circle"></div>
-            <div class="experience-title">
-              <h3>Higher Secondary Certificate</h3>
-              <p class="experience-category">
-                Bir Shreshtha Noor Mohammad Public College
-              </p>
-              <p class="experience-duration">2016 - 2018</p>
-              <p class="experience-description">
-                <b>GPA: 5.00/5.00</b>
-              </p>
-            </div>
+            <div class="experience-title">Higher Secondary Certificate</div>
+            <div class="experience-category">Bir Shreshtha Noor Mohammad Public College</div>
+            <div class="experience-duration">2016 - 2018</div>
+            <div class="experience-description"><b>GPA: 5.00/5.00</b></div>
           </div>
           <div class="experience-item">
             <div class="experience-circle"></div>
-            <div class="experience-title">
-              <h3>Secondary Secondary Certificate</h3>
-              <p class="experience-category">
-                Bir Shreshtha Noor Mohammad Public College
-              </p>
-              <p class="experience-duration">2016 - 2016</p>
-              <p class="experience-description">
-                <b>GPA: 5.00/5.00</b>
-              </p>
-            </div>
-          </div>
+            <div class="experience-title">Secondary School Certificate</div>
+            <div class="experience-category">Bir Shreshtha Noor Mohammad Public College</div>
+            <div class="experience-duration">2014 - 2016</div>
+            <div class="experience-description"><b>GPA: 5.00/5.00</b></div>
         </div>
       </div>
     </div>
     <script src="scripts/navbar.js"></script>
+    <script src="scripts/sidebar.js"></script>
   </body>
 </html>

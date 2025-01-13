@@ -1,6 +1,6 @@
 const projects = [
   {
-    imageSrc: "./assets/projects/raytracing/5%20spheres%20zip.gif",
+    imageSrc: "./assets/projects/raytracing/5%20spheres.gif",
     imageAlt: "Ray tracing",
     title: "Ray tracing",
     tools: ["C++", "OpenGL"],
@@ -33,7 +33,7 @@ const projects = [
   // },
   {
     imageSrc: "./assets/projects/flocking-boids/boids 1.gif",
-    imageAlt: "flocking",
+    imageAlt: "Flocking simulation",
     title: "Flocking Boids",
     tools: ["JavaScript", "p5.js"],
     description:
