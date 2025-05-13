@@ -199,6 +199,7 @@ h4 {
 
 .main-content,
 .about {
+  flex-direction: column;
   width: 100%;
   max-width: 70%;
   margin: 1em 2em;

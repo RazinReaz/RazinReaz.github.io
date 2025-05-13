@@ -4,36 +4,42 @@ const slidesData = [
         src: "assets/projects/flocking-boids/boids%201.gif",
         alt: "Flocking Simulation",
         link: "https://razinreaz.github.io/flocking-boids/",
+        
     },
       {
         id: "slide-02",
         src: "assets/projects/raytracing/5%20spheres.gif",
-        alt: "Ray Tracing",
+        alt: "Path Tracing",
         link: "https://github.com/RazinReaz/ray-tracing",
+        
       },
     {
         id: "slide-03",
         src: "assets/projects/ragdoll/demo.gif",
         alt: "Ragdoll Physics",
         link: "https://razinreaz.github.io/Ragdoll-Simulation/",
+        
     },
     {
         id: "slide-04",
         src: "assets/projects/ray-casting/demo.gif",
         alt: "Simple Ray Casting",
         link: "https://razinreaz.github.io/raycasting/",
+        
     },
     {
         id: "slide-05",
         src: "assets/projects/steering-behaviours/path.gif",
         alt: "Steering Behaviours",
         link: "https://github.com/RazinReaz/Steering-behaviours",
+        
     },
     {
         id: "slide-06",
         src: "assets/projects/asteroids/game_level_1.gif",
-        alt: "Asteroids",
+        alt: "Asteroids Game",
         link: "https://razinreaz.github.io/GameJam-2023-Asteroids/",
+        
     },
     {
         id: "slide-07",
@@ -44,28 +50,36 @@ const slidesData = [
     {
         id: "slide-08",
         src: "assets/projects/tworch/gaussian%205layer-10nn.gif",
-        alt: "Tworch - Model Fitting",
+        alt: "Tworch",
         link: "https://github.com/RazinReaz/Tworch",
+        
     },
     {
         id: "slide-09",
         src: "assets/projects/optimizers/all-demo-places.gif",
         alt: "Optimizer Visualization",
         link: "https://github.com/RazinReaz/Optimizers-Visualization",
+        
     },
     {
         id: "slide-10",
         src: "assets/projects/em-visualized/6D_data_points-gmm-5.gif",
-        alt: "Expectation Maximization Algorithm",
+        alt: "EM Algorithm",
         link: "https://github.com/RazinReaz/machine-learning-sessional/tree/main/offline-4-pca",
+        
     },
 ];
 
+const INTERVAL = 15000; // 15 seconds 
+
 function createSlide(slide) {
+    const isSimulation = slide.link.includes("github.io");
+    
     return `
     <div id="${slide.id}" class="slide">
-        <a href="${slide.link}" target="_blank">
+        <a href="${slide.link}" target="_blank" class="slide-image-wrapper">
             <img src="${slide.src}" alt="${slide.alt}">
+            <div class="slide-overlay-text">Click to ${isSimulation ? 'try' : 'view'} <br><b>${slide.alt}</b> ${isSimulation ? '' : 'Code'}</div>
         </a>
     </div>
   `;
@@ -97,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
             left: 100, //! NEEDs to change
             behavior: "smooth",
         });
-    }, 7000);
+    }, INTERVAL);
 
     // // Pause autoplay on hover
     slider.addEventListener("mouseenter", () =>
@@ -109,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
             left: 100, //! NEEDs to change
             behavior: "smooth",
         });
-    }, 7000);
+    }, INTERVAL);
     });
 
     // // Clone first and last slides

@@ -39,18 +39,13 @@
     <div data-include="./navbar.html"></div>
 
     <div class="container">
-      <!-- <div id="sidebar-container"></div> -->
-      <!-- for caching the sidebar -->
-      <!-- <div class="sidebar-back-rect">
-        <div data-include="./sidebar.html" class="sidebar-back-rect"></div>
-      </div> -->
       <div data-include="./sidebar.html" class="sidebar-back-rect"></div>
       <div class="about">
         <h2 style="font-weight: 400; text-align: center; padding-top: 1rem">
           Hi! I am Razin
         </h2>
         <h3 style="font-weight: 350; text-align: center">
-          and I create stuff like these
+          These are some of my creations<br>Why not give them a click?
         </h3>
         <div class="slideshow-container">
           <div class="slider-wrapper">
@@ -70,7 +65,7 @@
         </p>
         <p>
           My research interests lies in <b>Computer Graphics</b>,
-          <b>Visualization</b>, <b>Computer Vision</b>, and
+          <b>Visualization</b>, <b>View Synthesis</b>, and
           <b>Physically Based Rendering</b>.
         </p>
         <p>
@@ -101,6 +96,92 @@
           out <a href="./more.html">this page</a>.
         </p>
       </div>
+
+
+
+      <div class="main-content">
+        <h3>
+          <span class="icon-box"><i class="fas fa-book"></i></span> Publications
+        </h3>
+        <div class="experience-item">
+          <div class="experience-circle"></div>
+          <div class="publication-title">
+            Short Paper: "It’s Too Hot Under the Sun": Unveiling the Impact of
+            Prolonged Heat Exposure on Rickshaw Pullers’ Brainwaves
+          </div>
+          <div class="publication-conference">
+            <a href="https://dl.acm.org/doi/proceedings/10.1145/3704522"
+              >NSysS '24: Proceedings of the 11th International Conference on
+              Networking, Systems, and Security</a
+            >
+          </div>
+          <div class="publication-date">January 2025</div>
+          <div class="publication-authors">
+            Maoyejatun Hasana, Masfiqur Rahaman, <b>Razin Reaz Abedin</b>, Md
+            Toki Tahmid, Ishika Tarin, Sudipa Saha, Sutapa Dey Tithi, Zarin
+            Tasnim Promi, Kazi Abdun Noor, MD Zahidul Islam Sanjid, Mahir
+            Shahriar Dhrubo, Samira Akter, Tauhidur Rahman, A. B. M. Alim Al
+            Islam
+          </div>
+          <a
+            href="https://dl.acm.org/doi/10.1145/3704522.3704556"
+            class="publication-button"
+            >Paper</a
+          >
+          <a
+            href="https://dl.acm.org/doi/pdf/10.1145/3704522.3704556"
+            class="publication-button"
+            >PDF</a>
+        </div>
+
+        <br /><br /><br />
+        <h3>
+          <span class="icon-box"><i class="fas fa-book"></i></span> Research
+          Experience
+        </h3>
+        <div class="experience-item">
+          <div class="experience-circle"></div>
+          <div class="experience-title">
+            Enhancing Earthquake Early Warning: Real‑time Seismic Intensity
+            Prediction with Contrastive Learning and DenseLoss
+          </div>
+          <div class="experience-description">
+            Development of a deep learning model to predict peak ground
+            acceleration (and earthquake intensity) by analyzing the first 3
+            seconds of the p‑phase in seismograms under the supervision of
+            <a href="https://sites.google.com/site/mohammedeunusali/"
+              >Dr. Mohammed Eunus Ali</a
+            >. The model uses train‑time data augmentation to generate partial
+            waves and employs a self‑supervised contrastive learning approach to
+            align partial waves with the full waveform in the embedding space.
+            To address the dataset’s imbalance in large‑magnitude earthquakes,
+            SMOTER (SMOTE for regression) and a density‑based sample loss
+            weighing scheme were applied.
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="experience-circle"></div>
+          <div class="experience-title">
+            Analyzing Impacts on the Physiological Aspects of Rickshaw‑pullers
+            due to Heat exposure
+          </div>
+          <div class="experience-description">
+            Dataset preparation of the physiological aspects and environmental
+            factors of Bangladeshi Rickshaw Pullers. Supervised by
+            <a href="https://cse.buet.ac.bd/faculty/faculty_detail/razi"
+              >Dr. A. B. M. Alim Al Islam</a
+            >. Collect skin temperature, electrodermal activity(EDA), pulse rate
+            variability, EEG data, etc. as physiological aspects and
+            environmental temperature, relative humidity, dust particle amount,
+            pollution levels, etc. as environmental data. Accumulated data of
+            over 50 rickshaw pullers, each having more than 20 minutes of data.
+          </div>
+        </div>
+      </div>
+
+
+
+
     </div>
     <script src="scripts/navbar.js"></script>
     <script src="scripts/sidebar.js"></script>
