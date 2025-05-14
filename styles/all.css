@@ -160,7 +160,7 @@ h4 {
 
 /* the box in the body */
 .container {
-  width: 80vw;
+  width: 95vw;
   display: flex;
   align-items: start;
   justify-content: space-between;
@@ -613,7 +613,9 @@ h4 {
   }
 
   .about p {
-    width: 100%
+    width: 100%;
+    /* background: #000; */
+    font-size: var(--description-font-size);
   }
   
   .content h1 {
