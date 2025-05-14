@@ -174,7 +174,7 @@ const projects = [
   {
     imageSrc: "./assets/projects/em-visualized/6D_data_points-gmm-5.gif",
     imageAlt: "Using EM algorithm to optimize GMM",
-    title: "Eexpectation Maximization Algorithm",
+    title: "Expectation Maximization Algorithm",
     tools: ["python", "numpy"],
     description:
       "Using EM algorithm to determine likelihood of Gaussian Mixture Model Parameters after applying dimensionality reduction on the dataset.",

@@ -4,10 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Razin - Home</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins|Roboto:wght@300;500&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
@@ -66,16 +64,17 @@
           </p> -->
           <br><br>
           <p>
-            I am currently an adjunct lecturer at the
-            <a href="https://cse.buet.ac.bd/">Department of Computer Science and Engineering</a>, 
-            <a href="https://www.buet.ac.bd/web/#/">BUET</a>.
-          </p>
-          <p>
             I am interested in 
             <b>Computer Graphics</b>,
             <b>Simulation</b>, <b>Physically Based Animation</b>, and
             <b>Physically Based Rendering</b>.
           </p>
+          <p>
+            Currently, I am an adjunct lecturer at the
+            <a href="https://cse.buet.ac.bd/">Department of Computer Science and Engineering</a>, 
+            <a href="https://www.buet.ac.bd/web/#/">BUET</a>.
+          </p>
+          
           <!-- <p>
             Ever since I started programming, I always get a kick out of turning
             every new thing I learn into code. It's always fun watching my own
@@ -98,6 +97,8 @@
           </p> -->
         </div>
         
+
+
         <div class="content" id="Publications">
           <!-- <span class="icon-box"><i class="fas fa-book"></i></span> -->
           <h1>Publications</h1>
@@ -124,11 +125,13 @@
             <a
               href="https://dl.acm.org/doi/10.1145/3704522.3704556"
               class="publication-button"
+              target="_blank"
               >Paper</a
             >
             <a
               href="https://dl.acm.org/doi/pdf/10.1145/3704522.3704556"
               class="publication-button"
+              target="_blank"
               >PDF</a>
           </div>
         </div>
@@ -176,8 +179,16 @@
         </div>
 
         <div class="content" id="Projects">
-          <h1>Projects</h1>
-          <div id="projects-container" class="cards"></div>
+          <div class="projects">
+            <h1>Projects</h1>
+            <div id="projects-container" class="cards"></div>
+          </div>
+        </div>
+
+        <div class="content">
+          <h1>
+            <span style="font-size: 4rem;">&#8592;</span> Shoot me an email!  <!-- ← left arrow-->
+          </h1>
         </div>
         
         <div class="content" id="Resume">
@@ -242,6 +253,8 @@
           <div id="achievements-container" class="cards"></div>
         </div>
 
+        
+
         <div class="content" id="More">
           <h1>More about me</h1>
           <div id="hobbies-container" class="link-card-container"></div>
@@ -253,7 +266,7 @@
     </div>
     <script src="scripts/navbar.js"></script>
     <script src="scripts/sidebar.js"></script>
-    <!-- <script src="scripts/scroll.js"></script> -->
+    <script src="scripts/scroll.js"></script>
     <script src="scripts/slider.js"></script>
 
     <script src="scripts/projects.js"></script>

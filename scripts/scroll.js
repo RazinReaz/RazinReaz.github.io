@@ -1,41 +1,45 @@
+const contents = document.querySelectorAll(".content");
+let lastScrollY = window.scrollY;
 
-const NAVBAR_HEIGHT = 80; // Adjust to actual height
-const SCROLL_DURATION = 700; // ms
+function getScrollDirection() {
+  const currentScrollY = window.scrollY;
+  const direction = currentScrollY > lastScrollY ? "down" : "up";
+  lastScrollY = currentScrollY;
+  return direction;
+}
 
-const easeInOutCubic = t =>
-  t < 0.5
-    ? 4 * t * t * t
-    : 1 - Math.pow(-2 * t + 2, 3) / 2;
+function isInView(element) {
+  const rect = element.getBoundingClientRect();
+  return rect.bottom > 50 && rect.top < (window.innerHeight - 150);
+}
 
-const scrollToTarget = (targetEl) => {
-  const targetY = targetEl.getBoundingClientRect().top + window.scrollY - NAVBAR_HEIGHT;
-  const startY = window.scrollY;
-  const distance = targetY - startY;
-  const startTime = performance.now();
+function checkVisibility() {
+  const direction = getScrollDirection();
 
-  const animate = (now) => {
-    const elapsed = now - startTime;
-    const progress = Math.min(elapsed / SCROLL_DURATION, 1);
-    const eased = easeInOutCubic(progress);
-    window.scrollTo(0, startY + distance * eased);
-    if (progress < 1) requestAnimationFrame(animate);
-  };
+  contents.forEach(content => {
+    const inView = isInView(content);
+    const classes = [
+      "content--visible-up",
+      "content--visible-down",
+      "content--hidden-up",
+      "content--hidden-down"
+    ];
+    content.classList.remove(...classes);
 
-  requestAnimationFrame(animate);
-};
-
-document.querySelectorAll('.nav-list a[href^="#"]').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const href = link.getAttribute('href');
-    if (!href || href === "#") return;
-
-    const targetId = href.slice(1);
-    const targetEl = document.getElementById(targetId);
-    if (!targetEl) return;
-
-    e.preventDefault();
-    history.pushState(null, '', `#${targetId}`); // preserves hash without jumping
-    scrollToTarget(targetEl);
+    if (inView) {
+      content.classList.add(
+        direction === "down" ? "content--visible-down" : "content--visible-up"
+      );
+    } else {
+      content.classList.add(
+        direction === "down" ? "content--hidden-down" : "content--hidden-up"
+      );
+    }
   });
-});
+}
+
+// Trigger once on page load
+window.addEventListener("load", checkVisibility);
+// Trigger on scroll
+document.addEventListener("scroll", checkVisibility);
 
