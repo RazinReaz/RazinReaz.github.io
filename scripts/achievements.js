@@ -31,7 +31,6 @@ function createCard(achievement) {
         </div>
     `;
 }
-console.log(achievements);
 
-const projectsContainer = document.getElementById("achievements-container");
-projectsContainer.innerHTML = achievements.map(createCard).join("");
+const achievementsContainer = document.getElementById("achievements-container");
+achievementsContainer.innerHTML = achievements.map(createCard).join("");

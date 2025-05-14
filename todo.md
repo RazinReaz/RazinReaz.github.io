@@ -18,3 +18,7 @@
     - [x] photos of team
     - [x] murchhona
 - [x] certificates
+- [ ] vertically stack
+    - [ ] animation when jumping
+    - [ ] animation on appear
+    - [ ] project cards
