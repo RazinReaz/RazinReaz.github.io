@@ -122,6 +122,21 @@ const projects = [
     ],
   },
   {
+    imageSrc: "./assets/projects/rope/rope gif square.gif",
+    imageAlt: "Rope simulation",
+    title: "Rope simulation",
+    tools: ["JavaScript", "p5.js"],
+    description:
+      "Rope simulation using ropelets and Verlet integration",
+    links: [
+      { href: "https://github.com/RazinReaz/rope-simulation", text: "Github" },
+      {
+        href: "https://razinreaz.github.io/rope-simulation/",
+        text: "Visualization",
+      },
+    ],
+  },
+  {
     imageSrc: "./assets/projects/game-of-life/2.gif",
     imageAlt: "Game of Life",
     title: "Conway's Game of Life",

@@ -29,7 +29,7 @@ const slidesData = [
     },
     {
         id: "slide-05",
-        src: "assets/projects/steering-behaviours/path.gif",
+        src: "assets/projects/steering-behaviours/path-30.gif",
         alt: "Steering Behaviours",
         link: "https://github.com/RazinReaz/Steering-behaviours",
         
@@ -43,26 +43,30 @@ const slidesData = [
     },
     {
         id: "slide-07",
+        src: "assets/projects/rope/rope%20gif%20square.gif",
+        alt: "Rope Simulation",
+        link: "https://razinreaz.github.io/rope-simulation/",
+    },
+    {
+        id: "slide-08",
         src: "assets/projects/game-of-life/2.gif",
         alt: "Game of Life",
         link: "https://razinreaz.github.io/game-of-life/",
     },
     {
-        id: "slide-08",
+        id: "slide-09",
         src: "assets/projects/tworch/gaussian%205layer-10nn.gif",
         alt: "Tworch",
         link: "https://github.com/RazinReaz/Tworch",
-        
-    },
-    {
-        id: "slide-09",
-        src: "assets/projects/optimizers/all-demo-places.gif",
-        alt: "Optimizer Visualization",
-        link: "https://github.com/RazinReaz/Optimizers-Visualization",
-        
     },
     {
         id: "slide-10",
+        src: "assets/projects/optimizers/all-demo-places.gif",
+        alt: "Optimizer Visualization",
+        link: "https://github.com/RazinReaz/Optimizers-Visualization",
+    },
+    {
+        id: "slide-11",
         src: "assets/projects/em-visualized/6D_data_points-gmm-5.gif",
         alt: "EM Algorithm",
         link: "https://github.com/RazinReaz/machine-learning-sessional/tree/main/offline-4-pca",
