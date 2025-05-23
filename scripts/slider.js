@@ -55,18 +55,24 @@ const slidesData = [
     },
     {
         id: "slide-09",
+        src: "assets/projects/cubey/cubey.gif",
+        alt: "Cubey",
+        link: "https://razinreaz.github.io/cubey/",
+    },
+    {
+        id: "slide-10",
         src: "assets/projects/tworch/gaussian%205layer-10nn.gif",
         alt: "Tworch",
         link: "https://github.com/RazinReaz/Tworch",
     },
     {
-        id: "slide-10",
+        id: "slide-11",
         src: "assets/projects/optimizers/all-demo-places.gif",
         alt: "Optimizer Visualization",
         link: "https://github.com/RazinReaz/Optimizers-Visualization",
     },
     {
-        id: "slide-11",
+        id: "slide-12",
         src: "assets/projects/em-visualized/6D_data_points-gmm-5.gif",
         alt: "EM Algorithm",
         link: "https://github.com/RazinReaz/machine-learning-sessional/tree/main/offline-4-pca",

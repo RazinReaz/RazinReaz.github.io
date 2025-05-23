@@ -86,7 +86,7 @@ const projects = [
     ],
   },
   {
-    imageSrc: "./assets/projects/steering-behaviours/path.gif",
+    imageSrc: "./assets/projects/steering-behaviours/path-30.gif",
     imageAlt: "Steering behaviours",
     title: "Steering Behaviours",
     tools: ["JavaScript", "p5.js"],
@@ -149,6 +149,23 @@ const projects = [
       },
       {
         href: "https://github.com/RazinReaz/game-of-life",
+        text: "Github",
+      },
+    ],
+  },
+  {
+    imageSrc: "./assets/projects/cubey/cubey.gif",
+    imageAlt: "Cubey",
+    title: "Cubey!",
+    description:
+      "Cubey wants to follow you!",
+    links: [
+      {
+        href: "https://razinreaz.github.io/cubey/",
+        text: "Play with Cubey!",
+      },
+      {
+        href: "https://github.com/RazinReaz/cubey",
         text: "Github",
       },
     ],
