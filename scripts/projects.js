@@ -50,6 +50,24 @@ const projects = [
     ],
   },
   {
+    imageSrc: "./assets/projects/softbody-pbd/final(self-coll-incomplete).gif",
+    imageAlt: "Softbody Simulation",
+    title: "Softbody using PBD",
+    tools: ["JavaScript", "p5.js"],
+    description:
+      "Softbody simulation using PBD. Features grid based structure and a perimeter based structure. Includes self collision detection, user interactivity",
+    links: [
+      {
+        href: "https://razinreaz.github.io/softbody-pbd/",
+        text: "Try it Yourself!",
+      },
+      {
+        href: "https://github.com/RazinReaz/softbody-pbd",
+        text: "Github",
+      },
+    ],
+  },
+  {
     imageSrc: "./assets/projects/ray-casting/demo.gif",
     imageAlt: "Simple Ray Casting",
     title: "Simple Ray Casting",
