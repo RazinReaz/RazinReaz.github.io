@@ -17,16 +17,16 @@ const achievements = [
   },
 ];
 
-function createCard(achievement) {
+function createAchievementCard(achievement) {
   return `
         <div class="card">
-            <div class="card-image">
+            <div class="card__image">
                 <img data-src="${achievement.imageSrc}" alt="${achievement.imageAlt}" class="project-image" loading="lazy">
             </div>
-            <div class="card-content">
-                <h3>${achievement.title}</h3>
-                <h4>${achievement.place}</h4>
-                <p>${achievement.description}</p>
+            <div class="card__content">
+                <h3 class="card__title">${achievement.title}</h3>
+                <h4 class="card__subtitle">${achievement.place}</h4>
+                <p class="card__text">${achievement.description}</p>
             </div>
         </div>
     `;
@@ -60,7 +60,7 @@ function setupAchievementLazyLoading() {
 document.addEventListener('DOMContentLoaded', () => {
     const achievementsContainer = document.getElementById("achievements-container");
     if (achievementsContainer) {
-        achievementsContainer.innerHTML = achievements.map(createCard).join("");
+        achievementsContainer.innerHTML = achievements.map(createAchievementCard).join("");
         
         // Setup lazy loading
         setupAchievementLazyLoading();

@@ -1,3 +1,40 @@
+// Function to scroll slider left or right
+function scrollSlider(direction) {
+    const slider = document.querySelector('.slider');
+    const slideWidth = slider.querySelector('.slide')?.offsetWidth || 300;
+    const scrollAmount = slideWidth * 0.8; // Scroll by 80% of slide width
+    
+    if (direction === 'left') {
+        slider.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    } else if (direction === 'right') {
+        slider.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Update arrow states after scrolling
+    setTimeout(updateArrowStates, 500);
+}
+
+// Function to update arrow states (enable/disable based on scroll position)
+function updateArrowStates() {
+    const slider = document.querySelector('.slider');
+    const leftArrow = document.querySelector('.slider-arrow.left');
+    const rightArrow = document.querySelector('.slider-arrow.right');
+    
+    if (!slider || !leftArrow || !rightArrow) return;
+    
+    const isAtStart = slider.scrollLeft <= 0;
+    const isAtEnd = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 10;
+    
+    leftArrow.disabled = isAtStart;
+    rightArrow.disabled = isAtEnd;
+}
+
 const slidesData = [
     {
         id: "slide-01",
@@ -197,6 +234,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 startAutoplay();
             }
         });
+
+        // Initialize arrow states
+        setTimeout(updateArrowStates, 1000);
+        
+        // Update arrow states on scroll
+        slider.addEventListener('scroll', updateArrowStates);
     }
 });
 

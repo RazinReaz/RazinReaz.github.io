@@ -235,21 +235,21 @@ const projects = [
   //   },
 ];
 
-function createCard(project) {
+function createProjectCard(project) {
   const linksHtml = project.links
-    .map(
+  .map(
       (link) =>
-        `<a href="${link.href}" target="_blank" class="card-button">${link.text}</a>`
-    )
-    .join("\n");
+        `<a href="${link.href}" target="_blank" class="card__button">${link.text}</a>`
+  )
+  .join("\n");
   return `
         <div class="card">
-            <div class="card-image">
+            <div class="card__image">
                 <img data-src="${project.imageSrc}" alt="${project.imageAlt}" class="project-image" loading="lazy">
             </div>
-            <div class="card-content">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
+            <div class="card__content">
+                <h3 class="card__title">${project.title}</h3>
+                <p class="card__text">${project.description}</p>
                 ${linksHtml}
             </div>
         </div>
@@ -298,7 +298,7 @@ function loadCriticalProjectImages() {
 document.addEventListener('DOMContentLoaded', () => {
     const projectsContainer = document.getElementById("projects-container");
     if (projectsContainer) {
-        projectsContainer.innerHTML = projects.map(createCard).join("");
+        projectsContainer.innerHTML = projects.map(createProjectCard).join("");
         
         // Setup lazy loading
         setupProjectLazyLoading();
