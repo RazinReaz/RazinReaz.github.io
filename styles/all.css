@@ -98,6 +98,18 @@ h3 {
   margin-bottom: 0.8rem;
 }
 
+/* About section styles */
+.about-title {
+  font-weight: 400;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.about-subtitle {
+  font-weight: 350;
+  text-align: center;
+}
+
 h4 {
   color: var(--h4-color);
   font-size: 1.2rem;
@@ -821,4 +833,48 @@ h4 {
   .link-card {
     width: calc(50% - 15px);
   }
+}
+
+/* Email section styles */
+.email-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.email-arrow {
+  font-size: 4rem;
+  color: var(--primary-color);
+}
+
+/* Lazy loading states for project and achievement images */
+.project-image {
+  opacity: 0;
+  filter: blur(3px);
+  transition: opacity 0.4s ease-in-out, filter 0.4s ease-in-out;
+}
+
+.project-image-loaded,
+.achievement-image-loaded {
+  opacity: 1;
+  filter: blur(0);
+}
+
+/* Loading placeholder for project cards */
+.card-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  z-index: -1;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
 }

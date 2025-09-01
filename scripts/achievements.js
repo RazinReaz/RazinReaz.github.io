@@ -21,7 +21,7 @@ function createCard(achievement) {
   return `
         <div class="card">
             <div class="card-image">
-                <img src="${achievement.imageSrc}" alt="${achievement.imageAlt}" class="project-image">
+                <img data-src="${achievement.imageSrc}" alt="${achievement.imageAlt}" class="project-image" loading="lazy">
             </div>
             <div class="card-content">
                 <h3>${achievement.title}</h3>
@@ -32,5 +32,37 @@ function createCard(achievement) {
     `;
 }
 
-const achievementsContainer = document.getElementById("achievements-container");
-achievementsContainer.innerHTML = achievements.map(createCard).join("");
+// Lazy loading implementation for achievement images
+function setupAchievementLazyLoading() {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.add('achievement-image-loaded');
+                    observer.unobserve(img);
+                }
+            }
+        });
+    }, {
+        rootMargin: '100px 0px',
+        threshold: 0.01
+    });
+
+    // Observe all achievement images
+    document.querySelectorAll('.project-image').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const achievementsContainer = document.getElementById("achievements-container");
+    if (achievementsContainer) {
+        achievementsContainer.innerHTML = achievements.map(createCard).join("");
+        
+        // Setup lazy loading
+        setupAchievementLazyLoading();
+    }
+});

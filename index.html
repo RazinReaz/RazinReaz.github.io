@@ -10,12 +10,13 @@
     <link rel="manifest" href="assets/favicon/site.webmanifest">
     <link rel="icon" type="image/png" href="assets/favicon/favicon.png">
     <title>Razin Reaz Abedin</title>
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="styles/all.css" as="style">
+    
+    <!-- Load fonts and CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
-    />
     <link rel="stylesheet" href="styles/all.css" />
     <link rel="stylesheet" href="styles/slider.css" />
 
@@ -46,28 +47,17 @@
 
       <div class="main-content">
         <div class="about" id="About">
-          <h2 style="font-weight: 400; text-align: center; padding-top: 1rem">
+          <h2 class="about-title">
             Hi! I am Razin 👋
           </h2>
-          <h3 style="font-weight: 350; text-align: center">
+          <h3 class="about-subtitle">
             These are some of my creations<br>Why not give them a click?
           </h3>
           <div class="slideshow-container">
             <div class="slider-wrapper">
               <div class="slider"></div>
-              <!-- <button class="arrow left">&#8249;</button> -->
-              <!-- <button class="arrow right">&#8250;</button> -->
             </div>
           </div>
-          <!-- <p>
-            I teach people Computer Science at the same university I graduated
-            from! <br />
-            Yes, right now, I am an adjunct lecturer at the
-            <a href="https://cse.buet.ac.bd/"
-              >Department of Computer Science and Engineering</a
-            >, <a href="https://www.buet.ac.bd/web/#/">BUET</a>. I completed my
-            undergraduate degree in July 2024 with a <b>CGPA of 3.93/4.00</b>.
-          </p> -->
           <br><br>
           <p>I am interested in:</p>
             <ul class="about-research-interest-list">
@@ -81,39 +71,16 @@
             <a href="https://cse.buet.ac.bd/">Department of Computer Science and Engineering</a>, 
             <a href="https://www.buet.ac.bd/web/#/">BUET</a>.
           </p>
-          
-          <!-- <p>
-            Ever since I started programming, I always get a kick out of turning
-            every new thing I learn into code. It's always fun watching my own
-            little simulations in my computer screen. You can take a look at some
-            of my projects in the <a href="./projects.html">Projects</a> tab.
-          </p>
-  
-          <p>
-            A short overview of my <b>research experience</b>: I have experience
-            building a deep learning model to predict earthquake intensity with
-            only 3 seconds of seismograms as my undergraduate thesis. I also have
-            experience collecting physiological data from more than 40
-            rickshaw-pullers using more than 7 sensors to analyze the impacts of
-            heat exposure on them. More about it in the
-            <a href="./research.html">Research</a> tab.
-          </p> -->
-          <!-- <p>
-            For more information about me that is totally not unsolicited, check
-            out <a href="./more.html">this page</a>.
-          </p> -->
         </div>
         
 
-
         <div class="content" id="Publications">
-          <!-- <span class="icon-box"><i class="fas fa-book"></i></span> -->
           <h1>Publications</h1>
           <div class="experience-item">
             <div class="experience-circle"></div>
             <div class="publication-title">
-              Short Paper: "It’s Too Hot Under the Sun": Unveiling the Impact of
-              Prolonged Heat Exposure on Rickshaw Pullers’ Brainwaves
+              Short Paper: "It's Too Hot Under the Sun": Unveiling the Impact of
+              Prolonged Heat Exposure on Rickshaw Pullers' Brainwaves
             </div>
             <div class="publication-conference">
               <a href="https://dl.acm.org/doi/proceedings/10.1145/3704522"
@@ -144,7 +111,7 @@
         </div>
 
         <div class="content" id="Research">
-          <h1 >Research Experience</h1>
+          <h1>Research Experience</h1>
           <div class="experience-item">
             <div class="experience-circle"></div>
             <div class="experience-title">
@@ -160,7 +127,7 @@
               >. The model uses train‑time data augmentation to generate partial
               waves and employs a self‑supervised contrastive learning approach to
               align partial waves with the full waveform in the embedding space.
-              To address the dataset’s imbalance in large‑magnitude earthquakes,
+              To address the dataset's imbalance in large‑magnitude earthquakes,
               SMOTER (SMOTE for regression) and a density‑based sample loss
               weighing scheme were applied.
             </div>
@@ -193,8 +160,8 @@
         </div>
 
         <div class="content">
-          <h1>
-            <span style="font-size: 4rem;">&#8592;</span> Shoot me an email!  <!-- ← left arrow-->
+          <h1 class="email-section">
+            <span class="email-arrow">&#8592;</span> Shoot me an email!
           </h1>
         </div>
         
@@ -271,14 +238,17 @@
       </div>
       
     </div>
-    <script src="scripts/navbar.js"></script>
-    <script src="scripts/sidebar.js"></script>
-    <script src="scripts/scroll.js"></script>
-    <script src="scripts/slider.js"></script>
-
-    <script src="scripts/projects.js"></script>
-    <script src="scripts/achievements.js"></script>
-    <script src="scripts/more.js"></script>
+    
+    <!-- Load critical scripts first -->
+    <script src="scripts/navbar.js" defer></script>
+    <script src="scripts/sidebar.js" defer></script>
+    <script src="scripts/scroll.js" defer></script>
+    
+    <!-- Load content scripts with lazy loading support -->
+    <script src="scripts/slider.js" defer></script>
+    <script src="scripts/projects.js" defer></script>
+    <script src="scripts/achievements.js" defer></script>
+    <script src="scripts/more.js" defer></script>
 
   </body>
 </html>
