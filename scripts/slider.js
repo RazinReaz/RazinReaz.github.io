@@ -1,3 +1,40 @@
+// Function to scroll slider left or right
+function scrollSlider(direction) {
+    const slider = document.querySelector('.slider');
+    const slideWidth = slider.querySelector('.slide')?.offsetWidth || 300;
+    const scrollAmount = slideWidth * 0.8; // Scroll by 80% of slide width
+    
+    if (direction === 'left') {
+        slider.scrollBy({
+            left: -scrollAmount,
+            behavior: 'smooth'
+        });
+    } else if (direction === 'right') {
+        slider.scrollBy({
+            left: scrollAmount,
+            behavior: 'smooth'
+        });
+    }
+    
+    // Update arrow states after scrolling
+    setTimeout(updateArrowStates, 500);
+}
+
+// Function to update arrow states (enable/disable based on scroll position)
+function updateArrowStates() {
+    const slider = document.querySelector('.slider');
+    const leftArrow = document.querySelector('.slider-arrow.left');
+    const rightArrow = document.querySelector('.slider-arrow.right');
+    
+    if (!slider || !leftArrow || !rightArrow) return;
+    
+    const isAtStart = slider.scrollLeft <= 0;
+    const isAtEnd = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 10;
+    
+    leftArrow.disabled = isAtStart;
+    rightArrow.disabled = isAtEnd;
+}
+
 const slidesData = [
     {
         id: "slide-01",
@@ -93,86 +130,107 @@ function createSlide(slide) {
     return `
     <div id="${slide.id}" class="slide">
         <a href="${slide.link}" target="_blank" class="slide-image-wrapper">
-            <img src="${slide.src}" alt="${slide.alt}" loading="lazy">
+            <img data-src="${slide.src}" alt="${slide.alt}" loading="lazy" class="slide-image">
             <div class="slide-overlay-text">Click to ${isSimulation ? 'try' : 'view'} <br><b>${slide.alt}</b> ${isSimulation ? '' : 'Code'}</div>
         </a>
     </div>
   `;
 }
 
-function createNavDot(slide) {
-    return `<a href="#${slide.id}"></a>`;
+// Lazy loading implementation
+function loadImage(img) {
+    if (img.dataset.src) {
+        img.src = img.dataset.src;
+        img.classList.remove('slide-image');
+        img.classList.add('slide-image-loaded');
+    }
 }
 
+// Intersection Observer for lazy loading
+function setupLazyLoading() {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                loadImage(img);
+                observer.unobserve(img);
+            }
+        });
+    }, {
+        rootMargin: '50px 0px', // Start loading 50px before image comes into view
+        threshold: 0.01
+    });
 
-// document.addEventListener("DOMContentLoaded", init, false);
+    // Observe all slide images
+    document.querySelectorAll('.slide-image').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
 
+// Progressive loading - load first few images immediately
+function loadCriticalImages() {
+    const criticalSlides = slidesData.slice(0, 3); // Load first 3 slides immediately
+    criticalSlides.forEach((slide, index) => {
+        const img = document.querySelector(`#${slide.id} .slide-image`);
+        if (img) {
+            setTimeout(() => loadImage(img), index * 100); // Stagger loading
+        }
+    });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
     const slider = document.querySelector(".slider");
-    const sliderNav = document.querySelector(".slider-nav");
-    const slides = document.querySelectorAll(".slide");
     
-    slider.innerHTML = slidesData.map(createSlide).join("");
-    
-    if (sliderNav) {
-        sliderNav.innerHTML = slidesData.map(createNavDot).join("");
+    if (slider) {
+        slider.innerHTML = slidesData.map(createSlide).join("");
+
+        // Setup lazy loading
+        setupLazyLoading();
+        
+        // Load critical images first
+        loadCriticalImages();
+
+        // Autoplay functionality with performance optimization
+        let autoPlayInterval;
+        
+        function startAutoplay() {
+            autoPlayInterval = setInterval(() => {
+                if (slider && !slider.matches(':hover')) {
+                    slider.scrollBy({
+                        left: 100,
+                        behavior: "smooth",
+                    });
+                }
+            }, INTERVAL);
+        }
+
+        function stopAutoplay() {
+            if (autoPlayInterval) {
+                clearInterval(autoPlayInterval);
+            }
+        }
+
+        // Start autoplay
+        startAutoplay();
+
+        // Pause autoplay on hover
+        slider.addEventListener("mouseenter", stopAutoplay);
+        slider.addEventListener("mouseleave", startAutoplay);
+
+        // Pause autoplay when tab is not visible
+        document.addEventListener("visibilitychange", () => {
+            if (document.hidden) {
+                stopAutoplay();
+            } else {
+                startAutoplay();
+            }
+        });
+
+        // Initialize arrow states
+        setTimeout(updateArrowStates, 1000);
+        
+        // Update arrow states on scroll
+        slider.addEventListener('scroll', updateArrowStates);
     }
-
-
-    // Autoplay functionality
-    let autoPlayInterval = setInterval(() => {
-        slider.scrollBy({
-            left: 100, //! NEEDs to change
-            behavior: "smooth",
-        });
-    }, INTERVAL);
-
-    // // Pause autoplay on hover
-    slider.addEventListener("mouseenter", () =>
-    clearInterval(autoPlayInterval)
-    );
-    slider.addEventListener("mouseleave", () => {
-    autoPlayInterval = setInterval(() => {
-        slider.scrollBy({
-            left: 100, //! NEEDs to change
-            behavior: "smooth",
-        });
-    }, INTERVAL);
-    });
-
-    // // Clone first and last slides
-    // const cloneFirstSlides = slides
-    //   .slice(0, 2)
-    //   .map((slide) => slide.cloneNode(true));
-    // const cloneLastSlides = slides
-    //   .slice(-2)
-    //   .map((slide) => slide.cloneNode(true));
-
-    // // Append clones to the slider
-    // cloneFirstSlides.forEach((clone) => slider.appendChild(clone));
-    // cloneLastSlides.forEach((clone) =>
-    //   slider.insertBefore(clone, slider.firstChild)
-    // );
-
-    // // Adjust slider's scroll position to show original slides
-    // const slideWidth = slides[0].offsetWidth;
-    // slider.scrollLeft = slides.length * slideWidth;
-
-    // // Handle wrap-around effect
-    // slider.addEventListener("scroll", () => {
-    //   if (slider.scrollLeft <= 0) {
-    //     // User scrolled to the start; reset to the original last slide
-    //     slider.scrollLeft = slides.length * slideWidth;
-    //   } else if (
-    //     slider.scrollLeft >=
-    //     slider.scrollWidth - slider.offsetWidth
-    //   ) {
-    //     // User scrolled to the end; reset to the original first slide
-    //     slider.scrollLeft =
-    //       slides.length * slideWidth - slider.offsetWidth;
-    //   }
-    // });
-
 });
 

@@ -17,20 +17,6 @@ const projects = [
       },
     ],
   },
-  // {
-  //   imageSrc: "./assets/projects/raytracing/8%20spheres/output.gif",
-  //   imageAlt: "Ray-Tracing",
-  //   title: "Ray-Tracing",
-  //   tools: ["C++", "OpenGL"],
-  //   description:
-  //     "An image generating computer graphics pipeline capable of creating ray-traced images of spheres, pyramids, and cubes with diffuse, specular, and reflective components. Developed using C++ and OpenGL.",
-  //   links: [
-  //     {
-  //       href: "https://github.com/RazinReaz/RazinReazCSE410-Computer-Graphics/tree/master/offline-4-raytracing",
-  //       text: "Code",
-  //     },
-  //   ],
-  // },
   {
     imageSrc: "./assets/projects/flocking-boids/boids 1.gif",
     imageAlt: "Flocking simulation",
@@ -249,26 +235,75 @@ const projects = [
   //   },
 ];
 
-function createCard(project) {
+function createProjectCard(project) {
   const linksHtml = project.links
-    .map(
+  .map(
       (link) =>
-        `<a href="${link.href}" target="_blank" class="card-button">${link.text}</a>`
-    )
-    .join("\n");
+        `<a href="${link.href}" target="_blank" class="card__button">${link.text}</a>`
+  )
+  .join("\n");
   return `
         <div class="card">
-            <div class="card-image">
-                <img src="${project.imageSrc}" alt="${project.imageAlt}" class="project-image" loading="lazy">
+            <div class="card__image">
+                <img data-src="${project.imageSrc}" alt="${project.imageAlt}" class="project-image" loading="lazy">
             </div>
-            <div class="card-content">
-                <h3>${project.title}</h3>
-                <p>${project.description}</p>
+            <div class="card__content">
+                <h3 class="card__title">${project.title}</h3>
+                <p class="card__text">${project.description}</p>
                 ${linksHtml}
             </div>
         </div>
     `;
 }
 
-const projectsContainer = document.getElementById("projects-container");
-projectsContainer.innerHTML = projects.map(createCard).join("");
+// Lazy loading implementation for project images
+function setupProjectLazyLoading() {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.add('project-image-loaded');
+                    observer.unobserve(img);
+                }
+            }
+        });
+    }, {
+        rootMargin: '100px 0px', // Start loading 100px before image comes into view
+        threshold: 0.01
+    });
+
+    // Observe all project images
+    document.querySelectorAll('.project-image').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// Progressive loading - load first few project images immediately
+function loadCriticalProjectImages() {
+    const criticalProjects = projects.slice(0, 4); // Load first 4 projects immediately
+    criticalProjects.forEach((project, index) => {
+        setTimeout(() => {
+            const img = document.querySelector(`[data-src="${project.imageSrc}"]`);
+            if (img) {
+                img.src = img.dataset.src;
+                img.classList.add('project-image-loaded');
+            }
+        }, index * 200); // Stagger loading
+    });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const projectsContainer = document.getElementById("projects-container");
+    if (projectsContainer) {
+        projectsContainer.innerHTML = projects.map(createProjectCard).join("");
+        
+        // Setup lazy loading
+        setupProjectLazyLoading();
+        
+        // Load critical images first
+        loadCriticalProjectImages();
+    }
+});

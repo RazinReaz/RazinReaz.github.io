@@ -17,20 +17,52 @@ const achievements = [
   },
 ];
 
-function createCard(achievement) {
+function createAchievementCard(achievement) {
   return `
         <div class="card">
-            <div class="card-image">
-                <img src="${achievement.imageSrc}" alt="${achievement.imageAlt}" class="project-image" loading="lazy">
+            <div class="card__image">
+                <img data-src="${achievement.imageSrc}" alt="${achievement.imageAlt}" class="project-image" loading="lazy">
             </div>
-            <div class="card-content">
-                <h3>${achievement.title}</h3>
-                <h4>${achievement.place}</h4>
-                <p>${achievement.description}</p>
+            <div class="card__content">
+                <h3 class="card__title">${achievement.title}</h3>
+                <h4 class="card__subtitle">${achievement.place}</h4>
+                <p class="card__text">${achievement.description}</p>
             </div>
         </div>
     `;
 }
 
-const achievementsContainer = document.getElementById("achievements-container");
-achievementsContainer.innerHTML = achievements.map(createCard).join("");
+// Lazy loading implementation for achievement images
+function setupAchievementLazyLoading() {
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const img = entry.target;
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                    img.classList.add('achievement-image-loaded');
+                    observer.unobserve(img);
+                }
+            }
+        });
+    }, {
+        rootMargin: '100px 0px',
+        threshold: 0.01
+    });
+
+    // Observe all achievement images
+    document.querySelectorAll('.project-image').forEach(img => {
+        imageObserver.observe(img);
+    });
+}
+
+// Initialize when DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    const achievementsContainer = document.getElementById("achievements-container");
+    if (achievementsContainer) {
+        achievementsContainer.innerHTML = achievements.map(createAchievementCard).join("");
+        
+        // Setup lazy loading
+        setupAchievementLazyLoading();
+    }
+});
