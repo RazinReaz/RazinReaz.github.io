@@ -93,7 +93,7 @@ function createSlide(slide) {
     return `
     <div id="${slide.id}" class="slide">
         <a href="${slide.link}" target="_blank" class="slide-image-wrapper">
-            <img src="${slide.src}" alt="${slide.alt}">
+            <img src="${slide.src}" alt="${slide.alt}" loading="lazy">
             <div class="slide-overlay-text">Click to ${isSimulation ? 'try' : 'view'} <br><b>${slide.alt}</b> ${isSimulation ? '' : 'Code'}</div>
         </a>
     </div>

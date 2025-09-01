@@ -56,7 +56,7 @@ function renderHobbies() {
       <div class="link-card">
         <div class="video-container">
           <a href="${hobby.link}" target="_blank">
-            <img src="${hobby.img}" alt="${hobby.alt}" class="thumbnail" />
+            <img src="${hobby.img}" alt="${hobby.alt}" class="thumbnail" loading="lazy"/>
           </a>
         </div>
         <p><br />${hobby.text}</p>

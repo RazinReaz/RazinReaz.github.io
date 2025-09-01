@@ -21,7 +21,7 @@ function createCard(achievement) {
   return `
         <div class="card">
             <div class="card-image">
-                <img src="${achievement.imageSrc}" alt="${achievement.imageAlt}" class="project-image">
+                <img src="${achievement.imageSrc}" alt="${achievement.imageAlt}" class="project-image" loading="lazy">
             </div>
             <div class="card-content">
                 <h3>${achievement.title}</h3>

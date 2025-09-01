@@ -259,7 +259,7 @@ function createCard(project) {
   return `
         <div class="card">
             <div class="card-image">
-                <img src="${project.imageSrc}" alt="${project.imageAlt}" class="project-image">
+                <img src="${project.imageSrc}" alt="${project.imageAlt}" class="project-image" loading="lazy">
             </div>
             <div class="card-content">
                 <h3>${project.title}</h3>
