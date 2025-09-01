@@ -303,12 +303,7 @@ a:hover {
   text-align: center;
 }
 
-.about__text {
-  padding-left: 5%;
-  padding-right: 5%;
-  font-size: 1.3rem;
-  width: 90%;
-}
+/* Remove unused about__text class */
 
 .about__research-list {
   list-style-type: disc;
@@ -694,10 +689,7 @@ a:hover {
     padding: 5%;
   }
   
-  .about__text {
-    width: 100%;
-    font-size: var(--font-size-base);
-  }
+/* Remove unused about__text class */
   
   .about__research-list {
     font-size: var(--font-size-base);
@@ -818,10 +810,7 @@ a:hover {
     font-size: 16px;
   }
   
-  .about__text {
-    font-size: var(--font-size-base);
-    text-align: left;
-  }
+/* Remove unused about__text class */
   
   .about__research-list {
     padding-left: 12%;

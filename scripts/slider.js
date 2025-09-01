@@ -137,10 +137,6 @@ function createSlide(slide) {
   `;
 }
 
-function createNavDot(slide) {
-    return `<a href="#${slide.id}"></a>`;
-}
-
 // Lazy loading implementation
 function loadImage(img) {
     if (img.dataset.src) {
@@ -184,14 +180,9 @@ function loadCriticalImages() {
 
 document.addEventListener("DOMContentLoaded", () => {
     const slider = document.querySelector(".slider");
-    const sliderNav = document.querySelector(".slider-nav");
     
     if (slider) {
         slider.innerHTML = slidesData.map(createSlide).join("");
-        
-        if (sliderNav) {
-            sliderNav.innerHTML = slidesData.map(createNavDot).join("");
-        }
 
         // Setup lazy loading
         setupLazyLoading();
