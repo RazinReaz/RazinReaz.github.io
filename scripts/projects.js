@@ -5,9 +5,16 @@ const projects = [
     title: "Real-time PBR path tracer",
     tools: ["CUDA C++", "OpenGL"],
     description:
-      "[WORK IN PROGRESS] A real time path tracer supporting diffuse materials with the microfacet model. Working on Direct illumination, specular and refractive materials<br> <b>Performance</b>: 80 FPS on Stanford Dragon Model that you can see here. GPU NVIDIA GeForce 1060",
+      "A real-time path tracer supporting diffuse, specular, and refractive materials using microfacet model. <b>Check GitHub for more images</b>GPU NVIDIA GeForce 1060",
     links: [
-      
+      {
+        href: "https://github.com/RazinReaz/path-tracer",
+        text: "Github",
+      },
+      {
+        href: "https://youtube.com/shorts/w4ik14QTe3w",
+        text: "Video",
+      },
     ],
   },
   {
