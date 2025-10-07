@@ -40,8 +40,7 @@ const slidesData = [
         id: "slide-01",
         src: "./assets/projects/pathtracer-gpu/dragon.gif",
         alt: "Real-time PBR Path tracer",
-        link: "",
-        overlay: "WORK IN PROGRESS"
+        link: "https://github.com/RazinReaz/path-tracer",
         
     },
     {
