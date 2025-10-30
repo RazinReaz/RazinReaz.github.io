@@ -13,6 +13,8 @@
     height: 100%;
     overflow: hidden;
     margin: 0 auto;
+    display: flex;
+    align-items: center;
 }
 
 /* Netflix-style chevron arrows */
@@ -62,14 +64,15 @@
 
 .slider {
     display: flex;
-    /* max-width:inherit; */
+    max-width: 100%;
     max-height: inherit;
-    justify-content: wrap;
+    height: 100%;
+    width: 100%;
+    justify-content: flex-start;
     align-items: center;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
-    /* background-color: crimson; */
 }
 
 .slider::-webkit-scrollbar {
@@ -85,17 +88,24 @@
 .slide {
     display: flex;
     align-items: center;
-    flex: 1 0 40%;
+    justify-content: center;
+    flex: 0 0 40%;
     scroll-snap-align: center;
     aspect-ratio: 1/1;
-    object-fit: contain;
     padding-left: 1rem;
     padding-right: 1rem;
+    min-width: 0; /* Prevent flex item overflow */
 }
 
 .slide-image-wrapper {
     position: relative;
     width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     box-shadow: 0 1.5rem 3rem -0.75rem rgba(0, 0, 0, 0.2);
     transition: transform ease 250ms;
     border-radius: 0.5rem;
@@ -107,33 +117,42 @@
     box-shadow: 0 2rem 4rem -1rem var(--color-primary);
 }
 
-.slide a img {
-    flex: 1 0 100%;
+.slide a img,
+.slide a video {
     width: 100%;
     height: 100%;
     max-width: 100%;
     max-height: 100%;
     border-radius: 0.5rem;
-    transition: opacity 0.3s ease-in-out;
-    object-fit: cover;
+    transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
+    object-fit: contain;
     object-position: center;
 } 
 
-.slide a img:hover {
+.slide a img:hover,
+.slide a video:hover {
     filter: brightness(0.3);
     cursor: pointer;
 }
 
-/* Lazy loading states */
+/* Lazy loading states - applies to both images and videos */
 .slide-image {
     opacity: 0;
     filter: blur(5px);
     transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 .slide-image-loaded {
     opacity: 1;
     filter: blur(0);
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 /* Loading placeholder */
@@ -189,7 +208,7 @@
 /* For screens narrower than 768px */
 @media (max-width: 768px) {
     .slide {
-        flex: 1 0 90%; /* Slides occupy more width on smaller screens */
+        flex: 0 0 90%; /* Slides occupy more width on smaller screens */
     }
     
     .slider-arrow {
@@ -202,7 +221,7 @@
 /* For screens narrower than 576px */
 @media (max-width: 576px) {
     .slide {
-        flex: 1 0 100%; /* Each slide takes the full width */
+        flex: 0 0 100%; /* Each slide takes the full width */
         padding: 0.25rem; /* Reduce padding */
     }
 

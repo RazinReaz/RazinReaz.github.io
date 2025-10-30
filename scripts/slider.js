@@ -38,21 +38,28 @@ function updateArrowStates() {
 const slidesData = [
     {
         id: "slide-01",
-        src: "./assets/projects/pathtracer-gpu/dragon.gif",
+        src: "./assets/projects/pathtracer-gpu/pathtracer-vid.mp4",
         alt: "Real-time PBR Path tracer",
         link: "https://github.com/RazinReaz/path-tracer",
         
     },
     {
+        id: "slide-01b",
+        src: "./assets/projects/black-hole/blackhole.mp4",
+        alt: "Black Hole Simulation",
+        link: "https://github.com/RazinReaz/black-hole",
+        
+    },
+    {
         id: "slide-02",
-        src: "assets/projects/flocking-boids/boids%201.gif",
+        src: "assets/projects/flocking-boids/flocking-boids.mp4",
         alt: "Flocking Simulation",
         link: "https://razinreaz.github.io/flocking-boids/",        
     },
     {
         id: "slide-03",
         src: "assets/projects/raytracing/5%20spheres.gif",
-        alt: "Path Tracing",
+        alt: "Ray-tracing with Global Illumination",
         link: "https://github.com/RazinReaz/ray-tracing",
     },
     {
@@ -70,7 +77,7 @@ const slidesData = [
     },
     {
         id: "slide-06",
-        src: "assets/projects/ray-casting/demo.gif",
+        src: "assets/projects/ray-casting/ray-casting.mp4",
         alt: "Simple Ray Casting",
         link: "https://razinreaz.github.io/raycasting/",
         
@@ -129,6 +136,12 @@ const slidesData = [
 
 const INTERVAL = 15000; // 15 seconds 
 
+// Helper function to check if source is a video
+function isVideoSource(src) {
+    const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov'];
+    return videoExtensions.some(ext => src.toLowerCase().endsWith(ext));
+}
+
 function createSlide(slide) {
     
     // Check if slide has a custom overlay property
@@ -140,53 +153,67 @@ function createSlide(slide) {
         overlayText = `Click to ${isSimulation ? 'try' : 'view'} <br><b>${slide.alt}</b> ${isSimulation ? '' : 'Code'}`;
     }
     
+    // Determine if this is a video or image
+    const isVideo = isVideoSource(slide.src);
+    const mediaElement = isVideo 
+        ? `<video data-src="${slide.src}" loading="lazy" class="slide-image" muted loop playsinline></video>`
+        : `<img data-src="${slide.src}" alt="${slide.alt}" loading="lazy" class="slide-image">`;
+    
     return `
         <div id="${slide.id}" class="slide">
             <a href="${slide.link}" target="_blank" class="slide-image-wrapper">
-                <img data-src="${slide.src}" alt="${slide.alt}" loading="lazy" class="slide-image">
+                ${mediaElement}
                 <div class="slide-overlay-text">${overlayText}</div>
             </a>
         </div>
     `;
 }
 
-// Lazy loading implementation
-function loadImage(img) {
-    if (img.dataset.src) {
-        img.src = img.dataset.src;
-        img.classList.remove('slide-image');
-        img.classList.add('slide-image-loaded');
+// Lazy loading implementation for both images and videos
+function loadMedia(element) {
+    if (element.dataset.src) {
+        element.src = element.dataset.src;
+        element.classList.remove('slide-image');
+        element.classList.add('slide-image-loaded');
+        
+        // If it's a video, start playing
+        if (element.tagName === 'VIDEO') {
+            element.play().catch(err => {
+                // Autoplay might be blocked, but that's okay
+                console.log('Video autoplay prevented:', err);
+            });
+        }
     }
 }
 
 // Intersection Observer for lazy loading
 function setupLazyLoading() {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
+    const mediaObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const img = entry.target;
-                loadImage(img);
-                observer.unobserve(img);
+                const media = entry.target;
+                loadMedia(media);
+                observer.unobserve(media);
             }
         });
     }, {
-        rootMargin: '50px 0px', // Start loading 50px before image comes into view
+        rootMargin: '50px 0px', // Start loading 50px before media comes into view
         threshold: 0.01
     });
 
-    // Observe all slide images
-    document.querySelectorAll('.slide-image').forEach(img => {
-        imageObserver.observe(img);
+    // Observe all slide images and videos
+    document.querySelectorAll('.slide-image').forEach(media => {
+        mediaObserver.observe(media);
     });
 }
 
-// Progressive loading - load first few images immediately
-function loadCriticalImages() {
+// Progressive loading - load first few images/videos immediately
+function loadCriticalMedia() {
     const criticalSlides = slidesData.slice(0, 3); // Load first 3 slides immediately
     criticalSlides.forEach((slide, index) => {
-        const img = document.querySelector(`#${slide.id} .slide-image`);
-        if (img) {
-            setTimeout(() => loadImage(img), index * 100); // Stagger loading
+        const media = document.querySelector(`#${slide.id} .slide-image`);
+        if (media) {
+            setTimeout(() => loadMedia(media), index * 100); // Stagger loading
         }
     });
 }
@@ -200,8 +227,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Setup lazy loading
         setupLazyLoading();
         
-        // Load critical images first
-        loadCriticalImages();
+        // Load critical media first
+        loadCriticalMedia();
 
         // Autoplay functionality with performance optimization
         let autoPlayInterval;
