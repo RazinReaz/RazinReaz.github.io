@@ -1,26 +1,32 @@
-// Function to scroll slider left or right
+/* ============================================
+   NAVIGATION FUNCTIONS
+   ============================================ */
+
+/**
+ * Scrolls the slider in the specified direction
+ * @param {string} direction - 'left' or 'right'
+ */
 function scrollSlider(direction) {
     const slider = document.querySelector('.slider');
+    if (!slider) return;
+    
     const slideWidth = slider.querySelector('.slide')?.offsetWidth || 300;
     const scrollAmount = slideWidth * 0.8; // Scroll by 80% of slide width
     
-    if (direction === 'left') {
-        slider.scrollBy({
-            left: -scrollAmount,
-            behavior: 'smooth'
-        });
-    } else if (direction === 'right') {
-        slider.scrollBy({
-            left: scrollAmount,
-            behavior: 'smooth'
-        });
-    }
+    const scrollDirection = direction === 'left' ? -scrollAmount : scrollAmount;
+    slider.scrollBy({
+        left: scrollDirection,
+        behavior: 'smooth'
+    });
     
-    // Update arrow states after scrolling
+    // Update arrow states after scroll animation completes
     setTimeout(updateArrowStates, 500);
 }
 
-// Function to update arrow states (enable/disable based on scroll position)
+/**
+ * Updates arrow button states based on scroll position
+ * Disables arrows when at the start or end of the slider
+ */
 function updateArrowStates() {
     const slider = document.querySelector('.slider');
     const leftArrow = document.querySelector('.slider-arrow.left');
@@ -28,33 +34,29 @@ function updateArrowStates() {
     
     if (!slider || !leftArrow || !rightArrow) return;
     
-    const isAtStart = slider.scrollLeft <= 0;
-    const isAtEnd = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - 10;
+    const scrollThreshold = 10; // Small threshold to account for rounding
+    const isAtStart = slider.scrollLeft <= scrollThreshold;
+    const isAtEnd = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - scrollThreshold;
     
     leftArrow.disabled = isAtStart;
     rightArrow.disabled = isAtEnd;
 }
 
+/* ============================================
+   SLIDE DATA CONFIGURATION
+   ============================================ */
 const slidesData = [
     {
         id: "slide-01",
         src: "./assets/projects/pathtracer-gpu/pathtracer-vid.mp4",
         alt: "Real-time PBR Path tracer",
         link: "https://github.com/RazinReaz/path-tracer",
-        
     },
     {
         id: "slide-01b",
         src: "./assets/projects/black-hole/blackhole.mp4",
         alt: "Black Hole Simulation",
         link: "https://github.com/RazinReaz/black-hole",
-        
-    },
-    {
-        id: "slide-02",
-        src: "assets/projects/flocking-boids/flocking-boids.mp4",
-        alt: "Flocking Simulation",
-        link: "https://razinreaz.github.io/flocking-boids/",        
     },
     {
         id: "slide-03",
@@ -63,38 +65,40 @@ const slidesData = [
         link: "https://github.com/RazinReaz/ray-tracing",
     },
     {
-        id: "slide-04",
+        id: "slide-02",
         src: "./assets/projects/softbody-pbd/final(self-coll-incomplete).gif",
         alt: "Softbody PBD",
         link: "https://razinreaz.github.io/softbody-pbd/",
+    },
+    {
+        id: "slide-04",
+        src: "assets/projects/flocking-boids/flocking-boids.mp4",
+        alt: "Flocking Simulation",
+        link: "https://razinreaz.github.io/flocking-boids/",
     },
     {
         id: "slide-05",
         src: "assets/projects/ragdoll/demo.gif",
         alt: "Ragdoll Physics",
         link: "https://razinreaz.github.io/Ragdoll-Simulation/",
-        
     },
     {
         id: "slide-06",
         src: "assets/projects/ray-casting/ray-casting.mp4",
         alt: "Simple Ray Casting",
         link: "https://razinreaz.github.io/raycasting/",
-        
     },
     {
         id: "slide-07",
         src: "assets/projects/steering-behaviours/path-30.gif",
         alt: "Steering Behaviours",
         link: "https://github.com/RazinReaz/Steering-behaviours",
-        
     },
     {
         id: "slide-08",
         src: "assets/projects/asteroids/game_level_1.gif",
         alt: "Asteroids Game",
         link: "https://razinreaz.github.io/GameJam-2023-Asteroids/",
-        
     },
     {
         id: "slide-09",
@@ -134,26 +138,44 @@ const slidesData = [
     },
 ];
 
-const INTERVAL = 15000; // 15 seconds 
+/* ============================================
+   CONFIGURATION CONSTANTS
+   ============================================ */
+const AUTOPLAY_INTERVAL = 15000; // 15 seconds
+const CRITICAL_SLIDES_COUNT = 3; // Number of slides to load immediately
+const LAZY_LOAD_ROOT_MARGIN = '50px 0px'; // Start loading before element is visible
 
-// Helper function to check if source is a video
+/* ============================================
+   UTILITY FUNCTIONS
+   ============================================ */
+
+/**
+ * Checks if a source URL is a video file
+ * @param {string} src - Source URL
+ * @returns {boolean}
+ */
 function isVideoSource(src) {
     const videoExtensions = ['.mp4', '.webm', '.ogg', '.mov'];
     return videoExtensions.some(ext => src.toLowerCase().endsWith(ext));
 }
 
+/* ============================================
+   SLIDE CREATION
+   ============================================ */
+
+/**
+ * Creates HTML markup for a single slide
+ * @param {Object} slide - Slide data object
+ * @returns {string} HTML string
+ */
 function createSlide(slide) {
-    
-    // Check if slide has a custom overlay property
-    let overlayText;
-    if (slide.overlay) {
-        overlayText = slide.overlay;
-    } else {
+    // Generate overlay text based on link type
+    const overlayText = slide.overlay || (() => {
         const isSimulation = slide.link.includes("github.io");
-        overlayText = `Click to ${isSimulation ? 'try' : 'view'} <br><b>${slide.alt}</b> ${isSimulation ? '' : 'Code'}`;
-    }
+        return `Click to ${isSimulation ? 'try' : 'view'} <br><b>${slide.alt}</b> ${isSimulation ? '' : 'Code'}`;
+    })();
     
-    // Determine if this is a video or image
+    // Create appropriate media element (video or image)
     const isVideo = isVideoSource(slide.src);
     const mediaElement = isVideo 
         ? `<video data-src="${slide.src}" loading="lazy" class="slide-image" muted loop playsinline></video>`
@@ -169,108 +191,133 @@ function createSlide(slide) {
     `;
 }
 
-// Lazy loading implementation for both images and videos
+/* ============================================
+   LAZY LOADING
+   ============================================ */
+
+/**
+ * Loads media element by moving src from data-src and updating classes
+ * @param {HTMLElement} element - Image or video element
+ */
 function loadMedia(element) {
-    if (element.dataset.src) {
-        element.src = element.dataset.src;
-        element.classList.remove('slide-image');
-        element.classList.add('slide-image-loaded');
-        
-        // If it's a video, start playing
-        if (element.tagName === 'VIDEO') {
-            element.play().catch(err => {
-                // Autoplay might be blocked, but that's okay
-                console.log('Video autoplay prevented:', err);
-            });
-        }
+    if (!element.dataset.src) return;
+    
+    element.src = element.dataset.src;
+    element.classList.remove('slide-image');
+    element.classList.add('slide-image-loaded');
+    
+    // Auto-play videos when loaded
+    if (element.tagName === 'VIDEO') {
+        element.play().catch(err => {
+            // Autoplay may be blocked by browser policy - this is expected
+            console.log('Video autoplay prevented:', err);
+        });
     }
 }
 
-// Intersection Observer for lazy loading
+/**
+ * Sets up Intersection Observer for lazy loading media elements
+ */
 function setupLazyLoading() {
     const mediaObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const media = entry.target;
-                loadMedia(media);
-                observer.unobserve(media);
+                loadMedia(entry.target);
+                observer.unobserve(entry.target);
             }
         });
     }, {
-        rootMargin: '50px 0px', // Start loading 50px before media comes into view
+        rootMargin: LAZY_LOAD_ROOT_MARGIN,
         threshold: 0.01
     });
 
-    // Observe all slide images and videos
+    // Observe all unloaded media elements
     document.querySelectorAll('.slide-image').forEach(media => {
         mediaObserver.observe(media);
     });
 }
 
-// Progressive loading - load first few images/videos immediately
+/**
+ * Loads critical slides immediately for better initial experience
+ */
 function loadCriticalMedia() {
-    const criticalSlides = slidesData.slice(0, 3); // Load first 3 slides immediately
+    const criticalSlides = slidesData.slice(0, CRITICAL_SLIDES_COUNT);
     criticalSlides.forEach((slide, index) => {
         const media = document.querySelector(`#${slide.id} .slide-image`);
         if (media) {
-            setTimeout(() => loadMedia(media), index * 100); // Stagger loading
+            // Stagger loading to avoid blocking
+            setTimeout(() => loadMedia(media), index * 100);
         }
     });
 }
 
+/* ============================================
+   AUTOPLAY MANAGEMENT
+   ============================================ */
+
+/**
+ * Manages autoplay functionality for the slider
+ */
+class AutoplayManager {
+    constructor(slider) {
+        this.slider = slider;
+        this.interval = null;
+    }
+
+    start() {
+        this.stop(); // Clear any existing interval
+        
+        this.interval = setInterval(() => {
+            if (this.slider && !this.slider.matches(':hover')) {
+                const slideWidth = this.slider.querySelector('.slide')?.offsetWidth || 300;
+                const scrollAmount = slideWidth * 0.4; // Scroll by 40% of slide width
+                
+                this.slider.scrollBy({
+                    left: scrollAmount,
+                    behavior: "smooth",
+                });
+            }
+        }, AUTOPLAY_INTERVAL);
+    }
+
+    stop() {
+        if (this.interval) {
+            clearInterval(this.interval);
+            this.interval = null;
+        }
+    }
+}
+
+/* ============================================
+   INITIALIZATION
+   ============================================ */
+
 document.addEventListener("DOMContentLoaded", () => {
     const slider = document.querySelector(".slider");
-    
-    if (slider) {
-        slider.innerHTML = slidesData.map(createSlide).join("");
+    if (!slider) return;
 
-        // Setup lazy loading
-        setupLazyLoading();
-        
-        // Load critical media first
-        loadCriticalMedia();
+    // Render all slides
+    slider.innerHTML = slidesData.map(createSlide).join("");
 
-        // Autoplay functionality with performance optimization
-        let autoPlayInterval;
-        
-        function startAutoplay() {
-            autoPlayInterval = setInterval(() => {
-                if (slider && !slider.matches(':hover')) {
-                    slider.scrollBy({
-                        left: 100,
-                        behavior: "smooth",
-                    });
-                }
-            }, INTERVAL);
-        }
+    // Setup lazy loading
+    setupLazyLoading();
+    loadCriticalMedia();
 
-        function stopAutoplay() {
-            if (autoPlayInterval) {
-                clearInterval(autoPlayInterval);
-            }
-        }
+    // Initialize autoplay
+    const autoplay = new AutoplayManager(slider);
+    autoplay.start();
 
-        // Start autoplay
-        startAutoplay();
+    // Pause autoplay on hover
+    slider.addEventListener("mouseenter", () => autoplay.stop());
+    slider.addEventListener("mouseleave", () => autoplay.start());
 
-        // Pause autoplay on hover
-        slider.addEventListener("mouseenter", stopAutoplay);
-        slider.addEventListener("mouseleave", startAutoplay);
+    // Pause autoplay when tab is not visible
+    document.addEventListener("visibilitychange", () => {
+        document.hidden ? autoplay.stop() : autoplay.start();
+    });
 
-        // Pause autoplay when tab is not visible
-        document.addEventListener("visibilitychange", () => {
-            if (document.hidden) {
-                stopAutoplay();
-            } else {
-                startAutoplay();
-            }
-        });
-
-        // Initialize arrow states
-        setTimeout(updateArrowStates, 1000);
-        
-        // Update arrow states on scroll
-        slider.addEventListener('scroll', updateArrowStates);
-    }
+    // Initialize and maintain arrow states
+    setTimeout(updateArrowStates, 1000);
+    slider.addEventListener('scroll', updateArrowStates);
 });
 

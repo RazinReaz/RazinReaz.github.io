@@ -17,7 +17,6 @@
     align-items: center;
 }
 
-/* Netflix-style chevron arrows */
 .slider-arrow {
     position: absolute;
     top: 50%;
@@ -73,16 +72,15 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-behavior: smooth;
+    -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
 }
 
 .slider::-webkit-scrollbar {
     display: none; /* Hide scrollbar for Chrome, Safari and Opera */
 }
 
-.slider {
-    -ms-overflow-style: none; /* Hide scrollbar for Internet Explorer and Edge */
-    scrollbar-width: none; /* Hide scrollbar for Firefox */
-}
+
 
 
 .slide {
@@ -91,7 +89,6 @@
     justify-content: center;
     flex: 0 0 40%;
     scroll-snap-align: center;
-    aspect-ratio: 1/1;
     padding-left: 1rem;
     padding-right: 1rem;
     min-width: 0; /* Prevent flex item overflow */
