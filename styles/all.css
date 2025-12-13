@@ -3,7 +3,7 @@
    ========================================================================== */
 :root {
   /* Typography */
-  --font-family: "Inter", sans-serif;
+  --font-family: "Roboto", sans-serif;
   --font-size-xs: 0.9rem;
   --font-size-sm: 1.1rem;
   --font-size-base: 1.3rem;
@@ -41,7 +41,7 @@
   
   /* Layout */
   --navbar-height: 3.5rem;
-  --container-width: 95vw;
+  --container-width: min(95vw, 1400px);
   --sidebar-width: 30%;
   --border-radius-sm: 5px;
   --border-radius-md: 8px;
@@ -76,6 +76,15 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+@supports not (scroll-behavior: smooth) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -85,6 +94,28 @@ body {
   justify-content: center;
   padding: var(--spacing-lg);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
 }
 
 /* ==========================================================================
@@ -106,7 +137,13 @@ p {
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-light);
   margin-bottom: var(--spacing-sm);
+  text-align: left;
+}
+
+.content p {
   text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 a {
@@ -157,18 +194,22 @@ a:hover {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  padding: var(--spacing-sm) var(--spacing-3xl) var(--spacing-sm) 0;
+  /* padding: var(--spacing-sm) var(--spacing-3xl) var(--spacing-sm) var(--spacing-sm); */
+  padding-top: var(--spacing-sm);
+  padding-bottom: var(--spacing-sm);
+  padding-left: var(--spacing-sm);
+  padding-right: 6rem;
   height: 100%;
 }
 
 .nav-list__item {
-  margin: 0 var(--spacing-lg);
+  margin: 0 var(--spacing-sm);
   text-align: center;
 }
 
 .nav-list__link {
   color: var(--color-white);
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-sm);
   font-weight: var(--font-weight-light);
   transition: color var(--transition-normal);
 }
@@ -198,16 +239,19 @@ a:hover {
    ========================================================================== */
 .sidebar-back-rect {
   width: var(--sidebar-width);
-  height: 100%;
+  min-height: 100%;
+  height: auto;
   align-self: flex-start;
   background-color: var(--color-dark);
   z-index: var(--z-sidebar);
+  display: flex;
+  flex-direction: column;
 }
 
 .sidebar {
   max-width: 400px;
   width: 100%;
-  height: auto;
+  height: fit-content;
   background-color: var(--color-dark);
   color: var(--color-white);
   display: flex;
@@ -216,18 +260,21 @@ a:hover {
   flex-direction: column;
   padding: var(--spacing-xl) var(--spacing-lg);
   position: sticky;
-  top: var(--spacing-xl);
+  top: calc(var(--navbar-height) + var(--spacing-sm));
   z-index: var(--z-sidebar);
+  max-height: calc(100vh - var(--navbar-height) - var(--spacing-xl));
+  overflow-y: auto;
 }
 
 .sidebar__image {
   width: 100%;
   max-width: 220px;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   max-height: 220px;
   border-radius: 50%;
   margin-bottom: var(--spacing-lg);
-  border: 0.5vh solid var(--color-white);
+  border: 2px solid var(--color-white);
   object-fit: cover;
 }
 
@@ -267,7 +314,7 @@ a:hover {
   padding-top: var(--spacing-3xl);
   transform: translateY(4rem);
   opacity: 0;
-  transition: var(--spacing-sm) ease;
+  transition: transform var(--transition-normal), opacity var(--transition-normal);
 }
 
 .content--visible-up,
@@ -331,33 +378,47 @@ a:hover {
   box-shadow: var(--shadow-sm);
   gap: var(--spacing-lg);
   align-items: center;
-  width: 90%;
+  width: 95%;
+  max-width: 1200px;
 }
 
 .card__image {
   flex: 0 0 100%;
+  min-width: 0;
   max-width: 300px;
   max-height: 300px;
+  min-height: 200px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  border-radius: var(--border-radius-xl);
 }
 
 .card__image img,
 .card__image video {
   width: 100%;
-  height: 100%;
+  height: auto;
   max-width: 100%;
   max-height: 100%;
-  border-radius: var(--border-radius-xl);
   object-fit: contain;
   object-position: center;
 }
 
+@supports not (object-fit: contain) {
+  .card__image img,
+  .card__image video {
+    width: auto;
+    max-width: 100%;
+    height: auto;
+    max-height: 100%;
+  }
+}
+
 .card__content {
   flex: 1;
+  min-width: 0;
   margin-left: var(--spacing-sm);
 }
 
@@ -375,6 +436,7 @@ a:hover {
 
 .card__text {
   width: 90%;
+  max-width: 100%;
   font-size: var(--font-size-sm);
 }
 
@@ -389,7 +451,7 @@ a:hover {
   padding: 10px 20px;
   border: none;
   border-radius: var(--border-radius-sm);
-  margin: 0.5vh 0.3vh;
+  margin: var(--spacing-xs) var(--spacing-xs);
   transition: background-color var(--transition-normal), transform var(--transition-normal);
 }
 
@@ -464,11 +526,14 @@ a:hover {
 .experience-description {
   font-size: var(--font-size-sm);
   width: 90%;
+  max-width: 100%;
   font-weight: var(--font-weight-light);
   color: var(--color-text);
   margin-left: var(--spacing-sm);
   line-height: 1.6;
   text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .experience-description ul {
@@ -485,6 +550,7 @@ a:hover {
 .publication-authors {
   font-size: var(--font-size-sm);
   width: 90%;
+  max-width: 100%;
   font-weight: var(--font-weight-light);
   color: var(--color-text);
   margin-bottom: var(--spacing-xs);
@@ -509,7 +575,7 @@ a:hover {
   text-decoration: none;
   background-color: var(--color-white);
   padding: 0.5rem 0.8rem;
-  margin: 0.5vh 0.1vh;
+  /* margin: var(--spacing-xs) var(--spacing-xs); */
   border: 2px solid var(--color-primary);
   border-radius: var(--border-radius-sm);
   display: inline-block;
@@ -537,7 +603,8 @@ a:hover {
 
 .link-card {
   display: flex;
-  width: calc(50% - var(--spacing-lg));
+  flex: 1 1 calc(50% - var(--spacing-lg));
+  min-width: 300px;
   min-height: 300px;
   background-color: var(--color-cream);
   flex-direction: column;
@@ -596,7 +663,8 @@ a:hover {
   filter: blur(3px);
   transition: opacity var(--transition-slow) ease-in-out, filter var(--transition-slow) ease-in-out;
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 300px;
   object-fit: contain;
   object-position: center;
 }
@@ -606,7 +674,8 @@ a:hover {
   opacity: 1;
   filter: blur(0);
   width: 100%;
-  height: 100%;
+  height: auto;
+  max-height: 300px;
   object-fit: contain;
   object-position: center;
 }
@@ -655,7 +724,7 @@ a:hover {
   }
   
   .link-card {
-    width: calc(50% - var(--spacing-md));
+    flex: 1 1 calc(50% - var(--spacing-md));
   }
 }
 
@@ -746,7 +815,8 @@ a:hover {
     top: 3rem;
     padding: 0;
     width: 100%;
-    height: 50vh;
+    height: calc(100vh - var(--navbar-height));
+    max-height: 600px;
     background-color: var(--color-dark);
     align-items: center;
     justify-content: flex-start;
