@@ -16,10 +16,10 @@ import { hobbies } from "../data/hobbies.js";
 
     <Slider />
 
-    <br><br>
+    <br class="spacer"><br class="spacer">
     <p>
       I am currently a first year PhD student at <a href="https://www.umontreal.ca/en/" target="_blank">Université de Montréal</a> (UdeM), advised by <a href="https://www-labs.iro.umontreal.ca/~bmpix/" target="_blank">Dr. Mikhail Bessmeltsev</a>.
-      I am interested in Physics-based simulation and Character Animation in computer graphics
+      I am interested in Physics-based simulation and Character Animation in computer graphics.
     </p>
     <p>
       In the past, I worked as a junior research assistant at <a href="https://universalmachine.io" target="_blank">Universal Machine Inc.</a> and as an adjunct lecturer at the
@@ -323,8 +323,42 @@ import { hobbies } from "../data/hobbies.js";
   }
 
   @media (max-width: 767px) {
+    .spacer {
+      display: none;
+    }
+
+    .content {
+      margin-top: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+      padding-top: var(--spacing-xl);
+    }
+
     .content h1 {
       font-size: var(--font-size-3xl);
+    }
+
+    .about {
+      padding-top: var(--spacing-lg);
+      margin-bottom: var(--spacing-xl);
+    }
+
+    .about__title {
+      font-size: var(--font-size-2xl);
+      padding-top: 0;
+    }
+
+    .about__subtitle {
+      font-size: var(--font-size-base);
+      line-height: 1.4;
+    }
+
+    .about p {
+      line-height: 1.5;
+    }
+
+    .experience-item {
+      margin-left: var(--spacing-lg);
+      padding-bottom: var(--spacing-md);
     }
 
     .experience-title,
@@ -345,6 +379,20 @@ import { hobbies } from "../data/hobbies.js";
 
     .publication-authors {
       font-size: var(--font-size-xs);
+    }
+
+    .publication-button {
+      padding: 0.65rem 1rem;
+    }
+
+    .link-card-container {
+      gap: var(--spacing-md);
+    }
+  }
+
+  @media (max-width: 575px) {
+    .about__title {
+      font-size: var(--font-size-xl);
     }
   }
 </style>
