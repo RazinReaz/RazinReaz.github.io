@@ -1,0 +1,123 @@
+---
+---
+
+<div class="sidebar-back-rect">
+  <div class="sidebar">
+    <img src="/assets/img/Razin Reaz Abedin portfolio.jpg" alt="Razin Reaz Abedin" class="sidebar__image">
+    <h1 class="sidebar__title">Razin Reaz Abedin</h1>
+    <p class="sidebar__text">Lecturer, Coder, Musician, Gamer</p>
+
+    <div class="social-links">
+      <a href="https://github.com/RazinReaz" target="_blank" class="social-links__link"><i class="fab fa-github"></i></a>
+      <a href="https://www.linkedin.com/in/razinreaz/" target="_blank" class="social-links__link"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:razin.reaz@gmail.com" class="social-links__link"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.youtube.com/@RazinReazAbedin" target="_blank" class="social-links__link"><i class="fab fa-youtube"></i></a>
+    </div>
+  </div>
+</div>
+
+<style>
+  /*
+    .sidebar-back-rect stretches to match .main-content's height via the
+    parent .container's `align-items: stretch` — no min-height hack needed.
+    (The old `min-height: 100%` here resolved against an indefinite
+    containing-block height and is what blew the sidebar up to fill the
+    screen on mobile.)
+  */
+  .sidebar-back-rect {
+    width: var(--sidebar-width);
+    background-color: var(--color-dark);
+    z-index: var(--z-sidebar);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar {
+    max-width: 400px;
+    width: 100%;
+    height: fit-content;
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: var(--spacing-xl) var(--spacing-lg);
+    position: sticky;
+    top: calc(var(--navbar-height) + var(--spacing-sm));
+    z-index: var(--z-sidebar);
+    max-height: calc(100vh - var(--navbar-height) - var(--spacing-xl));
+    overflow-y: auto;
+  }
+
+  .sidebar__image {
+    width: 100%;
+    max-width: 220px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    max-height: 220px;
+    border-radius: 50%;
+    margin-bottom: var(--spacing-lg);
+    border: 2px solid var(--color-white);
+    object-fit: cover;
+  }
+
+  .sidebar__title {
+    font-size: 1.5em;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-white);
+  }
+
+  .sidebar__text {
+    color: var(--color-white);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    margin-bottom: var(--spacing-sm);
+    text-align: center;
+  }
+
+  .social-links__link {
+    font-size: var(--font-size-lg);
+    text-decoration: none;
+    color: var(--color-white);
+    margin: 0 var(--spacing-xs);
+    margin-top: var(--spacing-lg);
+    transition: color var(--transition-normal);
+  }
+
+  .social-links__link:hover {
+    color: var(--color-primary);
+  }
+
+  @media (min-width: 768px) {
+    .sidebar {
+      max-width: 400px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .sidebar-back-rect {
+      width: 100%;
+    }
+
+    .sidebar {
+      max-width: 100%;
+      padding: var(--spacing-sm);
+    }
+
+    .sidebar__image {
+      max-width: 5rem;
+      max-height: 5rem;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .sidebar h1 {
+      font-size: 1.2em;
+    }
+
+    .sidebar__text {
+      font-size: var(--font-size-sm);
+    }
+  }
+</style>

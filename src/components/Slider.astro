@@ -1,0 +1,265 @@
+---
+import { slidesData, isVideoSource, overlayTextFor } from "../data/slides.js";
+---
+
+<div class="slideshow-container">
+  <div class="slider-wrapper">
+    <button class="slider-arrow left" id="slider-left" aria-label="Scroll left">
+      <i class="fas fa-chevron-left"></i>
+    </button>
+    <div class="slider" id="slider">
+      {slidesData.map((slide) => (
+        <div id={slide.id} class="slide">
+          <a href={slide.link} target="_blank" class="slide-image-wrapper">
+            {isVideoSource(slide.src) ? (
+              <video src={slide.src} class="slide-image" muted loop playsinline preload="metadata" data-autoplay-visible></video>
+            ) : (
+              <img src={slide.src} alt={slide.alt} class="slide-image" loading="lazy">
+            )}
+            <div class="slide-overlay-text" set:html={overlayTextFor(slide)} />
+          </a>
+        </div>
+      ))}
+    </div>
+    <button class="slider-arrow right" id="slider-right" aria-label="Scroll right">
+      <i class="fas fa-chevron-right"></i>
+    </button>
+  </div>
+</div>
+
+<script>
+  const AUTOPLAY_INTERVAL = 15000;
+
+  const slider = document.getElementById("slider");
+  const leftArrow = document.getElementById("slider-left");
+  const rightArrow = document.getElementById("slider-right");
+
+  if (slider && leftArrow && rightArrow) {
+    function scrollSlider(direction) {
+      const slideWidth = slider.querySelector(".slide")?.offsetWidth || 300;
+      const scrollAmount = slideWidth * 0.8;
+      slider.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+      setTimeout(updateArrowStates, 500);
+    }
+
+    function updateArrowStates() {
+      const scrollThreshold = 10;
+      const isAtStart = slider.scrollLeft <= scrollThreshold;
+      const isAtEnd = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - scrollThreshold;
+      leftArrow.disabled = isAtStart;
+      rightArrow.disabled = isAtEnd;
+    }
+
+    leftArrow.addEventListener("click", () => scrollSlider("left"));
+    rightArrow.addEventListener("click", () => scrollSlider("right"));
+    slider.addEventListener("scroll", updateArrowStates);
+    setTimeout(updateArrowStates, 500);
+
+    let autoplayInterval = null;
+
+    function startAutoplay() {
+      stopAutoplay();
+      autoplayInterval = setInterval(() => {
+        if (slider.matches(":hover")) return;
+        const slideWidth = slider.querySelector(".slide")?.offsetWidth || 300;
+        slider.scrollBy({ left: slideWidth * 0.4, behavior: "smooth" });
+      }, AUTOPLAY_INTERVAL);
+    }
+
+    function stopAutoplay() {
+      if (autoplayInterval) {
+        clearInterval(autoplayInterval);
+        autoplayInterval = null;
+      }
+    }
+
+    startAutoplay();
+    slider.addEventListener("mouseenter", stopAutoplay);
+    slider.addEventListener("mouseleave", startAutoplay);
+    document.addEventListener("visibilitychange", () => {
+      document.hidden ? stopAutoplay() : startAutoplay();
+    });
+  }
+</script>
+
+<style>
+  .slideshow-container {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .slider-wrapper {
+    position: relative;
+    max-width: 100%;
+    max-height: 30rem;
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+  }
+
+  .slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4rem;
+    height: 4rem;
+    background: var(--color-secondary);
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .slider-arrow:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.2);
+  }
+
+  .slider-arrow.left {
+    left: 1rem;
+  }
+
+  .slider-arrow.right {
+    right: 1rem;
+  }
+
+  .slider-arrow:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  .slider-arrow:disabled:hover {
+    transform: translateY(-50%);
+  }
+
+  .slider {
+    display: flex;
+    max-width: 100%;
+    max-height: 30rem;
+    height: auto;
+    min-height: 300px;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .slider::-webkit-scrollbar {
+    display: none;
+  }
+
+  .slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 40%;
+    scroll-snap-align: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    min-width: 0;
+  }
+
+  .slide-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    max-width: 100%;
+    max-height: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1.5rem 3rem -0.75rem rgba(0, 0, 0, 0.2);
+    transition: transform ease 250ms;
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+
+  .slide-image-wrapper:hover {
+    transform: translate(0, -0.5rem);
+    box-shadow: 0 2rem 4rem -1rem var(--color-primary);
+  }
+
+  .slide-image {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 30rem;
+    border-radius: 0.5rem;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  .slide-image-wrapper:hover .slide-image {
+    filter: brightness(0.3);
+    cursor: pointer;
+  }
+
+  .slide-overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--color-white);
+    font-size: 1.25rem;
+    font-weight: 200;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: none;
+    z-index: 2;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .slide-image-wrapper:hover .slide-overlay-text {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(-0.5rem);
+  }
+
+  .slide-overlay-text :global(b) {
+    font-weight: 700;
+  }
+
+  @media (max-width: 768px) {
+    .slide {
+      flex: 0 0 90%;
+    }
+
+    .slider-arrow {
+      width: 2.5rem;
+      height: 2.5rem;
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .slide {
+      flex: 0 0 100%;
+      padding: 0.25rem;
+    }
+
+    .slider-arrow {
+      display: none;
+    }
+  }
+</style>

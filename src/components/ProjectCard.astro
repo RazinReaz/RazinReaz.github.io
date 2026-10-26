@@ -1,0 +1,136 @@
+---
+import { isVideoSource } from "../data/projects.js";
+
+const { project } = Astro.props;
+const isVideo = isVideoSource(project.imageSrc);
+---
+
+<div class="card">
+  <div class="card__image">
+    {isVideo ? (
+      <video src={project.imageSrc} class="project-media" muted loop playsinline preload="metadata" data-autoplay-visible></video>
+    ) : (
+      <img src={project.imageSrc} alt={project.imageAlt} class="project-media" loading="lazy">
+    )}
+  </div>
+  <div class="card__content">
+    <h3 class="card__title">{project.title}</h3>
+    <p class="card__text" set:html={project.description}></p>
+    {project.links.map((link) => (
+      <a href={link.href} target="_blank" class="card__button">{link.text}</a>
+    ))}
+  </div>
+</div>
+
+<style>
+  .card {
+    display: flex;
+    background-color: var(--color-cream);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius-xl);
+    margin: 0 auto var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    gap: var(--spacing-lg);
+    align-items: center;
+    width: 95%;
+    max-width: 1200px;
+  }
+
+  .card__image {
+    flex: 0 0 100%;
+    min-width: 0;
+    max-width: 300px;
+    max-height: 300px;
+    min-height: 200px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: var(--border-radius-xl);
+  }
+
+  .project-media {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    object-position: center;
+  }
+
+  @supports not (object-fit: contain) {
+    .project-media {
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      max-height: 100%;
+    }
+  }
+
+  .card__content {
+    flex: 1;
+    min-width: 0;
+    margin-left: var(--spacing-sm);
+  }
+
+  .card__title {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--spacing-xs);
+  }
+
+  .card__text {
+    width: 90%;
+    max-width: 100%;
+    font-size: var(--font-size-sm);
+  }
+
+  .card__button {
+    display: inline-block;
+    cursor: pointer;
+    color: var(--color-white);
+    background-color: var(--color-primary);
+    text-decoration: none;
+    text-align: center;
+    font-size: 90%;
+    padding: 10px 20px;
+    border: none;
+    border-radius: var(--border-radius-sm);
+    margin: var(--spacing-xs) var(--spacing-xs);
+    transition: background-color var(--transition-normal), transform var(--transition-normal);
+  }
+
+  .card__button:hover {
+    color: var(--color-white);
+    background-color: var(--color-secondary);
+    transform: scale(1.05);
+  }
+
+  @media (min-width: 768px) {
+    .card {
+      gap: var(--spacing-md);
+    }
+  }
+
+  @media (max-width: 767px) {
+    .card {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+    }
+
+    .card__image {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 575px) {
+    .card__title {
+      font-size: var(--font-size-lg);
+    }
+
+    .card__text {
+      font-size: var(--font-size-xs);
+      text-align: left;
+    }
+  }
+</style>

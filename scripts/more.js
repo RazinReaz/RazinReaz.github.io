@@ -36,6 +36,12 @@ const hobbies = [
       text: "A trailer that I am especially proud of making. An event I am especially proud of being a part of."
     },
     {
+      link: "https://www.facebook.com/reel/714289129917912",
+      img: "https://img.youtube.com/vi/0ENVNEGGTyY/hqdefault.jpg",
+      alt: "The Great Gig in the Sky",
+      text: "Everyone stole the show. Especially the violin!"
+    },
+    {
       link: "https://www.youtube.com/watch?v=0ENVNEGGTyY",
       img: "https://img.youtube.com/vi/0ENVNEGGTyY/hqdefault.jpg",
       alt: "Hymn for the Weekend Instrumental",
