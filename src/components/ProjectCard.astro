@@ -83,6 +83,7 @@ const isVideo = isVideoSource(project.imageSrc);
     width: 90%;
     max-width: 100%;
     font-size: var(--font-size-sm);
+    text-align: left;
   }
 
   .card__button {
@@ -123,13 +124,20 @@ const isVideo = isVideoSource(project.imageSrc);
     }
 
     .card__button {
-      padding: 12px 18px;
+      font-size: 0.8rem;
+      padding: 8px 12px;
+      margin: 0.25rem 0.25rem;
     }
   }
 
   @media (max-width: 575px) {
     .card__title {
       font-size: var(--font-size-lg);
+    }
+
+    .card__button {
+      font-size: 0.75rem;
+      padding: 7px 10px;
     }
 
     .card__text {

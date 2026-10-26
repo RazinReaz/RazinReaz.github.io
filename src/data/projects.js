@@ -5,7 +5,7 @@ export const projects = [
     title: "Real-time PBR path tracer",
     tools: ["CUDA C++", "OpenGL"],
     description:
-      "A real-time path tracer supporting diffuse, specular, and refractive materials using microfacet model. <b>Check GitHub for more images</b>. GPU NVIDIA GeForce 1060",
+      "A real-time path tracer using the microfacet model. <b>Check GitHub for more images</b>.",
     links: [
       {
         href: "https://github.com/RazinReaz/path-tracer",
@@ -23,7 +23,7 @@ export const projects = [
     title: "Real-time Black Hole Simulation",
     tools: ["CUDA C++", "OpenGL"],
     description:
-      "A ray marched black hole simulation with gavitational lensing with geodesic equation and volumetric rendering of accretion disk and ",
+      "A ray marched black hole simulation with gavitational lensing with geodesic equation and volumetric rendering of accretion disk.",
     links: [
       {
         href: "https://github.com/RazinReaz/black-hole",
@@ -41,7 +41,7 @@ export const projects = [
     title: "Softbody using PBD",
     tools: ["JavaScript", "p5.js"],
     description:
-      "Softbody simulation using PBD. Features grid based structure and a perimeter based structure. Includes self collision detection, user interactivity",
+      "Softbody simulation using PBD. Includes self collision detection and user interactivity",
     links: [
       {
         href: "https://razinreaz.github.io/softbody-pbd/",
@@ -59,7 +59,7 @@ export const projects = [
     title: "Ray tracing",
     tools: ["C++", "OpenGL"],
     description:
-      "An offline ray tracer capable of diffuse lighting, global illumination using path tracing, and emissive objects. Developed using C++ and OpenGL.",
+      "An offline path tracer. Developed using C++ and OpenGL.",
     links: [
       {
         href: "https://github.com/RazinReaz/ray-tracing",
@@ -77,7 +77,7 @@ export const projects = [
     title: "Flocking Boids",
     tools: ["JavaScript", "p5.js"],
     description:
-      "Flocking simulation with Quad tree neighbour search. Developed using p5.js.",
+      "Flocking simulation with Quad tree neighbour search.",
     links: [
       {
         href: "https://razinreaz.github.io/flocking-boids/",
@@ -90,30 +90,12 @@ export const projects = [
     ],
   },
   {
-    imageSrc: "/assets/projects/ray-casting/ray-casting.mp4",
-    imageAlt: "Simple Ray Casting",
-    title: "Simple Ray Casting",
-    tools: ["JavaScript", "p5.js"],
-    description:
-      "An interactive 3D world where you can traverse a customisable map. Developed using p5.js.",
-    links: [
-      {
-        href: "https://razinreaz.github.io/raycasting/",
-        text: "Try it Yourself!",
-      },
-      {
-        href: "https://github.com/RazinReaz/raycasting",
-        text: "Github",
-      },
-    ],
-  },
-  {
     imageSrc: "/assets/projects/ragdoll/demo.gif",
     imageAlt: "Ragdoll",
     title: "Ragdoll Simulation",
     tools: ["JavaScript", "p5.js"],
     description:
-      "Ragdoll interacting with gravity and a ball. Developed using p5.js.",
+      "Ragdoll interacting with gravity and a ball.",
     links: [
       {
         href: "https://razinreaz.github.io/Ragdoll-Simulation/",
@@ -131,7 +113,7 @@ export const projects = [
     title: "Steering Behaviours",
     tools: ["JavaScript", "p5.js"],
     description:
-      "A collection of steering behaviour simulations for autonomous agents. Behaviours include arrive, seek, flee, evade, wander, path following, and flocking. Read the README of the Github link for more visualizations and information. Developed using p5.js.",
+      "A collection of steering behaviour simulations for autonomous agents.",
     links: [
       {
         href: "https://github.com/RazinReaz/Steering-behaviours",
@@ -145,7 +127,7 @@ export const projects = [
     title: "Asteroids",
     tools: ["JavaScript", "p5.js"],
     description:
-      "Top down 2D shooter based on the Atari game Asteroids that was developed without a game engine. 5th place prize winner at IEEE CS BUET GameJam 2023. Developed using p5.js.",
+      "Top down 2D shooter based on the Atari game Asteroids. No game engine used. 5th place prize winner at IEEE CS BUET GameJam 2023.",
     links: [
       {
         href: "https://razinreaz.github.io/GameJam-2023-Asteroids/",
@@ -158,6 +140,24 @@ export const projects = [
       {
         href: "https://www.youtube.com/watch?v=dac8ezI2uDI",
         text: "Video",
+      },
+    ],
+  },
+  {
+    imageSrc: "/assets/projects/ray-casting/ray-casting.mp4",
+    imageAlt: "Simple Ray Casting",
+    title: "Simple Ray Casting",
+    tools: ["JavaScript", "p5.js"],
+    description:
+      "An interactive 3D world where you can traverse a customisable map.",
+    links: [
+      {
+        href: "https://razinreaz.github.io/raycasting/",
+        text: "Try it Yourself!",
+      },
+      {
+        href: "https://github.com/RazinReaz/raycasting",
+        text: "Github",
       },
     ],
   },
@@ -180,7 +180,7 @@ export const projects = [
     imageAlt: "Game of Life",
     title: "Conway's Game of Life",
     description:
-      "Cellular Automaton simulation of Conway's Game of Life. Developed using p5.js.",
+      "Cellular Automaton simulation of Conway's Game of Life.",
     links: [
       {
         href: "https://razinreaz.github.io/game-of-life/",
@@ -214,7 +214,7 @@ export const projects = [
     title: "Tworch",
     tools: ["Python", "Numpy", "Matplotlib"],
     description:
-      "A simple machine learning library made in Python. Supports Feed forward neural network, Initializers (Xavier, He, LeCun), Optimizers (Adam, Momentum, RMSProp), model saving and loading, and visualization of the model fitting a 2D dataset.",
+      "A simple machine learning library made in Python. Supports visualization of the model fitting a 2D dataset.",
     links: [
       { href: "https://github.com/RazinReaz/Tworch", text: "Github" },
       {
@@ -229,7 +229,7 @@ export const projects = [
     title: "Optimizer Visualization",
     tools: ["Python", "Vpython"],
     description:
-      "An interactive visualization for the behaviours of machine learning optimizers. The optimizers will find the local/global minima using their own algorithm on a 2-dimensional loss plane. Made with Vpython.",
+      "An interactive visualization for the behaviours of machine learning optimizers.",
     links: [
       {
         href: "https://github.com/RazinReaz/Optimizers-Visualization",

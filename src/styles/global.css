@@ -23,8 +23,8 @@
   --color-cream: #fff7ec;
   --color-orange-light: #fed59b;
   --color-dark: #001524;
-  --color-primary: #ffb236;
-  --color-secondary: #ff7d00;
+  --color-primary: #ff543a;
+  --color-secondary: #c40d0d;
   --color-heading: #15616d;
   --color-category: #5e5f6c;
   --color-text: #7d7d7d;
@@ -41,7 +41,7 @@
 
   /* Layout */
   --navbar-height: 3.5rem;
-  --container-width: min(95vw, 1400px);
+  --container-width: min(85vw, 1140px);
   --sidebar-width: 30%;
   --border-radius-sm: 5px;
   --border-radius-md: 8px;

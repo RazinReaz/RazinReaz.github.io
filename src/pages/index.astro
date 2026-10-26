@@ -334,7 +334,7 @@ import { hobbies } from "../data/hobbies.js";
     }
 
     .content h1 {
-      font-size: var(--font-size-3xl);
+      font-size: var(--font-size-2xl);
     }
 
     .about {
@@ -343,12 +343,12 @@ import { hobbies } from "../data/hobbies.js";
     }
 
     .about__title {
-      font-size: var(--font-size-2xl);
+      font-size: var(--font-size-xl);
       padding-top: 0;
     }
 
     .about__subtitle {
-      font-size: var(--font-size-base);
+      font-size: var(--font-size-sm);
       line-height: 1.4;
     }
 
@@ -391,8 +391,16 @@ import { hobbies } from "../data/hobbies.js";
   }
 
   @media (max-width: 575px) {
-    .about__title {
+    .content h1 {
       font-size: var(--font-size-xl);
+    }
+
+    .about__title {
+      font-size: var(--font-size-lg);
+    }
+
+    .about__subtitle {
+      font-size: var(--font-size-xs);
     }
   }
 </style>

@@ -21,7 +21,7 @@ export const hobbies = [
     link: "https://www.youtube.com/watch?v=WaajOqOC4PA",
     img: "https://img.youtube.com/vi/WaajOqOC4PA/hqdefault.jpg",
     alt: "",
-    text: "I was part of a Rock Band called Return Zero!",
+    text: "Was part of a Rock Band called Return Zero!",
   },
   {
     link: "https://youtu.be/3Y7SQm_T_yk?si=irw04tRECtbqA6im",
@@ -45,12 +45,12 @@ export const hobbies = [
     link: "https://www.youtube.com/watch?v=0ENVNEGGTyY",
     img: "https://img.youtube.com/vi/0ENVNEGGTyY/hqdefault.jpg",
     alt: "Hymn for the Weekend Instrumental",
-    text: "You can't see me but I am playing the Keyboard here with these amazing bunch of musicians!",
+    text: "You can't see me but I am playing the Keyboard here",
   },
   {
     link: "https://www.youtube.com/watch?v=JSP3lsmvgtE",
     img: "https://img.youtube.com/vi/JSP3lsmvgtE/hqdefault.jpg",
     alt: "Priyo Prangon",
-    text: "I co-composed, sang, and edited this stop motion music video commemorating my college days.",
+    text: "Co-composed, sang, and edited this stop motion music video commemorating my college days.",
   },
 ];
