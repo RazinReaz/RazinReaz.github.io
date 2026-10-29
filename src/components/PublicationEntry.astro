@@ -1,0 +1,238 @@
+---
+import { formatDate } from "../utils/dates.js";
+
+export interface Props {
+  publication: {
+    title: string;
+    venue: string;
+    venueFull: string;
+    venueLink?: string;
+    venueYear?: string;
+    tag?: string;
+    date: string;
+    authors: string[];
+    links: { text: string; href: string }[];
+    teaser?: string;
+  };
+  /** Author name to emphasise in the author list. */
+  highlight?: string;
+}
+
+const { publication: pub, highlight = "Razin Reaz Abedin" } = Astro.props;
+const year = pub.venueYear ?? pub.date.split("-")[0];
+const primaryLink = pub.links[0]?.href;
+---
+
+<article class="pub">
+  <a href={primaryLink} target="_blank" class:list={["pub__teaser", { "pub__teaser--placeholder": !pub.teaser }]} aria-label={`Open ${pub.title}`}>
+    {pub.teaser ? (
+      <img src={pub.teaser} alt="" loading="lazy" />
+    ) : (
+      <span class="pub__teaser-venue">{pub.venue}<small>{year}</small></span>
+    )}
+  </a>
+
+  <div class="pub__body">
+    <div class="pub__badges">
+      <span class="pub__venue">{pub.venue} {year}</span>
+      {pub.tag && <span class="pub__tag">{pub.tag}</span>}
+    </div>
+    <h3 class="pub__title">{pub.title}</h3>
+    <p class="pub__authors">
+      {pub.authors.map((author, i) => (
+        <>{i > 0 && ", "}{author === highlight ? <strong>{author}</strong> : author}</>
+      ))}
+    </p>
+    <p class="pub__venue-full">
+      {pub.venueLink ? <a href={pub.venueLink} target="_blank">{pub.venueFull}</a> : pub.venueFull}
+      <span class="pub__date"> · <time datetime={pub.date}>{formatDate(pub.date)}</time></span>
+    </p>
+    <div class="pub__links">
+      {pub.links.map((link) => (
+        <a href={link.href} target="_blank" class="pub__link">{link.text}</a>
+      ))}
+    </div>
+  </div>
+</article>
+
+<style>
+  .pub {
+    /* Layout tuning */
+    --pub-teaser-width: 11rem;
+    --pub-gap: var(--spacing-md);
+    --pub-radius: var(--border-radius-lg);
+    --pub-authors-size: 0.85rem;
+    --pub-venue-size: 0.9rem;
+
+    display: grid;
+    grid-template-columns: var(--pub-teaser-width) minmax(0, 1fr);
+    gap: var(--pub-gap);
+    align-items: start;
+  }
+
+  /* Teaser image, or a venue tile when no image is provided */
+  .pub__teaser {
+    display: block;
+    aspect-ratio: 4 / 3;
+    max-width: 100%;
+    border-radius: var(--pub-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--lift-duration) var(--ease-out);
+  }
+
+  .pub__teaser:hover {
+    box-shadow: var(--lift-shadow);
+  }
+
+  .pub__teaser img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--media-zoom-duration) var(--ease-out);
+  }
+
+  .pub__teaser:hover img {
+    transform: scale(var(--media-zoom));
+  }
+
+  .pub__teaser--placeholder {
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, var(--color-primary-soft), var(--color-accent-soft));
+  }
+
+  .pub__teaser-venue {
+    display: grid;
+    justify-items: center;
+    color: var(--color-primary);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.06em;
+    transition: transform var(--media-zoom-duration) var(--ease-out);
+  }
+
+  .pub__teaser-venue small {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    letter-spacing: 0.1em;
+  }
+
+  .pub__teaser--placeholder:hover .pub__teaser-venue {
+    transform: scale(var(--media-zoom));
+  }
+
+  .pub__body {
+    display: grid;
+    gap: var(--spacing-xs);
+    min-width: 0;
+  }
+
+  .pub__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+  }
+
+  .pub__venue,
+  .pub__tag {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 0.04em;
+    padding: 0.15rem 0.55rem;
+    border-radius: var(--border-radius-sm);
+  }
+
+  .pub__venue {
+    color: var(--color-text-on-dark);
+    background-color: var(--color-heading);
+  }
+
+  .pub__tag {
+    color: var(--color-accent);
+    background-color: var(--color-accent-soft);
+  }
+
+  .pub__title {
+    color: var(--color-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+    margin: 0;
+  }
+
+  .pub__authors,
+  .pub__venue-full {
+    margin: 0;
+    font-size: var(--pub-venue-size);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    text-align: left; /* overrides the justified .content p default */
+  }
+
+  .pub__authors {
+    font-size: var(--pub-authors-size);
+  }
+
+  .pub__authors strong {
+    color: var(--color-text);
+    font-weight: var(--font-weight-medium);
+    box-shadow: inset 0 -0.35em 0 var(--color-primary-soft);
+  }
+
+  .pub__venue-full {
+    font-style: italic;
+  }
+
+  .pub__date {
+    font-style: normal;
+    color: var(--color-accent);
+    font-weight: var(--font-weight-normal);
+    white-space: nowrap;
+  }
+
+  .pub__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-top: 0.25rem;
+  }
+
+  .pub__link {
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    color: var(--color-primary);
+    padding: 0.3rem 0.9rem;
+    border: 1.5px solid var(--color-primary);
+    border-radius: 999px;
+    transition:
+      color var(--transition-normal),
+      background-color var(--transition-normal);
+  }
+
+  .pub__link:hover,
+  .pub__link:focus-visible {
+    color: var(--color-on-primary);
+    background-color: var(--color-primary);
+  }
+
+  @media (max-width: 767px) {
+    .pub {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-sm);
+    }
+
+    .pub__teaser {
+      max-width: 16rem;
+    }
+
+    /* Venue tile adds nothing on small screens; real teasers still show */
+    .pub__teaser--placeholder {
+      display: none;
+    }
+
+    .pub__title {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>

@@ -18,17 +18,34 @@
   --font-weight-normal: 400;
   --font-weight-medium: 500;
 
-  /* Colors */
-  --color-white: #fcfcff;
-  --color-cream: #fff7ec;
-  --color-orange-light: #fed59b;
-  --color-dark: #001524;
-  --color-primary: #ff543a;
-  --color-secondary: #c40d0d;
-  --color-heading: #15616d;
-  --color-category: #5e5f6c;
-  --color-text: #7d7d7d;
-  --color-accent: #f99136;
+  /* Colors — palette "Refined current" (navy, teal, coral).
+     Named by role, not hue: swap the values here to re-theme the whole site. */
+  /* Surfaces */
+  --color-bg: #f7f3ee;               /* page background */
+  --color-surface: #ffffff;          /* main content card */
+  --color-surface-alt: #fbf8f4;      /* cards nested inside the main card */
+  --color-dark: #0f1e2e;             /* navbar, sidebar */
+
+  /* Text */
+  --color-heading: #13505a;
+  --color-text: #4a5560;
+  --color-text-muted: #6b7280;       /* organisations, secondary info */
+  --color-text-on-dark: #f5f3ef;     /* text on --color-dark */
+
+  /* Brand */
+  --color-primary: #c93a23;          /* links, buttons, highlights */
+  --color-primary-hover: #a32d1a;
+  --color-primary-soft: #fbe3d3;     /* tinted backgrounds, halos */
+  --color-primary-on-dark: #ff7a5c;  /* links/hover on --color-dark */
+  --color-on-primary: #ffffff;       /* text on --color-primary */
+  --color-accent: #b4581a;           /* dates */
+  --color-accent-soft: #fdeee2;
+
+  /* Lines & overlays */
+  --color-line: #dfe3e6;             /* timeline rails, dividers */
+  --color-scrim: rgb(0 0 0 / 0.8);   /* text shadow over media */
+  --color-shadow: rgb(15 30 46 / 0.12);
+  --color-shadow-strong: rgb(15 30 46 / 0.2);
 
   /* Spacing */
   --spacing-xs: 0.5rem;
@@ -49,8 +66,8 @@
   --border-radius-xl: 1em;
 
   /* Shadows */
-  --shadow-sm: 0 4px 8px rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.2);
+  --shadow-sm: 0 4px 8px var(--color-shadow);
+  --shadow-md: 0 8px 16px var(--color-shadow-strong);
 
   /* Transitions */
   --transition-fast: 0.1s ease-in;
@@ -83,7 +100,7 @@ html {
 
 body {
   font-family: var(--font-family);
-  background-color: var(--color-cream);
+  background-color: var(--color-bg);
   display: flex;
   justify-content: center;
   padding: var(--spacing-lg);
@@ -144,7 +161,7 @@ a {
 }
 
 a:hover {
-  color: var(--color-secondary);
+  color: var(--color-primary-hover);
 }
 
 /* ==========================================================================

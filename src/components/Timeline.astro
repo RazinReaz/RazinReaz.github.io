@@ -1,0 +1,181 @@
+---
+import { formatDateRange } from "../utils/dates.js";
+
+export interface Props {
+  items: {
+    title: string;
+    org?: string;
+    start?: string;
+    end?: string;
+    note?: string;
+    /** HTML allowed (e.g. links). */
+    description?: string;
+  }[];
+}
+
+const { items } = Astro.props;
+// The date column only appears when at least one item has a date
+const hasDates = items.some((item) => item.start);
+---
+
+<ol class:list={["timeline", { "timeline--undated": !hasDates }]}>
+  {items.map((item) => (
+    <li class="timeline__item">
+      {hasDates && (
+        <span class="timeline__date">{item.start && formatDateRange(item.start, item.end)}</span>
+      )}
+      <span class="timeline__rail" aria-hidden="true"></span>
+      <div class="timeline__body">
+        <span class="timeline__title">{item.title}</span>
+        {item.org && <span class="timeline__org">{item.org}</span>}
+        {item.note && <span class="timeline__note">{item.note}</span>}
+        {item.description && <p class="timeline__description" set:html={item.description} />}
+      </div>
+    </li>
+  ))}
+</ol>
+
+<style>
+  .timeline {
+    /* Layout tuning */
+    --tl-date-width: 10rem;
+    --tl-rail-column: 1.25rem;
+    --tl-column-gap: var(--spacing-sm);
+    --tl-item-gap: var(--spacing-lg);
+    --tl-dot-size: 12px;
+    --tl-dot-top: 0.3rem;      /* nudges the dot onto the title's first line */
+    --tl-rail-width: 2px;
+    --tl-dot-center: calc(var(--tl-dot-top) + var(--tl-dot-size) / 2);
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .timeline__item {
+    display: grid;
+    grid-template-columns: var(--tl-date-width) var(--tl-rail-column) minmax(0, 1fr);
+    column-gap: var(--tl-column-gap);
+  }
+
+  .timeline--undated .timeline__item {
+    grid-template-columns: var(--tl-rail-column) minmax(0, 1fr);
+  }
+
+  .timeline__date {
+    text-align: right;
+    padding-top: 0.15rem;
+    color: var(--color-accent);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-normal);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Rail segment per item; trimmed so it starts and ends on the first/last dot */
+  .timeline__rail {
+    position: relative;
+  }
+
+  .timeline__rail::before {
+    content: "";
+    position: absolute;
+    left: calc(50% - var(--tl-rail-width) / 2);
+    top: 0;
+    bottom: 0;
+    width: var(--tl-rail-width);
+    background-color: var(--color-line);
+  }
+
+  .timeline__item:first-child .timeline__rail::before {
+    top: var(--tl-dot-center);
+  }
+
+  .timeline__item:last-child .timeline__rail::before {
+    bottom: auto;
+    height: var(--tl-dot-center);
+  }
+
+  .timeline__item:only-child .timeline__rail::before {
+    display: none;
+  }
+
+  .timeline__rail::after {
+    content: "";
+    position: absolute;
+    left: calc(50% - var(--tl-dot-size) / 2);
+    top: var(--tl-dot-top);
+    width: var(--tl-dot-size);
+    height: var(--tl-dot-size);
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    box-shadow: 0 0 0 4px var(--color-primary-soft);
+  }
+
+  .timeline__body {
+    display: grid;
+    gap: 0.2rem;
+    padding-bottom: var(--tl-item-gap);
+  }
+
+  .timeline__item:last-child .timeline__body {
+    padding-bottom: 0;
+  }
+
+  .timeline__title {
+    color: var(--color-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-medium);
+    line-height: 1.3;
+  }
+
+  .timeline__org {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+  }
+
+  .timeline__note {
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .timeline__description {
+    margin: 0.2rem 0 0;
+    color: var(--color-text);
+    font-size: var(--font-size-sm);
+    line-height: 1.6;
+    text-align: left; /* overrides the justified .content p default */
+  }
+
+  /* Phones: date moves above the title, rail on the left */
+  @media (max-width: 767px) {
+    .timeline__item {
+      grid-template-columns: var(--tl-rail-column) minmax(0, 1fr);
+    }
+
+    .timeline__date {
+      grid-column: 2;
+      grid-row: 1;
+      text-align: left;
+      padding-top: 0;
+      font-size: var(--font-size-xs);
+    }
+
+    .timeline__rail {
+      grid-column: 1;
+      grid-row: 1 / span 2;
+    }
+
+    .timeline--undated .timeline__rail {
+      grid-row: 1;
+    }
+
+    .timeline__body {
+      grid-column: 2;
+    }
+
+    .timeline__title {
+      font-size: var(--font-size-base);
+    }
+  }
+</style>

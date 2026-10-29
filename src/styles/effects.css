@@ -41,7 +41,7 @@
    Add .is-active to keep the underline shown (e.g. current nav section).
    ========================================================================== */
 .u-underline,
-:where(p, .experience-description, .publication-conference) a:not([class]) {
+:where(p) a:not([class]) {
   background-image: linear-gradient(var(--underline-color), var(--underline-color));
   background-position: 0 100%;
   background-repeat: no-repeat;
@@ -54,8 +54,8 @@
 .u-underline:hover,
 .u-underline:focus-visible,
 .u-underline.is-active,
-:where(p, .experience-description, .publication-conference) a:not([class]):hover,
-:where(p, .experience-description, .publication-conference) a:not([class]):focus-visible {
+:where(p) a:not([class]):hover,
+:where(p) a:not([class]):focus-visible {
   background-size: 100% var(--underline-thickness);
 }
 

@@ -4,9 +4,13 @@ import Slider from "../components/Slider.astro";
 import ProjectCard from "../components/ProjectCard.astro";
 import AchievementCard from "../components/AchievementCard.astro";
 import LinkCard from "../components/LinkCard.astro";
+import PublicationEntry from "../components/PublicationEntry.astro";
+import Timeline from "../components/Timeline.astro";
 import { projects } from "../data/projects.js";
 import { achievements } from "../data/achievements.js";
 import { hobbies } from "../data/hobbies.js";
+import { publications } from "../data/publications.js";
+import { jobs, education, research } from "../data/experience.js";
 ---
 
 <Layout>
@@ -30,67 +34,14 @@ import { hobbies } from "../data/hobbies.js";
 
   <div class="content" id="Publications">
     <h1>Publications</h1>
-    <div class="experience-item">
-      <div class="experience-circle"></div>
-      <div class="publication-title">
-        Forecasting Occupational Survivability of Rickshaw Pullers in a Changing Climate with Wearable Data
-      </div>
-      <div class="publication-conference">
-        <a href="https://dl.acm.org/toc/imwut/2025/9/4" target="_blank">Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (IMWUT)</a>
-      </div>
-      <div class="publication-date">December, 2025</div>
-      <div class="publication-authors">
-        Masfiqur Rahaman, Maoyejatun Hasana, Shahad Shahriar Rahman, MD. Sajid Mostafiz Noor, <b>Razin Reaz Abedin</b>, Md Toki Tahmid, Duncan Watson Paris, Tanzeem Choudhury, A. B. M. Alim Al Islam, and Tauhidur Rahman
-      </div>
-      <a href="https://dl.acm.org/doi/10.1145/3770712" class="publication-button" target="_blank">ACM</a>
-      <a href="https://arxiv.org/pdf/2511.00081" class="publication-button" target="_blank">PDF</a>
-      <a href="https://www.youtube.com/watch?v=17eN0Fuo4QM" class="publication-button" target="_blank">Video</a>
-    </div>
-    <div class="experience-item">
-      <div class="experience-circle"></div>
-      <div class="publication-title">
-        Short Paper: "It's Too Hot Under the Sun": Unveiling the Impact of
-        Prolonged Heat Exposure on Rickshaw Pullers' Brainwaves
-      </div>
-      <div class="publication-conference">
-        <a href="https://dl.acm.org/doi/proceedings/10.1145/3704522" target="_blank">NSysS '24: Proceedings of the 11th International Conference on Networking, Systems, and Security</a>
-      </div>
-      <div class="publication-date">January 2025</div>
-      <div class="publication-authors">
-        Maoyejatun Hasana, Masfiqur Rahaman, <b>Razin Reaz Abedin</b>, Md Toki Tahmid, Ishika Tarin, Sudipa Saha, Sutapa Dey Tithi, Zarin Tasnim Promi, Kazi Abdun Noor, MD Zahidul Islam Sanjid, Mahir Shahriar Dhrubo, Samira Akter, Tauhidur Rahman, A. B. M. Alim Al Islam
-      </div>
-      <a href="https://dl.acm.org/doi/10.1145/3704522.3704556" class="publication-button" target="_blank">ACM</a>
-      <a href="https://dl.acm.org/doi/pdf/10.1145/3704522.3704556" class="publication-button" target="_blank">PDF</a>
+    <div class="publications">
+      {publications.map((publication) => <PublicationEntry publication={publication} />)}
     </div>
   </div>
 
   <div class="content" id="Research">
     <h1>Research Experience</h1>
-    <div class="experience-item">
-      <div class="experience-circle"></div>
-      <div class="experience-title">
-        Enhancing Earthquake Early Warning: Real‑time Seismic Intensity
-        Prediction with Contrastive Learning and DenseLoss
-      </div>
-      <div class="experience-description">
-        Development of a deep learning model to predict peak ground
-        acceleration (and earthquake intensity) by analyzing the first 3
-        seconds of the p‑phase in seismograms under the supervision of
-        <a href="https://sites.google.com/site/mohammedeunusali/">Dr. Mohammed Eunus Ali</a>.
-      </div>
-    </div>
-    <div class="experience-item">
-      <div class="experience-circle"></div>
-      <div class="experience-title">
-        Analyzing Impacts on the Physiological Aspects of Rickshaw‑pullers
-        due to Heat exposure
-      </div>
-      <div class="experience-description">
-        Dataset preparation of the physiological aspects and environmental
-        factors of Bangladeshi Rickshaw Pullers. Supervised by
-        <a href="https://cse.buet.ac.bd/faculty/faculty_detail/razi">Dr. A. B. M. Alim Al Islam</a>. 
-      </div>
-    </div>
+    <Timeline items={research} />
   </div>
 
   <div class="content" id="Projects">
@@ -102,45 +53,12 @@ import { hobbies } from "../data/hobbies.js";
 
   <div class="content" id="Resume">
     <h1>Job Experience</h1>
-    <div class="experience-item">
-      <div class="experience-circle"></div>
-      <div class="experience-title">Junior Research Engineer</div>
-      <div class="experience-category">Universal Machines Inc.</div>
-      <div class="experience-duration">August 2025 - May 2026</div>
-    </div>
-    <div class="experience-item">
-      <div class="experience-circle"></div>
-      <div class="experience-title">Adjunct Lecturer</div>
-      <div class="experience-category">Department of Computer Science and Engineering, BUET</div>
-      <div class="experience-duration">August 2024 - December 2024</div>
-    </div>
+    <Timeline items={jobs} />
   </div>
 
   <div class="content" id="Education">
     <h1>Education</h1>
-    <div class="experience-item">
-      <div class="experience-circle"></div>
-      <div class="experience-title">B.Sc. in Computer Science and Engineering</div>
-      <div class="experience-category">Bangladesh University of Engineering and Technology (BUET)</div>
-      <div class="experience-duration">April 2019 - July 2024</div>
-      <div class="experience-description">
-        <b>CGPA: 3.93/4.00</b>
-      </div>
-    </div>
-    <div class="experience-item">
-      <div class="experience-circle"></div>
-      <div class="experience-title">Higher Secondary Certificate</div>
-      <div class="experience-category">Bir Shreshtha Noor Mohammad Public College</div>
-      <div class="experience-duration">2016 - 2018</div>
-      <div class="experience-description"><b>GPA: 5.00/5.00</b></div>
-    </div>
-    <div class="experience-item">
-      <div class="experience-circle"></div>
-      <div class="experience-title">Secondary School Certificate</div>
-      <div class="experience-category">Bir Shreshtha Noor Mohammad Public College</div>
-      <div class="experience-duration">2014 - 2016</div>
-      <div class="experience-description"><b>GPA: 5.00/5.00</b></div>
-    </div>
+    <Timeline items={education} />
   </div>
 
   <div class="content" id="Achievements">
@@ -200,117 +118,9 @@ import { hobbies } from "../data/hobbies.js";
     text-align: center;
   }
 
-  .experience-item {
-    position: relative;
-    margin-left: var(--spacing-xl);
-    padding-bottom: var(--spacing-lg);
-  }
-
-  .experience-item:not(:last-child) {
-    margin-bottom: var(--spacing-sm);
-  }
-
-  .experience-item::before {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: -28px;
-    width: 1px;
-    height: 80%;
-    background-color: var(--color-dark);
-  }
-
-  .experience-item:not(:last-child)::before {
-    height: calc(80% + 30px);
-  }
-
-  .experience-circle {
-    position: absolute;
-    top: 5px;
-    left: -33px;
-    width: 10px;
-    height: 10px;
-    background-color: var(--color-dark);
-    border-radius: 50%;
-    box-shadow: 0 0 0 4px #d6d6d6;
-  }
-
-  .experience-title,
-  .publication-title {
-    color: var(--color-heading);
-    font-size: 1.3rem;
-    font-weight: var(--font-weight-medium);
-    line-height: 1.3;
-    margin-bottom: var(--spacing-xs);
-  }
-
-  .experience-category {
-    font-size: 85%;
-    color: var(--color-category);
-    margin-bottom: var(--spacing-xs);
-    margin-left: var(--spacing-sm);
-  }
-
-  .experience-duration {
-    color: var(--color-accent);
-    font-weight: var(--font-weight-normal);
-    line-height: 1.6;
-    margin-bottom: var(--spacing-xs);
-    margin-left: var(--spacing-sm);
-  }
-
-  .experience-description {
-    font-size: var(--font-size-sm);
-    width: 90%;
-    max-width: 100%;
-    font-weight: var(--font-weight-light);
-    color: var(--color-text);
-    margin-left: var(--spacing-sm);
-    line-height: 1.6;
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
-  }
-
-  .publication-authors {
-    font-size: var(--font-size-sm);
-    width: 90%;
-    max-width: 100%;
-    font-weight: var(--font-weight-light);
-    color: var(--color-text);
-    margin-bottom: var(--spacing-xs);
-    margin-left: var(--spacing-sm);
-    line-height: 1.4;
-  }
-
-  .publication-date,
-  .publication-conference {
-    font-size: 100%;
-    font-weight: var(--font-weight-normal);
-    color: var(--color-text);
-    margin-bottom: var(--spacing-xs);
-    margin-left: var(--spacing-sm);
-    line-height: 1.4;
-    font-style: italic;
-  }
-
-  .publication-button {
-    color: var(--color-primary);
-    font-size: 90%;
-    text-decoration: none;
-    background-color: var(--color-white);
-    padding: 0.5rem 0.8rem;
-    border: 2px solid var(--color-primary);
-    border-radius: var(--border-radius-sm);
-    display: inline-block;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color var(--transition-normal), transform var(--transition-normal);
-  }
-
-  .publication-button:hover {
-    color: var(--color-white);
-    background-color: var(--color-primary);
+  .publications {
+    display: grid;
+    gap: var(--spacing-xl);
   }
 
   .link-card-container {
@@ -354,35 +164,6 @@ import { hobbies } from "../data/hobbies.js";
 
     .about p {
       line-height: 1.5;
-    }
-
-    .experience-item {
-      margin-left: var(--spacing-lg);
-      padding-bottom: var(--spacing-md);
-    }
-
-    .experience-title,
-    .publication-title {
-      font-size: var(--font-size-base);
-    }
-
-    .experience-description {
-      font-size: var(--font-size-xs);
-      text-align: left;
-    }
-
-    .experience-duration,
-    .publication-date,
-    .publication-conference {
-      font-size: var(--font-size-xs);
-    }
-
-    .publication-authors {
-      font-size: var(--font-size-xs);
-    }
-
-    .publication-button {
-      padding: 0.65rem 1rem;
     }
 
     .link-card-container {

@@ -159,8 +159,8 @@ const { autoplayInterval = 15000, showDots = true } = Astro.props;
     --dot-size: 8px;
     --dot-active-width: 24px;
     --dot-gap: 0.5rem;
-    --dot-color: rgba(0, 21, 36, 0.2);
-    --dot-hover-color: rgba(0, 21, 36, 0.45);
+    --dot-color: var(--color-line);
+    --dot-hover-color: var(--color-text-muted);
     --dot-active-color: var(--color-primary);
 
     /* Slide hover tuning (zoom/dim tokens live in styles/effects.css) */
@@ -190,10 +190,10 @@ const { autoplayInterval = 15000, showDots = true } = Astro.props;
     transform: translateY(-50%);
     width: 4rem;
     height: 4rem;
-    background: var(--color-secondary);
+    background: var(--color-dark);
     border: none;
     border-radius: 50%;
-    color: white;
+    color: var(--color-text-on-dark);
     font-size: 2rem;
     cursor: pointer;
     z-index: 10;
@@ -275,7 +275,7 @@ const { autoplayInterval = 15000, showDots = true } = Astro.props;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 1.5rem 3rem -0.75rem rgba(0, 0, 0, 0.2);
+    box-shadow: 0 1.5rem 3rem -0.75rem var(--color-shadow-strong);
     transition:
       transform var(--slide-hover-duration) var(--ease-out),
       box-shadow var(--slide-hover-duration) var(--ease-out);
@@ -313,7 +313,7 @@ const { autoplayInterval = 15000, showDots = true } = Astro.props;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: var(--color-white);
+    color: var(--color-text-on-dark);
     font-size: 1.25rem;
     font-weight: 200;
     text-align: center;
@@ -321,7 +321,7 @@ const { autoplayInterval = 15000, showDots = true } = Astro.props;
     transition: opacity 0.3s ease, transform 0.3s ease;
     pointer-events: none;
     z-index: 2;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 2px 4px var(--color-scrim);
   }
 
   .slide-image-wrapper:hover .slide-overlay-text,
