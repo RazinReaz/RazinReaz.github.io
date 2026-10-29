@@ -1,0 +1,71 @@
+/* ==========================================================================
+   Effects — tokens and reusable interaction styles
+   Tweak the variables below to tune every hover/animation on the site.
+   ========================================================================== */
+:root {
+  /* Shared easing */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Hover underline (text links + navbar links) */
+  --underline-thickness: 1.5px;
+  --underline-color: currentColor;
+  --underline-duration: 0.3s;
+
+  /* Card lift (link cards) */
+  --lift-distance: -4px;
+  --lift-shadow: var(--shadow-md);
+  --lift-duration: 0.3s;
+
+  /* Media zoom inside clipped frames (slider, link cards) */
+  --media-zoom: 1.05;
+  --media-zoom-duration: 0.4s;
+
+  /* Media dim behind overlay text (slider) — 1 = no dimming, 0 = black */
+  --media-dim: 0.5;
+}
+
+/* ==========================================================================
+   Smooth scrolling — only for users who haven't asked for reduced motion
+   ========================================================================== */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* ==========================================================================
+   Hover underline — slides in from left to right
+   Applied to:
+     - .u-underline (opt-in class, e.g. navbar links)
+     - plain links inside running text (edit the :where() list to change)
+   Add .is-active to keep the underline shown (e.g. current nav section).
+   ========================================================================== */
+.u-underline,
+:where(p, .experience-description, .publication-conference) a:not([class]) {
+  background-image: linear-gradient(var(--underline-color), var(--underline-color));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0% var(--underline-thickness);
+  transition:
+    color var(--transition-fast),
+    background-size var(--underline-duration) var(--ease-out);
+}
+
+.u-underline:hover,
+.u-underline:focus-visible,
+.u-underline.is-active,
+:where(p, .experience-description, .publication-conference) a:not([class]):hover,
+:where(p, .experience-description, .publication-conference) a:not([class]):focus-visible {
+  background-size: 100% var(--underline-thickness);
+}
+
+/* ==========================================================================
+   Reduced motion — collapse all effect durations
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --underline-duration: 0.01ms;
+    --lift-duration: 0.01ms;
+    --media-zoom-duration: 0.01ms;
+  }
+}

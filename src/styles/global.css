@@ -41,8 +41,8 @@
 
   /* Layout */
   --navbar-height: 3.5rem;
-  --container-width: min(85vw, 1140px);
-  --sidebar-width: 30%;
+  --container-width: min(70vw, 1140px);
+  --sidebar-width: 25vw;
   --border-radius-sm: 5px;
   --border-radius-md: 8px;
   --border-radius-lg: 10px;
@@ -74,17 +74,11 @@
   box-sizing: border-box;
 }
 
+/* Smooth scrolling lives in effects.css (reduced-motion aware) */
 html {
-  scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
   text-size-adjust: 100%;
-}
-
-@supports not (scroll-behavior: smooth) {
-  html {
-    scroll-behavior: auto;
-  }
 }
 
 body {

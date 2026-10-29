@@ -26,7 +26,7 @@ const navItems = [
   <ul class="nav-list" id="nav-list">
     {navItems.map((item) => (
       <li class="nav-list__item">
-        <a href={item.href} class="nav-list__link">{item.label}</a>
+        <a href={item.href} class="nav-list__link u-underline">{item.label}</a>
       </li>
     ))}
   </ul>
@@ -95,10 +95,11 @@ const navItems = [
     color: var(--color-white);
     font-size: var(--font-size-sm);
     font-weight: var(--font-weight-light);
-    transition: color var(--transition-normal);
+    padding-bottom: 2px; /* room for the hover underline (effects.css) */
   }
 
-  .nav-list__link:hover {
+  .nav-list__link:hover,
+  .nav-list__link.is-active {
     color: var(--color-primary);
   }
 

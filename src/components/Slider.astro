@@ -1,10 +1,19 @@
 ---
 import { slidesData, isVideoSource, overlayTextFor } from "../data/slides.js";
+
+export interface Props {
+  /** Milliseconds between automatic slide advances. 0 disables autoplay. */
+  autoplayInterval?: number;
+  /** Show the dot indicators under the slider. */
+  showDots?: boolean;
+}
+
+const { autoplayInterval = 15000, showDots = true } = Astro.props;
 ---
 
-<div class="slideshow-container">
+<div class="slideshow-container" data-autoplay-interval={autoplayInterval}>
   <div class="slider-wrapper">
-    <button class="slider-arrow left" id="slider-left" aria-label="Scroll left">
+    <button type="button" class="slider-arrow left" id="slider-left" aria-label="Scroll left">
       <i class="fas fa-chevron-left"></i>
     </button>
     <div class="slider" id="slider">
@@ -21,64 +30,123 @@ import { slidesData, isVideoSource, overlayTextFor } from "../data/slides.js";
         </div>
       ))}
     </div>
-    <button class="slider-arrow right" id="slider-right" aria-label="Scroll right">
+    <button type="button" class="slider-arrow right" id="slider-right" aria-label="Scroll right">
       <i class="fas fa-chevron-right"></i>
     </button>
   </div>
+
+  {showDots && (
+    <div class="slider-dots" role="group" aria-label="Choose slide">
+      {slidesData.map((slide, i) => (
+        <button type="button" class="slider-dot" data-index={i} aria-label={`Go to slide ${i + 1}: ${slide.alt}`}></button>
+      ))}
+    </div>
+  )}
 </div>
 
 <script>
-  const AUTOPLAY_INTERVAL = 15000;
-
+  const container = document.querySelector<HTMLElement>(".slideshow-container");
   const slider = document.getElementById("slider");
-  const leftArrow = document.getElementById("slider-left");
-  const rightArrow = document.getElementById("slider-right");
+  const leftArrow = document.getElementById("slider-left") as HTMLButtonElement | null;
+  const rightArrow = document.getElementById("slider-right") as HTMLButtonElement | null;
 
-  if (slider && leftArrow && rightArrow) {
-    function scrollSlider(direction) {
-      const slideWidth = slider.querySelector(".slide")?.offsetWidth || 300;
-      const scrollAmount = slideWidth * 0.8;
-      slider.scrollBy({
-        left: direction === "left" ? -scrollAmount : scrollAmount,
-        behavior: "smooth",
+  if (container && slider && leftArrow && rightArrow) {
+    const AUTOPLAY_INTERVAL = Number(container.dataset.autoplayInterval) || 0;
+    const EDGE_THRESHOLD = 10;
+    const ACTIVE_DOT_CLASS = "is-active";
+
+    const slides = [...slider.querySelectorAll<HTMLElement>(".slide")];
+    const dots = [...container.querySelectorAll<HTMLButtonElement>(".slider-dot")];
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const maxScroll = () => slider.scrollWidth - slider.clientWidth;
+    const scrollBehavior = () => (reduceMotion.matches ? "auto" : "smooth");
+
+    // Index of the slide the viewer is looking at (edges win so the first/last dot can be active)
+    function currentIndex() {
+      if (slider.scrollLeft <= EDGE_THRESHOLD) return 0;
+      if (slider.scrollLeft >= maxScroll() - EDGE_THRESHOLD) return slides.length - 1;
+
+      const center = slider.scrollLeft + slider.clientWidth / 2;
+      let closest = 0;
+      let closestDistance = Infinity;
+      slides.forEach((slide, i) => {
+        const distance = Math.abs(slide.offsetLeft + slide.offsetWidth / 2 - center);
+        if (distance < closestDistance) {
+          closest = i;
+          closestDistance = distance;
+        }
       });
-      setTimeout(updateArrowStates, 500);
+      return closest;
     }
 
-    function updateArrowStates() {
-      const scrollThreshold = 10;
-      const isAtStart = slider.scrollLeft <= scrollThreshold;
-      const isAtEnd = slider.scrollLeft >= slider.scrollWidth - slider.clientWidth - scrollThreshold;
-      leftArrow.disabled = isAtStart;
-      rightArrow.disabled = isAtEnd;
+    // Scroll so slide `index` is centred; indices wrap around both ends
+    function goTo(index: number) {
+      const slide = slides[(index + slides.length) % slides.length];
+      const target = slide.offsetLeft - (slider.clientWidth - slide.offsetWidth) / 2;
+      slider.scrollTo({
+        left: Math.min(Math.max(target, 0), maxScroll()),
+        behavior: scrollBehavior(),
+      });
     }
 
-    leftArrow.addEventListener("click", () => scrollSlider("left"));
-    rightArrow.addEventListener("click", () => scrollSlider("right"));
-    slider.addEventListener("scroll", updateArrowStates);
-    setTimeout(updateArrowStates, 500);
+    function updateControls() {
+      leftArrow.disabled = slider.scrollLeft <= EDGE_THRESHOLD;
+      rightArrow.disabled = slider.scrollLeft >= maxScroll() - EDGE_THRESHOLD;
 
-    let autoplayInterval = null;
+      const active = currentIndex();
+      dots.forEach((dot, i) => {
+        const isActive = i === active;
+        dot.classList.toggle(ACTIVE_DOT_CLASS, isActive);
+        dot.setAttribute("aria-current", String(isActive));
+      });
+    }
+
+    let ticking = false;
+    slider.addEventListener("scroll", () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        updateControls();
+        ticking = false;
+      });
+    }, { passive: true });
+    window.addEventListener("resize", updateControls);
+    updateControls();
+
+    // Autoplay — advances one slide, loops back to the first after the last
+    let autoplayTimer: ReturnType<typeof setInterval> | undefined;
+
+    function stopAutoplay() {
+      clearInterval(autoplayTimer);
+      autoplayTimer = undefined;
+    }
 
     function startAutoplay() {
       stopAutoplay();
-      autoplayInterval = setInterval(() => {
+      if (!AUTOPLAY_INTERVAL) return;
+      autoplayTimer = setInterval(() => {
         if (slider.matches(":hover")) return;
-        const slideWidth = slider.querySelector(".slide")?.offsetWidth || 300;
-        slider.scrollBy({ left: slideWidth * 0.4, behavior: "smooth" });
+        goTo(currentIndex() + 1);
       }, AUTOPLAY_INTERVAL);
     }
 
-    function stopAutoplay() {
-      if (autoplayInterval) {
-        clearInterval(autoplayInterval);
-        autoplayInterval = null;
-      }
+    // Manual navigation also restarts the autoplay timer
+    function navigate(index: number) {
+      goTo(index);
+      startAutoplay();
     }
+
+    leftArrow.addEventListener("click", () => navigate(currentIndex() - 1));
+    rightArrow.addEventListener("click", () => navigate(currentIndex() + 1));
+    dots.forEach((dot) => {
+      dot.addEventListener("click", () => navigate(Number(dot.dataset.index)));
+    });
 
     startAutoplay();
     slider.addEventListener("mouseenter", stopAutoplay);
     slider.addEventListener("mouseleave", startAutoplay);
+    slider.addEventListener("pointerdown", startAutoplay);
     document.addEventListener("visibilitychange", () => {
       document.hidden ? stopAutoplay() : startAutoplay();
     });
@@ -87,6 +155,18 @@ import { slidesData, isVideoSource, overlayTextFor } from "../data/slides.js";
 
 <style>
   .slideshow-container {
+    /* Dot indicator tuning */
+    --dot-size: 8px;
+    --dot-active-width: 24px;
+    --dot-gap: 0.5rem;
+    --dot-color: rgba(0, 21, 36, 0.2);
+    --dot-hover-color: rgba(0, 21, 36, 0.45);
+    --dot-active-color: var(--color-primary);
+
+    /* Slide hover tuning (zoom/dim tokens live in styles/effects.css) */
+    --slide-hover-lift: -0.5rem;
+    --slide-hover-duration: 0.3s;
+
     padding: 1rem;
     margin-bottom: 1rem;
   }
@@ -147,6 +227,7 @@ import { slidesData, isVideoSource, overlayTextFor } from "../data/slides.js";
   }
 
   .slider {
+    position: relative; /* makes slide.offsetLeft relative to the slider */
     display: flex;
     max-width: 100%;
     max-height: 30rem;
@@ -158,10 +239,15 @@ import { slidesData, isVideoSource, overlayTextFor } from "../data/slides.js";
     overflow-x: auto;
     overflow-y: hidden;
     scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
     -ms-overflow-style: none;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .slider {
+      scroll-behavior: smooth;
+    }
   }
 
   .slider::-webkit-scrollbar {
@@ -190,13 +276,16 @@ import { slidesData, isVideoSource, overlayTextFor } from "../data/slides.js";
     align-items: center;
     justify-content: center;
     box-shadow: 0 1.5rem 3rem -0.75rem rgba(0, 0, 0, 0.2);
-    transition: transform ease 250ms;
+    transition:
+      transform var(--slide-hover-duration) var(--ease-out),
+      box-shadow var(--slide-hover-duration) var(--ease-out);
     border-radius: 0.5rem;
-    overflow: hidden;
+    overflow: hidden; /* clips the zoomed media */
   }
 
-  .slide-image-wrapper:hover {
-    transform: translate(0, -0.5rem);
+  .slide-image-wrapper:hover,
+  .slide-image-wrapper:focus-visible {
+    transform: translateY(var(--slide-hover-lift));
     box-shadow: 0 2rem 4rem -1rem var(--color-primary);
   }
 
@@ -208,11 +297,15 @@ import { slidesData, isVideoSource, overlayTextFor } from "../data/slides.js";
     border-radius: 0.5rem;
     object-fit: contain;
     object-position: center;
+    transition:
+      transform var(--media-zoom-duration) var(--ease-out),
+      filter var(--media-zoom-duration) var(--ease-out);
   }
 
-  .slide-image-wrapper:hover .slide-image {
-    filter: brightness(0.3);
-    cursor: pointer;
+  .slide-image-wrapper:hover .slide-image,
+  .slide-image-wrapper:focus-visible .slide-image {
+    filter: brightness(var(--media-dim));
+    transform: scale(var(--media-zoom));
   }
 
   .slide-overlay-text {
@@ -231,13 +324,46 @@ import { slidesData, isVideoSource, overlayTextFor } from "../data/slides.js";
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
   }
 
-  .slide-image-wrapper:hover .slide-overlay-text {
+  .slide-image-wrapper:hover .slide-overlay-text,
+  .slide-image-wrapper:focus-visible .slide-overlay-text {
     opacity: 1;
     transform: translate(-50%, -50%) translateY(-0.5rem);
   }
 
   .slide-overlay-text :global(b) {
     font-weight: 700;
+  }
+
+  /* Dot indicators */
+  .slider-dots {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: var(--dot-gap);
+    margin-top: var(--spacing-sm);
+  }
+
+  .slider-dot {
+    width: var(--dot-size);
+    height: var(--dot-size);
+    padding: 0;
+    border: none;
+    border-radius: calc(var(--dot-size) / 2);
+    background-color: var(--dot-color);
+    cursor: pointer;
+    transition:
+      width var(--slide-hover-duration) var(--ease-out),
+      background-color var(--slide-hover-duration) var(--ease-out);
+  }
+
+  .slider-dot:hover {
+    background-color: var(--dot-hover-color);
+  }
+
+  .slider-dot.is-active {
+    width: var(--dot-active-width);
+    background-color: var(--dot-active-color);
   }
 
   @media (max-width: 768px) {
@@ -260,6 +386,12 @@ import { slidesData, isVideoSource, overlayTextFor } from "../data/slides.js";
 
     .slider-arrow {
       display: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .slideshow-container {
+      --slide-hover-duration: 0.01ms;
     }
   }
 </style>
